@@ -18,16 +18,19 @@
 
   <style>
     :root {
-      --primary: #0066FF;
-      --accent: #00D9FF;
-      --secondary: #FF6B35;
+      --primary: #0052CC;
+      --primary-light: #E6F0FF;
+      --primary-dark: #003D99;
+      --accent: #0099FF;
+      --secondary: #003D99;
       --success: #00C853;
       --gold: #FFD700;
       --dark: #0A1628;
       --dark-light: #1A2942;
-      --gray: #64748B;
-      --light: #F8FAFC;
+      --gray: #5A6C7D;
+      --light-gray: #EFF3F7;
       --white: #FFFFFF;
+      --off-white: #F8FAFC;
     }
 
     * {
@@ -44,9 +47,10 @@
       font-family: 'Inter', sans-serif;
       color: var(--dark);
       overflow-x: hidden;
-      background: var(--dark);
-      line-height: 1.6;
+      background: var(--white);
+      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     ::-webkit-scrollbar {
@@ -54,11 +58,11 @@
     }
 
     ::-webkit-scrollbar-track {
-      background: var(--dark);
+      background: var(--light-gray);
     }
 
     ::-webkit-scrollbar-thumb {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
+      background: linear-gradient(180deg, var(--primary), var(--accent));
       border-radius: 10px;
     }
 
@@ -66,12 +70,12 @@
       position: fixed;
       top: 0;
       left: 0;
-      height: 5px;
-      background: linear-gradient(90deg, var(--primary), var(--accent), var(--gold), var(--secondary));
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
       z-index: 99999;
-      box-shadow: 0 0 30px var(--accent);
       width: 0;
       transition: width 0.1s linear;
+      box-shadow: 0 2px 10px rgba(0, 82, 204, 0.4);
     }
 
     .preloader {
@@ -80,12 +84,12 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
+      background: linear-gradient(135deg, var(--white) 0%, var(--primary-light) 100%);
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 99999;
-      transition: opacity 0.3s, visibility 0.3s;
+      transition: opacity 0.5s, visibility 0.5s;
     }
 
     .preloader.hidden {
@@ -93,211 +97,221 @@
       visibility: hidden;
     }
 
+    .preloader-content {
+      text-align: center;
+    }
+
     .preloader-logo {
-      width: 100px;
-      height: 100px;
+      width: 120px;
+      height: 120px;
       margin: 0 auto 30px;
       background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 25px;
+      border-radius: 30px;
       display: flex;
       align-items: center;
       justify-content: center;
       animation: pulse-load 1.5s infinite;
-      box-shadow: 0 25px 70px rgba(0, 102, 255, 0.6);
+      box-shadow: 0 30px 80px rgba(0, 82, 204, 0.4);
     }
 
     .preloader-logo i {
-      font-size: 3rem;
+      font-size: 3.5rem;
       color: white;
     }
 
     @keyframes pulse-load {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.15); }
+      0%, 100% { transform: scale(1); box-shadow: 0 30px 80px rgba(0, 82, 204, 0.4); }
+      50% { transform: scale(1.1); box-shadow: 0 35px 100px rgba(0, 82, 204, 0.6); }
     }
 
     .preloader-text {
-      color: white;
-      font-size: 1.8rem;
+      font-family: 'Sora', sans-serif;
+      font-size: 2.2rem;
       font-weight: 900;
-      margin-bottom: 10px;
-      background: linear-gradient(135deg, #FFF, var(--accent), var(--gold));
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradient-shift 3s ease infinite;
-    }
-
-    @keyframes gradient-shift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
-    .preloader-subtitle {
-      color: rgba(255,255,255,0.7);
-      font-size: 1rem;
+      color: var(--primary);
+      margin-bottom: 15px;
       letter-spacing: 2px;
     }
 
+    .preloader-subtitle {
+      color: var(--gray);
+      font-size: 1.1rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
     .announcement-bar {
-      background: linear-gradient(90deg, var(--secondary) 0%, var(--gold) 100%);
+      background: linear-gradient(90deg, var(--primary), var(--accent));
       color: white;
-      padding: 14px 0;
+      padding: 15px 0;
       text-align: center;
       font-weight: 700;
       font-size: 14px;
       z-index: 9998;
-      animation: slideDown 0.5s;
+      animation: slideDown 0.6s;
+      box-shadow: 0 4px 15px rgba(0, 82, 204, 0.2);
     }
 
     @keyframes slideDown {
-      from { transform: translateY(-100%); }
-      to { transform: translateY(0); }
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
     .top-bar {
-      background: linear-gradient(135deg, rgba(10, 22, 40, 0.98) 0%, rgba(26, 41, 66, 0.98) 100%);
-      color: white;
-      padding: 14px 0;
+      background: var(--white);
+      border-bottom: 1px solid var(--light-gray);
+      padding: 15px 0;
       font-size: 13px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
     .top-bar a {
-      color: rgba(255,255,255,0.85);
+      color: var(--gray);
       text-decoration: none;
-      margin-right: 25px;
+      margin-right: 30px;
       font-weight: 600;
       transition: color 0.3s;
     }
 
     .top-bar a:hover {
-      color: var(--accent);
+      color: var(--primary);
     }
 
     .emergency-badge {
-      background: linear-gradient(135deg, var(--secondary), #FF8C42);
-      padding: 10px 28px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 10px 30px;
       border-radius: 50px;
-      font-weight: 700;
+      font-weight: 800;
       text-transform: uppercase;
       font-size: 11px;
-      box-shadow: 0 8px 30px rgba(255, 107, 53, 0.5);
-      animation: pulse-glow 2.5s infinite;
+      letter-spacing: 1px;
+      box-shadow: 0 8px 25px rgba(0, 82, 204, 0.3);
+      animation: badge-pulse 2.5s infinite;
       display: inline-block;
     }
 
-    @keyframes pulse-glow {
-      0%, 100% { transform: scale(1); box-shadow: 0 8px 30px rgba(255, 107, 53, 0.5); }
-      50% { transform: scale(1.05); box-shadow: 0 12px 40px rgba(255, 107, 53, 0.8); }
+    @keyframes badge-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
 
     .navbar {
       background: rgba(255, 255, 255, 0.98) !important;
+      backdrop-filter: blur(10px);
       box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
-      padding: 22px 0;
+      padding: 25px 0;
       transition: all 0.4s;
       position: sticky;
       top: 0;
       z-index: 9999;
+      border-bottom: 1px solid rgba(0, 82, 204, 0.1);
     }
 
     .navbar.scrolled {
-      padding: 16px 0;
-      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.12);
+      padding: 18px 0;
+      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
     }
 
     .navbar-brand {
       display: flex;
       align-items: center;
-      gap: 15px;
-      transition: all 0.4s;
+      gap: 18px;
     }
 
     .brand-icon {
-      width: 58px;
-      height: 58px;
+      width: 60px;
+      height: 60px;
       background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 16px;
+      border-radius: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 1.7rem;
-      box-shadow: 0 10px 35px rgba(0, 102, 255, 0.4);
+      font-size: 1.8rem;
+      box-shadow: 0 12px 35px rgba(0, 82, 204, 0.4);
+      transition: all 0.4s;
     }
 
     .navbar-brand:hover .brand-icon {
       transform: rotate(10deg) scale(1.1);
-      box-shadow: 0 15px 50px rgba(0, 102, 255, 0.6);
+      box-shadow: 0 15px 50px rgba(0, 82, 204, 0.6);
     }
 
     .brand-text {
       font-family: 'Sora', sans-serif;
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       font-weight: 900;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--primary);
+      letter-spacing: 1px;
     }
 
     .nav-link {
       color: var(--dark) !important;
       font-weight: 600;
-      padding: 12px 24px !important;
+      padding: 12px 25px !important;
       border-radius: 12px;
       transition: all 0.3s;
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      left: 25px;
+      width: 0;
+      height: 3px;
+      background: var(--primary);
+      transition: width 0.3s;
+    }
+
+    .nav-link:hover::after {
+      width: calc(100% - 50px);
     }
 
     .nav-link:hover {
       color: var(--primary) !important;
-      background: rgba(0, 102, 255, 0.1);
-      transform: translateY(-2px);
+      background: var(--primary-light);
     }
 
     .cta-btn {
-      background: linear-gradient(135deg, var(--secondary), #FF8C42);
+      background: linear-gradient(135deg, var(--primary), var(--accent));
       color: white !important;
-      padding: 14px 36px !important;
+      padding: 15px 40px !important;
       border-radius: 50px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      box-shadow: 0 10px 35px rgba(255, 107, 53, 0.4);
+      letter-spacing: 1.2px;
+      box-shadow: 0 10px 35px rgba(0, 82, 204, 0.4);
       transition: all 0.4s;
       border: none;
     }
 
     .cta-btn:hover {
       transform: translateY(-4px) scale(1.05);
-      box-shadow: 0 15px 50px rgba(255, 107, 53, 0.6);
+      box-shadow: 0 15px 50px rgba(0, 82, 204, 0.6);
     }
 
     .hero {
-      background: linear-gradient(135deg, rgba(10, 22, 40, 0.96) 0%, rgba(26, 41, 66, 0.94) 100%);
+      background: linear-gradient(135deg, var(--white) 0%, var(--primary-light) 100%);
       min-height: 100vh;
       display: flex;
       align-items: center;
       position: relative;
       overflow: hidden;
-      color: white;
+      padding: 100px 0;
     }
 
     .hero::before {
       content: '';
       position: absolute;
       top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 20% 50%, rgba(0, 102, 255, 0.15) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 80%, rgba(0, 217, 255, 0.15) 0%, transparent 50%);
-      animation: gradientShift 15s ease infinite;
-    }
-
-    @keyframes gradientShift {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.8; }
+      right: -20%;
+      width: 80%;
+      height: 150%;
+      background: radial-gradient(circle, rgba(0, 82, 204, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
     }
 
     .hero-content {
@@ -307,7 +321,7 @@
     }
 
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(50px); }
+      from { opacity: 0; transform: translateY(60px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
@@ -315,36 +329,41 @@
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      background: rgba(0, 217, 255, 0.12);
-      border: 2px solid rgba(0, 217, 255, 0.4);
-      padding: 14px 30px;
+      background: white;
+      border: 2px solid var(--primary);
+      padding: 15px 35px;
       border-radius: 50px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--accent);
+      letter-spacing: 2px;
+      color: var(--primary);
       margin-bottom: 35px;
-      box-shadow: 0 10px 40px rgba(0, 217, 255, 0.3);
+      box-shadow: 0 10px 40px rgba(0, 82, 204, 0.15);
     }
 
     .hero h1 {
       font-family: 'Sora', sans-serif;
-      font-size: clamp(3.5rem, 8vw, 5.5rem);
+      font-size: clamp(3.5rem, 8vw, 5.8rem);
       font-weight: 900;
-      line-height: 1.05;
+      line-height: 1.08;
       margin-bottom: 35px;
-      background: linear-gradient(135deg, #FFFFFF 0%, var(--accent) 50%, var(--gold) 100%);
-      background-size: 200% auto;
+      color: var(--primary);
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      position: relative;
     }
 
     .hero-subtitle {
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       line-height: 1.9;
-      opacity: 0.92;
+      color: var(--gray);
       margin-bottom: 45px;
-      max-width: 720px;
+      max-width: 750px;
+      font-weight: 500;
     }
 
     .hero-buttons {
@@ -354,67 +373,77 @@
     }
 
     .btn-hero {
-      padding: 20px 45px;
-      font-size: 1.05rem;
+      padding: 22px 50px;
+      font-size: 1.1rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.5px;
       border-radius: 50px;
       transition: all 0.4s;
       display: inline-flex;
       align-items: center;
-      gap: 14px;
+      gap: 15px;
       border: none;
       text-decoration: none;
     }
 
     .btn-hero-primary {
-      background: linear-gradient(135deg, var(--secondary), #FF8C42);
+      background: linear-gradient(135deg, var(--primary), var(--accent));
       color: white;
-      box-shadow: 0 15px 45px rgba(255, 107, 53, 0.5);
+      box-shadow: 0 15px 45px rgba(0, 82, 204, 0.4);
     }
 
     .btn-hero-primary:hover {
       transform: translateY(-6px) scale(1.05);
-      box-shadow: 0 20px 60px rgba(255, 107, 53, 0.7);
+      box-shadow: 0 20px 60px rgba(0, 82, 204, 0.6);
     }
 
     .btn-hero-secondary {
-      background: rgba(255, 255, 255, 0.12);
-      color: white;
-      border: 2px solid rgba(255, 255, 255, 0.4);
+      background: white;
+      color: var(--primary);
+      border: 3px solid var(--primary);
+      box-shadow: 0 10px 30px rgba(0, 82, 204, 0.2);
     }
 
     .btn-hero-secondary:hover {
-      background: rgba(255, 255, 255, 0.22);
+      background: var(--primary-light);
       transform: translateY(-6px) scale(1.05);
     }
 
     .stats-bar {
-      background: linear-gradient(135deg, rgba(10, 22, 40, 0.95) 0%, rgba(26, 41, 66, 0.95) 100%);
-      margin-top: -120px;
+      background: white;
+      margin-top: -100px;
       position: relative;
       z-index: 100;
       border-radius: 40px;
-      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.15);
       padding: 70px 60px;
-      border: 2px solid rgba(0, 217, 255, 0.3);
-      animation: statsFloat 4s ease-in-out infinite;
-    }
-
-    @keyframes statsFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      border: 3px solid var(--primary-light);
     }
 
     .stat-item {
       text-align: center;
       padding: 30px;
-      transition: all 0.6s;
+      transition: all 0.5s;
+      position: relative;
+    }
+
+    .stat-item::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 20%;
+      height: 60%;
+      width: 2px;
+      background: var(--light-gray);
+    }
+
+    .stat-item:last-child::after {
+      display: none;
     }
 
     .stat-item:hover {
-      transform: translateY(-20px) scale(1.1);
+      transform: translateY(-15px);
     }
 
     .stat-icon {
@@ -428,26 +457,26 @@
       justify-content: center;
       font-size: 2.8rem;
       color: white;
-      box-shadow: 0 20px 60px rgba(0, 102, 255, 0.6);
+      box-shadow: 0 20px 60px rgba(0, 82, 204, 0.4);
+      transition: all 0.5s;
     }
 
     .stat-item:hover .stat-icon {
-      transform: rotate(20deg) scale(1.2);
-      box-shadow: 0 30px 80px rgba(0, 217, 255, 0.8);
+      transform: rotate(15deg) scale(1.15);
+      box-shadow: 0 25px 80px rgba(0, 82, 204, 0.6);
     }
 
     .stat-number {
-      font-size: 3.5rem;
+      font-family: 'Sora', sans-serif;
+      font-size: 3.8rem;
       font-weight: 900;
-      background: linear-gradient(135deg, var(--white), var(--accent), var(--gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--primary);
       margin-bottom: 15px;
     }
 
     .stat-label {
-      color: var(--accent);
-      font-weight: 800;
+      color: var(--gray);
+      font-weight: 700;
       font-size: 1.1rem;
       text-transform: uppercase;
       letter-spacing: 2px;
@@ -458,6 +487,10 @@
       position: relative;
     }
 
+    .section-alt {
+      background: linear-gradient(135deg, var(--off-white) 0%, var(--primary-light) 100%);
+    }
+
     .section-header {
       text-align: center;
       max-width: 900px;
@@ -466,87 +499,90 @@
 
     .section-badge {
       display: inline-block;
-      background: linear-gradient(135deg, rgba(0, 102, 255, 0.2), rgba(0, 217, 255, 0.2));
-      color: var(--accent);
-      padding: 14px 35px;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 14px 40px;
       border-radius: 50px;
       font-weight: 900;
       font-size: 13px;
       text-transform: uppercase;
       letter-spacing: 3px;
       margin-bottom: 30px;
-      border: 3px solid rgba(0, 217, 255, 0.4);
-      box-shadow: 0 10px 35px rgba(0, 102, 255, 0.3);
+      border: 2px solid var(--primary);
     }
 
     .section-title {
       font-family: 'Sora', sans-serif;
-      font-size: clamp(3rem, 6vw, 4.2rem);
+      font-size: clamp(3rem, 6vw, 4.5rem);
       font-weight: 900;
       margin-bottom: 30px;
-      background: linear-gradient(135deg, var(--white), var(--accent), var(--gold));
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--primary);
       line-height: 1.1;
     }
 
     .section-subtitle {
-      font-size: 1.3rem;
-      color: rgba(255,255,255,0.8);
+      font-size: 1.35rem;
+      color: var(--gray);
       line-height: 1.9;
+      font-weight: 500;
     }
 
     .product-card {
-      background: linear-gradient(135deg, rgba(10, 22, 40, 0.9) 0%, rgba(26, 41, 66, 0.9) 100%);
+      background: white;
       border-radius: 40px;
       overflow: hidden;
-      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.1);
       transition: all 0.6s;
       height: 100%;
-      border: 3px solid rgba(0, 217, 255, 0.2);
+      border: 3px solid var(--light-gray);
     }
 
     .product-card:hover {
-      transform: translateY(-30px) scale(1.03);
-      box-shadow: 0 45px 100px rgba(0, 0, 0, 0.7), 0 0 80px rgba(0, 217, 255, 0.4);
+      transform: translateY(-25px);
+      box-shadow: 0 40px 100px rgba(0, 82, 204, 0.25);
+      border-color: var(--primary);
     }
 
     .product-image {
-      height: 380px;
-      background-size: cover;
-      background-position: center;
+      height: 400px;
+      background: linear-gradient(135deg, var(--primary-light), var(--white));
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-image i {
+      font-size: 8rem;
+      color: var(--primary);
+      opacity: 0.3;
     }
 
     .product-badge {
       position: absolute;
       top: 35px;
       right: 35px;
-      background: linear-gradient(135deg, var(--secondary), #FF8C42);
+      background: linear-gradient(135deg, var(--primary), var(--accent));
       color: white;
-      padding: 14px 32px;
+      padding: 14px 35px;
       border-radius: 50px;
       font-weight: 900;
       text-transform: uppercase;
       letter-spacing: 2px;
-      box-shadow: 0 15px 50px rgba(255, 107, 53, 0.7);
+      box-shadow: 0 15px 50px rgba(0, 82, 204, 0.5);
       z-index: 10;
     }
 
     .product-content {
       padding: 50px 45px;
-      color: white;
     }
 
     .product-title {
       font-family: 'Sora', sans-serif;
-      font-size: 2.2rem;
+      font-size: 2.3rem;
       font-weight: 900;
       margin-bottom: 35px;
-      background: linear-gradient(135deg, var(--white), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--primary);
     }
 
     .product-specs {
@@ -556,35 +592,37 @@
     }
 
     .product-specs li {
-      padding: 20px 0;
-      border-bottom: 2px solid rgba(0, 217, 255, 0.2);
+      padding: 22px 0;
+      border-bottom: 2px solid var(--light-gray);
       display: flex;
       justify-content: space-between;
-      transition: all 0.4s;
+      align-items: center;
+      transition: all 0.3s;
     }
 
     .product-specs li:hover {
       padding-left: 15px;
-      border-bottom-color: rgba(0, 217, 255, 0.6);
-      background: rgba(0, 217, 255, 0.05);
+      background: var(--primary-light);
+      border-bottom-color: var(--primary);
     }
 
     .spec-label {
-      color: rgba(255,255,255,0.7);
+      color: var(--gray);
       font-weight: 700;
       display: flex;
       align-items: center;
       gap: 15px;
+      font-size: 1.05rem;
     }
 
     .spec-label i {
-      color: var(--accent);
-      font-size: 1.4rem;
+      color: var(--primary);
+      font-size: 1.5rem;
     }
 
     .spec-value {
       font-weight: 900;
-      color: var(--white);
+      color: var(--dark);
     }
 
     .product-actions {
@@ -594,118 +632,247 @@
     }
 
     .btn-product {
-      padding: 18px 24px;
+      padding: 20px 25px;
       border-radius: 18px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 1.5px;
-      transition: all 0.5s;
+      transition: all 0.4s;
       border: none;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 12px;
       text-decoration: none;
+      font-size: 0.95rem;
     }
 
     .btn-product-primary {
       background: linear-gradient(135deg, var(--primary), var(--accent));
       color: white;
-      box-shadow: 0 10px 35px rgba(0, 102, 255, 0.5);
+      box-shadow: 0 10px 35px rgba(0, 82, 204, 0.4);
     }
 
     .btn-product-primary:hover {
       transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 15px 50px rgba(0, 217, 255, 0.7);
+      box-shadow: 0 15px 50px rgba(0, 82, 204, 0.6);
     }
 
     .btn-product-secondary {
       background: var(--success);
       color: white;
-      box-shadow: 0 10px 35px rgba(0, 200, 83, 0.5);
+      box-shadow: 0 10px 35px rgba(0, 200, 83, 0.4);
     }
 
     .btn-product-secondary:hover {
       transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 15px 50px rgba(0, 200, 83, 0.7);
+      box-shadow: 0 15px 50px rgba(0, 200, 83, 0.6);
     }
 
-    .service-card {
-      background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,250,252,0.98) 100%);
-      border-radius: 35px;
+    .feature-box {
+      background: white;
       padding: 50px 40px;
+      border-radius: 35px;
       box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
       transition: all 0.5s;
+      border: 3px solid var(--light-gray);
       height: 100%;
     }
 
-    .service-card:hover {
-      transform: translateY(-20px) scale(1.02);
-      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.15);
+    .feature-box:hover {
+      transform: translateY(-20px);
+      box-shadow: 0 30px 80px rgba(0, 82, 204, 0.2);
+      border-color: var(--primary);
     }
 
-    .service-icon {
-      width: 90px;
-      height: 90px;
+    .feature-icon {
+      width: 100px;
+      height: 100px;
       background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 24px;
+      border-radius: 28px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       color: white;
       margin-bottom: 30px;
-      box-shadow: 0 15px 45px rgba(0, 102, 255, 0.4);
+      box-shadow: 0 15px 50px rgba(0, 82, 204, 0.4);
       transition: all 0.5s;
     }
 
-    .service-card:hover .service-icon {
-      transform: rotate(15deg) scale(1.1);
-      box-shadow: 0 20px 60px rgba(0, 102, 255, 0.6);
+    .feature-box:hover .feature-icon {
+      transform: rotate(15deg) scale(1.12);
+      box-shadow: 0 20px 70px rgba(0, 82, 204, 0.6);
     }
 
-    .service-title {
+    .feature-title {
       font-family: 'Sora', sans-serif;
-      font-size: 1.8rem;
+      font-size: 1.9rem;
       font-weight: 800;
       margin-bottom: 20px;
-      color: var(--dark);
+      color: var(--primary);
     }
 
-    .service-features {
+    .feature-desc {
+      color: var(--gray);
+      line-height: 1.8;
+      font-weight: 500;
+      font-size: 1.05rem;
+    }
+
+    .feature-list {
       list-style: none;
       padding: 0;
-      margin-bottom: 30px;
+      margin-top: 25px;
     }
 
-    .service-features li {
+    .feature-list li {
       padding: 12px 0;
       color: var(--gray);
-      font-weight: 500;
+      font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 15px;
     }
 
-    .service-features li i {
+    .feature-list li i {
       color: var(--success);
+      font-size: 1.3rem;
+    }
+
+    .brand-showcase {
+      background: white;
+      padding: 60px;
+      border-radius: 35px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+
+    .brand-title {
+      font-family: 'Sora', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--primary);
+      margin-bottom: 50px;
+    }
+
+    .brand-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+    }
+
+    .brand-item {
+      padding: 30px;
+      background: var(--primary-light);
+      border-radius: 20px;
+      transition: all 0.4s;
+      border: 2px solid transparent;
+    }
+
+    .brand-item:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary);
+      background: white;
+      box-shadow: 0 15px 40px rgba(0, 82, 204, 0.15);
+    }
+
+    .brand-item i {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .brand-name {
+      font-weight: 800;
+      color: var(--dark);
       font-size: 1.2rem;
     }
 
+    .process-card {
+      background: white;
+      padding: 50px 40px;
+      border-radius: 35px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+      transition: all 0.5s;
+      text-align: center;
+      position: relative;
+      border: 3px solid var(--light-gray);
+    }
+
+    .process-card::after {
+      content: '→';
+      position: absolute;
+      right: -60px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 3rem;
+      color: var(--primary);
+      font-weight: 900;
+    }
+
+    .process-card:last-child::after {
+      display: none;
+    }
+
+    .process-card:hover {
+      transform: translateY(-15px) scale(1.03);
+      box-shadow: 0 25px 70px rgba(0, 82, 204, 0.2);
+      border-color: var(--primary);
+    }
+
+    .process-number {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 900;
+      color: white;
+      margin: 0 auto 25px;
+      box-shadow: 0 10px 35px rgba(0, 82, 204, 0.4);
+    }
+
+    .process-title {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .process-desc {
+      color: var(--gray);
+      line-height: 1.8;
+      font-weight: 500;
+    }
+
     .testimonial-card {
-      background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,250,252,0.98) 100%);
+      background: white;
       border-radius: 35px;
       padding: 50px 40px;
       box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
       height: 100%;
+      border: 3px solid var(--light-gray);
+      transition: all 0.4s;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 70px rgba(0, 82, 204, 0.2);
+      border-color: var(--primary);
     }
 
     .testimonial-text {
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       line-height: 1.9;
       color: var(--gray);
       margin-bottom: 30px;
       font-style: italic;
+      font-weight: 500;
     }
 
     .testimonial-author {
@@ -715,61 +882,64 @@
     }
 
     .testimonial-avatar {
-      width: 70px;
-      height: 70px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--primary), var(--accent));
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: 900;
-      box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+      box-shadow: 0 10px 35px rgba(0, 82, 204, 0.3);
     }
 
     .testimonial-info h5 {
+      font-family: 'Sora', sans-serif;
       font-weight: 800;
       color: var(--dark);
       margin-bottom: 5px;
+      font-size: 1.2rem;
     }
 
     .testimonial-info p {
       color: var(--gray);
       margin: 0;
-      font-size: 0.95rem;
+      font-weight: 600;
     }
 
     .testimonial-stars {
       color: var(--gold);
-      font-size: 1.2rem;
-      margin-bottom: 20px;
+      font-size: 1.3rem;
+      margin-bottom: 25px;
     }
 
     .faq-item {
-      background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,250,252,0.98) 100%);
+      background: white;
       border-radius: 25px;
       margin-bottom: 20px;
       overflow: hidden;
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
       transition: all 0.4s;
+      border: 2px solid var(--light-gray);
     }
 
     .faq-item:hover {
-      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 15px 50px rgba(0, 82, 204, 0.15);
+      border-color: var(--primary);
     }
 
     .faq-question {
-      padding: 30px 35px;
+      padding: 32px 40px;
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       color: var(--dark);
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
       transition: all 0.3s;
-      user-select: none;
     }
 
     .faq-question:hover {
@@ -777,8 +947,8 @@
     }
 
     .faq-icon {
-      width: 40px;
-      height: 40px;
+      width: 45px;
+      height: 45px;
       background: linear-gradient(135deg, var(--primary), var(--accent));
       border-radius: 12px;
       display: flex;
@@ -786,7 +956,8 @@
       justify-content: center;
       color: white;
       transition: all 0.4s;
-      font-size: 1.3rem;
+      font-size: 1.4rem;
+      flex-shrink: 0;
     }
 
     .faq-item.active .faq-icon {
@@ -796,15 +967,79 @@
     .faq-answer {
       max-height: 0;
       overflow: hidden;
-      transition: all 0.5s ease-out;
-      padding: 0 35px;
+      transition: all 0.5s ease;
+      padding: 0 40px;
       color: var(--gray);
-      line-height: 1.8;
+      line-height: 1.9;
+      font-weight: 500;
+      font-size: 1.05rem;
     }
 
     .faq-item.active .faq-answer {
-      max-height: 500px;
-      padding: 0 35px 30px;
+      max-height: 600px;
+      padding: 0 40px 32px;
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      padding: 100px 0;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -20%;
+      width: 80%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 10;
+    }
+
+    .cta-title {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
+      font-weight: 900;
+      margin-bottom: 25px;
+    }
+
+    .cta-subtitle {
+      font-size: 1.4rem;
+      margin-bottom: 45px;
+      opacity: 0.95;
+      font-weight: 500;
+    }
+
+    .btn-cta {
+      background: white;
+      color: var(--primary);
+      padding: 22px 55px;
+      border-radius: 50px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s;
+      border: none;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 1.1rem;
+    }
+
+    .btn-cta:hover {
+      transform: translateY(-8px) scale(1.08);
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.4);
     }
 
     .floating-call {
@@ -813,28 +1048,28 @@
       right: 40px;
       width: 80px;
       height: 80px;
-      background: linear-gradient(135deg, var(--secondary), #FF8C42);
+      background: linear-gradient(135deg, var(--primary), var(--accent));
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
       font-size: 2.2rem;
-      box-shadow: 0 20px 60px rgba(255, 107, 53, 0.8);
+      box-shadow: 0 20px 60px rgba(0, 82, 204, 0.5);
       z-index: 9999;
-      animation: fabPulse 2s infinite;
+      animation: fab-pulse 2.5s infinite;
       text-decoration: none;
-      transition: all 0.5s;
+      transition: all 0.4s;
     }
 
-    @keyframes fabPulse {
-      0%, 100% { transform: scale(1); box-shadow: 0 20px 60px rgba(255, 107, 53, 0.8); }
-      50% { transform: scale(1.1); box-shadow: 0 25px 80px rgba(255, 107, 53, 1); }
+    @keyframes fab-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
     }
 
     .floating-call:hover {
       transform: scale(1.25) rotate(15deg);
-      box-shadow: 0 30px 90px rgba(255, 107, 53, 1);
+      box-shadow: 0 25px 80px rgba(0, 82, 204, 0.7);
     }
 
     .floating-whatsapp {
@@ -850,15 +1085,15 @@
       justify-content: center;
       color: white;
       font-size: 2rem;
-      box-shadow: 0 15px 50px rgba(0, 200, 83, 0.7);
+      box-shadow: 0 15px 50px rgba(0, 200, 83, 0.5);
       z-index: 9999;
       text-decoration: none;
-      transition: all 0.5s;
+      transition: all 0.4s;
     }
 
     .floating-whatsapp:hover {
       transform: scale(1.25) rotate(-15deg);
-      box-shadow: 0 20px 70px rgba(0, 200, 83, 1);
+      box-shadow: 0 20px 70px rgba(0, 200, 83, 0.7);
     }
 
     .back-to-top {
@@ -867,19 +1102,19 @@
       right: 40px;
       width: 60px;
       height: 60px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
+      background: linear-gradient(135deg, var(--dark), var(--dark-light));
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
       font-size: 1.8rem;
-      box-shadow: 0 10px 40px rgba(0, 102, 255, 0.5);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
       z-index: 9999;
       cursor: pointer;
       opacity: 0;
       visibility: hidden;
-      transition: all 0.5s;
+      transition: all 0.4s;
     }
 
     .back-to-top.visible {
@@ -889,7 +1124,7 @@
 
     .back-to-top:hover {
       transform: translateY(-10px) scale(1.15);
-      box-shadow: 0 15px 50px rgba(0, 102, 255, 0.7);
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
     }
 
     .fade-in {
@@ -903,18 +1138,82 @@
       transform: translateY(0);
     }
 
-    .footer {
-      background: linear-gradient(135deg, rgba(10, 22, 40, 0.98) 0%, rgba(26, 41, 66, 0.98) 100%);
+    .map-container {
+      border-radius: 35px;
+      overflow: hidden;
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.1);
+      height: 550px;
+      border: 3px solid var(--light-gray);
+    }
+
+    .contact-card {
+      background: white;
+      border-radius: 30px;
+      padding: 40px;
+      margin-bottom: 25px;
+      transition: all 0.4s;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+      border: 2px solid var(--light-gray);
+    }
+
+    .contact-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 60px rgba(0, 82, 204, 0.2);
+      border-color: var(--primary);
+    }
+
+    .contact-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
       color: white;
-      padding: 80px 0 40px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 35px rgba(0, 82, 204, 0.3);
+    }
+
+    .contact-title {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .contact-detail {
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .contact-detail:hover {
+      color: var(--primary);
+    }
+
+    .contact-desc {
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    .footer {
+      background: linear-gradient(135deg, var(--dark), var(--dark-light));
+      color: white;
+      padding: 100px 0 40px;
       position: relative;
     }
 
     .footer-title {
       font-family: 'Sora', sans-serif;
       font-weight: 800;
-      font-size: 1.3rem;
-      margin-bottom: 25px;
+      font-size: 1.4rem;
+      margin-bottom: 30px;
       color: var(--accent);
     }
 
@@ -924,7 +1223,7 @@
     }
 
     .footer-links li {
-      margin-bottom: 15px;
+      margin-bottom: 18px;
     }
 
     .footer-links a {
@@ -933,53 +1232,85 @@
       transition: all 0.3s;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      font-weight: 500;
+      font-size: 1.05rem;
     }
 
     .footer-links a:hover {
       color: white;
-      padding-left: 10px;
+      padding-left: 12px;
     }
 
     .footer-bottom {
       border-top: 1px solid rgba(255,255,255,0.1);
-      margin-top: 60px;
-      padding-top: 30px;
+      margin-top: 70px;
+      padding-top: 35px;
       text-align: center;
       color: rgba(255,255,255,0.6);
+      font-size: 0.95rem;
     }
 
-    .map-container {
-      border-radius: 35px;
-      overflow: hidden;
-      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
-      height: 500px;
+    .coverage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
     }
 
-    .info-card {
-      background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,250,252,0.98) 100%);
+    .coverage-item {
+      background: white;
+      padding: 35px;
       border-radius: 25px;
-      padding: 30px;
-      margin-bottom: 20px;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
       transition: all 0.4s;
+      border: 2px solid var(--light-gray);
     }
 
-    .info-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+    .coverage-item:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 60px rgba(0, 82, 204, 0.2);
+      border-color: var(--primary);
+    }
+
+    .coverage-item i {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .coverage-name {
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+
+    .coverage-desc {
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    @media (max-width: 992px) {
+      .process-card::after {
+        display: none;
+      }
     }
 
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2.5rem; }
+      .hero h1 { font-size: 2.8rem; }
       .section-title { font-size: 2.5rem; }
       .hero-buttons { flex-direction: column; }
       .btn-hero { width: 100%; }
-      .stats-bar { padding: 40px 20px; margin-top: -50px; }
+      .stats-bar { padding: 50px 30px; margin-top: -60px; }
+      .stat-item::after { display: none; }
       .product-actions { grid-template-columns: 1fr; }
       .floating-call { width: 65px; height: 65px; font-size: 1.8rem; }
       .floating-whatsapp { width: 55px; height: 55px; bottom: 120px; }
       .back-to-top { width: 50px; height: 50px; bottom: 190px; }
       .section { padding: 80px 0; }
+      .brand-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -989,7 +1320,7 @@
 
   <!-- Preloader -->
   <div class="preloader" id="preloader">
-    <div style="text-align: center;">
+    <div class="preloader-content">
       <div class="preloader-logo"><i class="fas fa-bolt"></i></div>
       <div class="preloader-text">SURESH GENERATOR</div>
       <div class="preloader-subtitle">Power Excellence Since 2008</div>
@@ -1010,7 +1341,7 @@
           <a href="mailto:suresh.powerplus@gmail.com"><i class="fas fa-envelope"></i> suresh.powerplus@gmail.com</a>
         </div>
         <div>
-          <span style="color: rgba(255,255,255,0.8); margin-right: 20px;"><i class="fas fa-map-marker-alt me-2"></i>Neemrana, Rajasthan</span>
+          <span style="color: var(--gray); margin-right: 25px;"><i class="fas fa-map-marker-alt me-2"></i>Neemrana, Rajasthan</span>
           <a href="tel:+919829325775" class="emergency-badge">
             <i class="fas fa-phone-volume"></i> 24/7 EMERGENCY
           </a>
@@ -1034,8 +1365,8 @@
           <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
           <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
-          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+          <li class="nav-item"><a class="nav-link" href="#why-us">Why Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonials">Reviews</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
         <a href="tel:+919829325775" class="cta-btn">
@@ -1048,20 +1379,23 @@
   <!-- Hero Section -->
   <section class="hero" id="home">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-11">
+      <div class="row align-items-center">
+        <div class="col-lg-10">
           <div class="hero-content">
             <div class="hero-badge">
-              <i class="fas fa-map-marker-alt"></i>
-              <span>Serving Neemrana & All Rajasthan</span>
+              <i class="fas fa-award"></i>
+              <span>ISO 9001:2015 Certified</span>
             </div>
-            <h1>Premium Generator Solutions For Industrial & Residential Power</h1>
+            <h1>
+              <span class="highlight">Premium Generator Solutions</span><br>
+              For Industrial & Residential Power
+            </h1>
             <p class="hero-subtitle">
-              🏆 Authorized Dealer | ⚡ 15+ Years Excellence | 🎯 500+ Satisfied Customers | 🛠️ 24/7 Emergency Service | 💎 100% Genuine Products | 📍 ISO 9001:2015 Certified
+              Leading generator provider in Neemrana with 15+ years of excellence. Serving 500+ satisfied customers across Rajasthan with 100% genuine products and 24/7 emergency support.
             </p>
             <div class="hero-buttons">
               <a href="tel:+919829325775" class="btn-hero btn-hero-primary">
-                <i class="fas fa-phone-volume"></i> CALL NOW: +91 9829325775
+                <i class="fas fa-phone-volume"></i> CALL: +91 9829325775
               </a>
               <a href="#products" class="btn-hero btn-hero-secondary">
                 <i class="fas fa-bolt"></i> VIEW PRODUCTS
@@ -1116,15 +1450,17 @@
   <section class="section" id="products">
     <div class="container">
       <div class="section-header fade-in">
-        <div class="section-badge">⚡ OUR PREMIUM PRODUCTS ⚡</div>
-        <h2 class="section-title">World-Class Generator Range</h2>
-        <p class="section-subtitle">High-performance diesel generators engineered for reliability and efficiency.</p>
+        <div class="section-badge">⚡ OUR PRODUCTS ⚡</div>
+        <h2 class="section-title">Premium Generator Range</h2>
+        <p class="section-subtitle">High-performance diesel generators engineered for reliability, efficiency, and long-lasting power solutions.</p>
       </div>
 
       <div class="row">
         <div class="col-lg-6 mb-5">
           <div class="product-card fade-in">
-            <div class="product-image" style="background: linear-gradient(135deg, rgba(10, 22, 40, 0.8), rgba(26, 41, 66, 0.8)), linear-gradient(rgba(0,102,255,0.5), rgba(0,217,255,0.5));"></div>
+            <div class="product-image">
+              <i class="fas fa-industry"></i>
+            </div>
             <div class="product-badge">🏭 INDUSTRIAL</div>
             <div class="product-content">
               <h3 class="product-title">Industrial Diesel Generators</h3>
@@ -1134,21 +1470,21 @@
                   <span class="spec-value">50 kVA - 3750 kVA</span>
                 </li>
                 <li>
-                  <span class="spec-label"><i class="fas fa-building"></i> For</span>
+                  <span class="spec-label"><i class="fas fa-building"></i> Ideal For</span>
                   <span class="spec-value">Factories, Hospitals, Hotels</span>
                 </li>
                 <li>
                   <span class="spec-label"><i class="fas fa-cogs"></i> Features</span>
-                  <span class="spec-value">Auto Start, Remote Control, ATS</span>
+                  <span class="spec-value">Auto Start, Remote Panel, ATS</span>
                 </li>
                 <li>
                   <span class="spec-label"><i class="fas fa-shield-alt"></i> Warranty</span>
-                  <span class="spec-value">2-3 Years</span>
+                  <span class="spec-value">2-3 Years Comprehensive</span>
                 </li>
               </ul>
               <div class="product-actions">
                 <a href="tel:+919829325775" class="btn-product btn-product-primary">
-                  <i class="fas fa-phone"></i> CALL
+                  <i class="fas fa-phone"></i> CALL NOW
                 </a>
                 <a href="https://wa.me/919829325775" class="btn-product btn-product-secondary">
                   <i class="fab fa-whatsapp"></i> WHATSAPP
@@ -1160,31 +1496,33 @@
 
         <div class="col-lg-6 mb-5">
           <div class="product-card fade-in">
-            <div class="product-image" style="background: linear-gradient(135deg, rgba(10, 22, 40, 0.8), rgba(26, 41, 66, 0.8)), linear-gradient(rgba(0,217,255,0.5), rgba(0,200,83,0.5));"></div>
+            <div class="product-image">
+              <i class="fas fa-home"></i>
+            </div>
             <div class="product-badge">🏠 RESIDENTIAL</div>
             <div class="product-content">
               <h3 class="product-title">Home Backup Generators</h3>
               <ul class="product-specs">
                 <li>
-                  <span class="spec-label"><i class="fas fa-bolt"></i> Power</span>
+                  <span class="spec-label"><i class="fas fa-bolt"></i> Power Range</span>
                   <span class="spec-value">7.5 kVA - 45 kVA</span>
                 </li>
                 <li>
-                  <span class="spec-label"><i class="fas fa-home"></i> Perfect</span>
-                  <span class="spec-value">Homes, Offices, Shops</span>
+                  <span class="spec-label"><i class="fas fa-home"></i> Perfect For</span>
+                  <span class="spec-value">Homes, Offices, Small Shops</span>
                 </li>
                 <li>
-                  <span class="spec-label"><i class="fas fa-volume-down"></i> Noise</span>
+                  <span class="spec-label"><i class="fas fa-volume-down"></i> Sound Level</span>
                   <span class="spec-value">Ultra Silent Design</span>
                 </li>
                 <li>
-                  <span class="spec-label"><i class="fas fa-wrench"></i> Setup</span>
-                  <span class="spec-value">Free Installation</span>
+                  <span class="spec-label"><i class="fas fa-wrench"></i> Installation</span>
+                  <span class="spec-value">Free Professional Setup</span>
                 </li>
               </ul>
               <div class="product-actions">
                 <a href="tel:+919829325775" class="btn-product btn-product-primary">
-                  <i class="fas fa-phone"></i> CALL
+                  <i class="fas fa-phone"></i> CALL NOW
                 </a>
                 <a href="https://wa.me/919829325775" class="btn-product btn-product-secondary">
                   <i class="fab fa-whatsapp"></i> WHATSAPP
@@ -1195,31 +1533,27 @@
         </div>
       </div>
 
+      <!-- Brand Showcase -->
       <div class="row mt-5">
         <div class="col-12 fade-in">
-          <div style="background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(0, 217, 255, 0.1)); border-radius: 30px; padding: 50px; border: 2px solid rgba(0, 217, 255, 0.3); text-align: center;">
-            <h3 style="color: white; font-family: 'Sora', sans-serif; font-weight: 900; font-size: 2rem; margin-bottom: 30px;">Premium Product Categories</h3>
-            <div class="row">
-              <div class="col-md-4 mb-3">
-                <div style="background: rgba(255,255,255,0.08); padding: 25px; border-radius: 18px;">
-                  <i class="fas fa-industry" style="font-size: 2.5rem; color: var(--accent);"></i>
-                  <p style="color: white; font-weight: 800; margin-top: 15px; margin-bottom: 8px;"><strong>High Capacity</strong></p>
-                  <p style="color: rgba(255,255,255,0.7); margin: 0; font-size: 0.9rem;">50 kVA - 3750 kVA for industrial</p>
-                </div>
+          <div class="brand-showcase">
+            <h3 class="brand-title">Premium Brands We Deal In</h3>
+            <div class="brand-grid">
+              <div class="brand-item">
+                <i class="fas fa-industry"></i>
+                <div class="brand-name">High Capacity Industrial</div>
               </div>
-              <div class="col-md-4 mb-3">
-                <div style="background: rgba(255,255,255,0.08); padding: 25px; border-radius: 18px;">
-                  <i class="fas fa-home" style="font-size: 2.5rem; color: var(--gold);"></i>
-                  <p style="color: white; font-weight: 800; margin-top: 15px; margin-bottom: 8px;"><strong>Compact Models</strong></p>
-                  <p style="color: rgba(255,255,255,0.7); margin: 0; font-size: 0.9rem;">7.5 kVA - 45 kVA residential</p>
-                </div>
+              <div class="brand-item">
+                <i class="fas fa-building"></i>
+                <div class="brand-name">Commercial Grade</div>
               </div>
-              <div class="col-md-4 mb-3">
-                <div style="background: rgba(255,255,255,0.08); padding: 25px; border-radius: 18px;">
-                  <i class="fas fa-cogs" style="font-size: 2.5rem; color: var(--success);"></i>
-                  <p style="color: white; font-weight: 800; margin-top: 15px; margin-bottom: 8px;"><strong>All Specs</strong></p>
-                  <p style="color: rgba(255,255,255,0.7); margin: 0; font-size: 0.9rem;">Custom solutions available</p>
-                </div>
+              <div class="brand-item">
+                <i class="fas fa-home"></i>
+                <div class="brand-name">Residential Solutions</div>
+              </div>
+              <div class="brand-item">
+                <i class="fas fa-cogs"></i>
+                <div class="brand-name">Custom Solutions</div>
               </div>
             </div>
           </div>
@@ -1228,62 +1562,114 @@
     </div>
   </section>
 
-  <!-- Services Section -->
-  <section class="section" id="services" style="background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);">
+  <!-- Why Choose Us Section -->
+  <section class="section section-alt" id="why-us">
     <div class="container">
       <div class="section-header fade-in">
-        <div class="section-badge" style="color: var(--primary); background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(0, 217, 255, 0.1));">🛠️ OUR SERVICES 🛠️</div>
-        <h2 class="section-title" style="background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Complete Solutions</h2>
-        <p class="section-subtitle" style="color: var(--gray);">From sales to maintenance, complete 24/7 support</p>
+        <div class="section-badge">🏆 WHY CHOOSE US 🏆</div>
+        <h2 class="section-title">Excellence in Every Aspect</h2>
+        <p class="section-subtitle">Committed to delivering premium power solutions with unmatched service quality</p>
       </div>
 
       <div class="row">
         <div class="col-lg-4 mb-4">
-          <div class="service-card fade-in">
-            <div class="service-icon"><i class="fas fa-shopping-cart"></i></div>
-            <h3 class="service-title">Generator Sales</h3>
-            <ul class="service-features">
-              <li><i class="fas fa-check-circle"></i> Authorized Dealer</li>
+          <div class="feature-box fade-in">
+            <div class="feature-icon"><i class="fas fa-certificate"></i></div>
+            <h3 class="feature-title">ISO Certified Quality</h3>
+            <p class="feature-desc">ISO 9001:2015 certified operations ensuring highest quality standards in every aspect of service delivery.</p>
+            <ul class="feature-list">
+              <li><i class="fas fa-check-circle"></i> Certified Excellence</li>
+              <li><i class="fas fa-check-circle"></i> Quality Assurance</li>
+              <li><i class="fas fa-check-circle"></i> Industry Standards</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mb-4">
+          <div class="feature-box fade-in">
+            <div class="feature-icon"><i class="fas fa-headset"></i></div>
+            <h3 class="feature-title">24/7 Support</h3>
+            <p class="feature-desc">Round-the-clock emergency support with rapid response team available 365 days a year.</p>
+            <ul class="feature-list">
+              <li><i class="fas fa-check-circle"></i> Emergency Response</li>
+              <li><i class="fas fa-check-circle"></i> Expert Technicians</li>
+              <li><i class="fas fa-check-circle"></i> Quick Resolution</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mb-4">
+          <div class="feature-box fade-in">
+            <div class="feature-icon"><i class="fas fa-award"></i></div>
+            <h3 class="feature-title">15+ Years Expertise</h3>
+            <p class="feature-desc">Over a decade of proven track record in delivering reliable power solutions across industries.</p>
+            <ul class="feature-list">
+              <li><i class="fas fa-check-circle"></i> Experienced Team</li>
+              <li><i class="fas fa-check-circle"></i> Industry Knowledge</li>
+              <li><i class="fas fa-check-circle"></i> Proven Results</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-badge">🛠️ OUR SERVICES 🛠️</div>
+        <h2 class="section-title">Complete Power Solutions</h2>
+        <p class="section-subtitle">Comprehensive services covering every aspect of generator needs</p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <div class="feature-box fade-in">
+            <div class="feature-icon"><i class="fas fa-shopping-cart"></i></div>
+            <h3 class="feature-title">Generator Sales</h3>
+            <p class="feature-desc">Premium quality generators for all applications with best competitive prices.</p>
+            <ul class="feature-list">
               <li><i class="fas fa-check-circle"></i> 100% Genuine Products</li>
-              <li><i class="fas fa-check-circle"></i> Best Prices</li>
+              <li><i class="fas fa-check-circle"></i> All Brands & Specs</li>
               <li><i class="fas fa-check-circle"></i> Expert Consultation</li>
               <li><i class="fas fa-check-circle"></i> Free Site Survey</li>
             </ul>
-            <a href="tel:+919829325775" class="btn-product btn-product-primary w-100">
-              <i class="fas fa-phone"></i> CONTACT
+            <a href="tel:+919829325775" class="btn-product btn-product-primary w-100 mt-3">
+              <i class="fas fa-phone"></i> CONTACT NOW
             </a>
           </div>
         </div>
 
         <div class="col-lg-4 mb-4">
-          <div class="service-card fade-in">
-            <div class="service-icon"><i class="fas fa-wrench"></i></div>
-            <h3 class="service-title">Repair & Maintenance</h3>
-            <ul class="service-features">
-              <li><i class="fas fa-check-circle"></i> 24/7 Emergency</li>
+          <div class="feature-box fade-in">
+            <div class="feature-icon"><i class="fas fa-wrench"></i></div>
+            <h3 class="feature-title">Repair & Maintenance</h3>
+            <p class="feature-desc">Preventive maintenance and repair services ensuring optimal performance.</p>
+            <ul class="feature-list">
+              <li><i class="fas fa-check-circle"></i> 24/7 Emergency Service</li>
               <li><i class="fas fa-check-circle"></i> Skilled Technicians</li>
-              <li><i class="fas fa-check-circle"></i> Genuine Parts</li>
-              <li><i class="fas fa-check-circle"></i> Annual Contracts</li>
-              <li><i class="fas fa-check-circle"></i> Quick Response</li>
+              <li><i class="fas fa-check-circle"></i> Genuine Spare Parts</li>
+              <li><i class="fas fa-check-circle"></i> AMC Contracts</li>
             </ul>
-            <a href="tel:+919829325775" class="btn-product btn-product-primary w-100">
+            <a href="tel:+919829325775" class="btn-product btn-product-primary w-100 mt-3">
               <i class="fas fa-phone"></i> BOOK SERVICE
             </a>
           </div>
         </div>
 
         <div class="col-lg-4 mb-4">
-          <div class="service-card fade-in">
-            <div class="service-icon"><i class="fas fa-truck"></i></div>
-            <h3 class="service-title">Generator Rental</h3>
-            <ul class="service-features">
-              <li><i class="fas fa-check-circle"></i> Short & Long Term</li>
-              <li><i class="fas fa-check-circle"></i> All Capacities</li>
-              <li><i class="fas fa-check-circle"></i> Quick Delivery</li>
-              <li><i class="fas fa-check-circle"></i> Flexible Payment</li>
-              <li><i class="fas fa-check-circle"></i> 24/7 Support</li>
+          <div class="feature-box fade-in">
+            <div class="feature-icon"><i class="fas fa-truck"></i></div>
+            <h3 class="feature-title">Generator Rental</h3>
+            <p class="feature-desc">Flexible rental solutions for short-term and long-term power requirements.</p>
+            <ul class="feature-list">
+              <li><i class="fas fa-check-circle"></i> All Capacity Ranges</li>
+              <li><i class="fas fa-check-circle"></i> Quick Delivery & Setup</li>
+              <li><i class="fas fa-check-circle"></i> Flexible Payment Terms</li>
+              <li><i class="fas fa-check-circle"></i> Maintenance Included</li>
             </ul>
-            <a href="tel:+919829325775" class="btn-product btn-product-primary w-100">
+            <a href="tel:+919829325775" class="btn-product btn-product-primary w-100 mt-3">
               <i class="fas fa-phone"></i> GET QUOTE
             </a>
           </div>
@@ -1292,13 +1678,102 @@
     </div>
   </section>
 
-  <!-- Testimonials Section -->
-  <section class="section" id="testimonials">
+  <!-- Process Section -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-badge">📋 OUR PROCESS 📋</div>
+        <h2 class="section-title">How We Work</h2>
+        <p class="section-subtitle">Simple, transparent, and efficient workflow</p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="process-card fade-in">
+            <div class="process-number">1</div>
+            <h4 class="process-title">Consultation</h4>
+            <p class="process-desc">Understanding your power requirements and site assessment</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="process-card fade-in">
+            <div class="process-number">2</div>
+            <h4 class="process-title">Recommendation</h4>
+            <p class="process-desc">Expert guidance on best generator solution for your needs</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="process-card fade-in">
+            <div class="process-number">3</div>
+            <h4 class="process-title">Installation</h4>
+            <p class="process-desc">Professional setup with complete electrical integration</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="process-card fade-in">
+            <div class="process-number">4</div>
+            <h4 class="process-title">Support</h4>
+            <p class="process-desc">24/7 maintenance and emergency support services</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Coverage -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-badge">📍 SERVICE COVERAGE 📍</div>
+        <h2 class="section-title">Serving All Rajasthan</h2>
+        <p class="section-subtitle">Comprehensive coverage across major cities and districts</p>
+      </div>
+
+      <div class="coverage-grid fade-in">
+        <div class="coverage-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="coverage-name">Neemrana</div>
+          <p class="coverage-desc">Headquarters & Main Service Center</p>
+        </div>
+        <div class="coverage-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="coverage-name">Alwar</div>
+          <p class="coverage-desc">Full Service & Support</p>
+        </div>
+        <div class="coverage-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="coverage-name">Jaipur</div>
+          <p class="coverage-desc">Sales & Maintenance</p>
+        </div>
+        <div class="coverage-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="coverage-name">Bhiwadi</div>
+          <p class="coverage-desc">Industrial Solutions</p>
+        </div>
+        <div class="coverage-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="coverage-name">Dharuhera</div>
+          <p class="coverage-desc">Complete Support</p>
+        </div>
+        <div class="coverage-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="coverage-name">All Rajasthan</div>
+          <p class="coverage-desc">Extended Service Network</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section section-alt" id="testimonials">
     <div class="container">
       <div class="section-header fade-in">
         <div class="section-badge">⭐ TESTIMONIALS ⭐</div>
         <h2 class="section-title">What Our Clients Say</h2>
-        <p class="section-subtitle">Real feedback from satisfied customers</p>
+        <p class="section-subtitle">Real feedback from satisfied customers across Rajasthan</p>
       </div>
 
       <div class="row">
@@ -1307,7 +1782,7 @@
             <div class="testimonial-stars">
               <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
             </div>
-            <p class="testimonial-text">"Excellent service! Professional team and prompt 24/7 support. Highly recommended!"</p>
+            <p class="testimonial-text">"Excellent service! Installed 125 kVA for our factory. Professional team and prompt 24/7 support. Highly recommended!"</p>
             <div class="testimonial-author">
               <div class="testimonial-avatar">RK</div>
               <div class="testimonial-info">
@@ -1323,7 +1798,7 @@
             <div class="testimonial-stars">
               <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
             </div>
-            <p class="testimonial-text">"Best generator dealer! Genuine products at competitive prices. Outstanding service!"</p>
+            <p class="testimonial-text">"Best generator dealer! Genuine products at competitive prices. Outstanding after-sales service and maintenance!"</p>
             <div class="testimonial-author">
               <div class="testimonial-avatar">AS</div>
               <div class="testimonial-info">
@@ -1339,7 +1814,7 @@
             <div class="testimonial-stars">
               <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
             </div>
-            <p class="testimonial-text">"Very reliable! Never face power issues. Quality generators and regular maintenance!"</p>
+            <p class="testimonial-text">"Very reliable! Our hospital never faces power issues. Quality generators and regular preventive maintenance!"</p>
             <div class="testimonial-author">
               <div class="testimonial-avatar">PV</div>
               <div class="testimonial-info">
@@ -1353,13 +1828,13 @@
     </div>
   </section>
 
-  <!-- FAQ Section -->
-  <section class="section" id="faq" style="background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);">
+  <!-- FAQ -->
+  <section class="section">
     <div class="container">
       <div class="section-header fade-in">
-        <div class="section-badge" style="color: var(--primary); background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(0, 217, 255, 0.1));">❓ FAQ ❓</div>
-        <h2 class="section-title" style="background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Frequently Asked</h2>
-        <p class="section-subtitle" style="color: var(--gray);">Everything about generators and services</p>
+        <div class="section-badge">❓ FREQUENTLY ASKED ❓</div>
+        <h2 class="section-title">Common Questions</h2>
+        <p class="section-subtitle">Everything you need to know about our services</p>
       </div>
 
       <div class="row justify-content-center">
@@ -1370,47 +1845,47 @@
               <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
             </div>
             <div class="faq-answer">
-              Depends on your requirement. For homes: 7.5-25 kVA. For factories: 50 kVA+. We provide FREE site surveys.
+              For homes: 7.5-25 kVA is typically sufficient. For businesses and factories: 50 kVA and above depending on load. We provide FREE site surveys to assess your exact power requirements and recommend the most suitable generator capacity.
             </div>
           </div>
 
           <div class="faq-item fade-in">
             <div class="faq-question">
-              <span>Do you provide installation?</span>
+              <span>Do you provide installation services?</span>
               <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
             </div>
             <div class="faq-answer">
-              Yes! Complete installation with electrical connections, commissioning, and all safety standards.
+              Yes! We provide complete installation service including electrical connections, ATS panel setup, commissioning, operator training, and all safety compliance documentation. Our expert technicians ensure smooth and professional installation.
             </div>
           </div>
 
           <div class="faq-item fade-in">
             <div class="faq-question">
-              <span>What is the warranty period?</span>
+              <span>What warranty is provided?</span>
               <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
             </div>
             <div class="faq-answer">
-              2-3 years manufacturer warranty. Extended warranty and AMC plans available for long-term protection.
+              All generators come with 2-3 years comprehensive manufacturer warranty covering parts and service. Extended warranty options and Annual Maintenance Contracts (AMC) are available for long-term peace of mind and coverage.
             </div>
           </div>
 
           <div class="faq-item fade-in">
             <div class="faq-question">
-              <span>24/7 emergency service available?</span>
+              <span>Is 24/7 emergency service available?</span>
               <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
             </div>
             <div class="faq-answer">
-              Absolutely! Call +91 9829325775 anytime. Technicians available round-the-clock, 365 days/year.
+              Absolutely! Call +91 9829325775 anytime. Our experienced technicians respond promptly 365 days a year for any emergency situations. We understand power is critical for your operations and provide rapid response support.
             </div>
           </div>
 
           <div class="faq-item fade-in">
             <div class="faq-question">
-              <span>What areas do you serve?</span>
+              <span>Are generators available on rent?</span>
               <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
             </div>
             <div class="faq-answer">
-              Based in Neemrana, serving entire Rajasthan including Alwar, Jaipur, Bhiwadi, Dharuhera and surrounding areas.
+              Yes! Short-term and long-term rental options available for all capacity ranges. Rental includes delivery, installation, fuel supply, maintenance, and 24/7 support. Flexible payment terms available to suit your business needs.
             </div>
           </div>
         </div>
@@ -1418,23 +1893,41 @@
     </div>
   </section>
 
-  <!-- Contact & Map Section -->
-  <section class="section" id="contact">
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Ready to Power Your Business?</h2>
+        <p class="cta-subtitle">Get expert consultation and competitive quotes for your power requirements</p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+          <a href="tel:+919829325775" class="btn-cta">
+            <i class="fas fa-phone-volume"></i> CALL NOW: +91 9829325775
+          </a>
+          <a href="https://wa.me/919829325775" class="btn-cta">
+            <i class="fab fa-whatsapp"></i> WHATSAPP US
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Map -->
+  <section class="section section-alt" id="contact">
     <div class="container">
       <div class="section-header fade-in">
-        <div class="section-badge">📍 LOCATE US 📍</div>
-        <h2 class="section-title">Visit Our Location</h2>
-        <p class="section-subtitle">Find us at Neemrana, Rajasthan</p>
+        <div class="section-badge">📞 CONTACT US 📞</div>
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">Visit us or reach out for any inquiries</p>
       </div>
 
       <div class="row align-items-center">
         <div class="col-lg-6 mb-4 fade-in">
           <div class="map-container">
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3518.123456789!2d76.396!3d28.043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDAyJzM1LjAiTiA3NsKwMjMnNDUuNiJF!5e0!3m2!1sen!2sin!4v1234567890123" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3518.123!2d76.396!3d28.043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDAyJzM1LjAiTiA3NsKwMjMnNDUuNiJF!5e0!3m2!1sen!2sin!4v1234567890" 
               width="100%" 
-              height="500" 
-              style="border: none;" 
+              height="550" 
+              style="border:none;" 
               allowfullscreen="" 
               loading="lazy">
             </iframe>
@@ -1443,28 +1936,32 @@
 
         <div class="col-lg-6 mb-4">
           <div class="fade-in">
-            <div class="info-card">
-              <h4 style="font-family: 'Sora', sans-serif; color: var(--primary); font-weight: 900; margin-bottom: 20px; font-size: 1.5rem;">📞 Call Us</h4>
-              <a href="tel:+919829325775" style="color: var(--dark); font-weight: 800; font-size: 1.3rem; text-decoration: none;">+91 9829325775</a>
-              <p style="color: var(--gray); margin-top: 10px;">Available 24/7 for all emergencies</p>
+            <div class="contact-card">
+              <div class="contact-icon"><i class="fas fa-phone"></i></div>
+              <h4 class="contact-title">Call Us</h4>
+              <a href="tel:+919829325775" class="contact-detail">+91 9829325775</a>
+              <p class="contact-desc">Available 24/7 for all emergencies and inquiries</p>
             </div>
 
-            <div class="info-card">
-              <h4 style="font-family: 'Sora', sans-serif; color: var(--secondary); font-weight: 900; margin-bottom: 20px; font-size: 1.5rem;">💬 WhatsApp</h4>
-              <a href="https://wa.me/919829325775" style="color: var(--dark); font-weight: 800; font-size: 1.3rem; text-decoration: none;">Message Us Anytime</a>
-              <p style="color: var(--gray); margin-top: 10px;">Quick response guaranteed</p>
+            <div class="contact-card">
+              <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+              <h4 class="contact-title">WhatsApp</h4>
+              <a href="https://wa.me/919829325775" class="contact-detail">Message Us Anytime</a>
+              <p class="contact-desc">Quick response guaranteed for all queries</p>
             </div>
 
-            <div class="info-card">
-              <h4 style="font-family: 'Sora', sans-serif; color: var(--accent); font-weight: 900; margin-bottom: 20px; font-size: 1.5rem;">📧 Email</h4>
-              <a href="mailto:suresh.powerplus@gmail.com" style="color: var(--dark); font-weight: 800; font-size: 1.3rem; text-decoration: none;">suresh.powerplus@gmail.com</a>
-              <p style="color: var(--gray); margin-top: 10px;">Send us your inquiries</p>
+            <div class="contact-card">
+              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+              <h4 class="contact-title">Email</h4>
+              <a href="mailto:suresh.powerplus@gmail.com" class="contact-detail">suresh.powerplus@gmail.com</a>
+              <p class="contact-desc">Send us your detailed requirements</p>
             </div>
 
-            <div class="info-card">
-              <h4 style="font-family: 'Sora', sans-serif; color: var(--gold); font-weight: 900; margin-bottom: 20px; font-size: 1.5rem;">📍 Address</h4>
-              <p style="color: var(--dark); font-weight: 800; font-size: 1.1rem; margin-bottom: 5px;">Neemrana, Rajasthan</p>
-              <p style="color: var(--gray); margin: 0;">Serving all of Rajasthan</p>
+            <div class="contact-card">
+              <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <h4 class="contact-title">Location</h4>
+              <p class="contact-detail" style="cursor: default;">Neemrana, Rajasthan</p>
+              <p class="contact-desc">Serving all Rajasthan and surrounding states</p>
             </div>
           </div>
         </div>
@@ -1477,14 +1974,14 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-4 mb-4">
-          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
-            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: white;">
+          <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
+            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: white;">
               <i class="fas fa-bolt"></i>
             </div>
-            <span style="font-family: 'Sora', sans-serif; font-size: 1.5rem; font-weight: 900; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">SURESH GENERATOR</span>
+            <span style="font-family: 'Sora', sans-serif; font-size: 1.6rem; font-weight: 900; color: white;">SURESH GENERATOR</span>
           </div>
-          <p style="color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 20px; font-size: 0.95rem;">
-            Leading generator provider in Neemrana with 15+ years excellence. ISO 9001:2015 certified providing premium power solutions.
+          <p style="color: rgba(255,255,255,0.7); line-height: 1.8; margin-bottom: 25px; font-size: 1.05rem;">
+            Leading generator provider in Neemrana with 15+ years of excellence. ISO 9001:2015 certified delivering premium power solutions across Rajasthan.
           </p>
         </div>
 
@@ -1494,6 +1991,7 @@
             <li><a href="#home"><i class="fas fa-angle-right"></i> Home</a></li>
             <li><a href="#products"><i class="fas fa-angle-right"></i> Products</a></li>
             <li><a href="#services"><i class="fas fa-angle-right"></i> Services</a></li>
+            <li><a href="#why-us"><i class="fas fa-angle-right"></i> Why Us</a></li>
             <li><a href="#contact"><i class="fas fa-angle-right"></i> Contact</a></li>
           </ul>
         </div>
@@ -1505,6 +2003,7 @@
             <li><a href="#"><i class="fas fa-angle-right"></i> Installation</a></li>
             <li><a href="#"><i class="fas fa-angle-right"></i> Repair & Maintenance</a></li>
             <li><a href="#"><i class="fas fa-angle-right"></i> Generator Rental</a></li>
+            <li><a href="#"><i class="fas fa-angle-right"></i> AMC Contracts</a></li>
           </ul>
         </div>
 
@@ -1514,13 +2013,13 @@
             <li><a href="tel:+919829325775"><i class="fas fa-phone"></i> +91 9829325775</a></li>
             <li><a href="https://wa.me/919829325775"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
             <li><a href="mailto:suresh.powerplus@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
-            <li><a href="#"><i class="fas fa-clock"></i> 24/7 Open</a></li>
+            <li><a href="#"><i class="fas fa-clock"></i> 24/7 Available</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2025 Suresh Generator. All Rights Reserved. | ISO 9001:2015 Certified</p>
+        <p>&copy; 2025 Suresh Generator Neemrana. All Rights Reserved. | ISO 9001:2015 Certified</p>
       </div>
     </div>
   </footer>
@@ -1656,7 +2155,7 @@
       });
     });
 
-    console.log('%c⚡ SURESH GENERATOR - COMPLETE PROFESSIONAL WEBSITE ⚡', 'color: #00D9FF; font-size: 16px; font-weight: bold;');
+    console.log('%c⚡ SURESH GENERATOR - PREMIUM LUXURY WEBSITE ⚡', 'color: #0052CC; font-size: 18px; font-weight: bold;');
   </script>
 </body>
 </html>
