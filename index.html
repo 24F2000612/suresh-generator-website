@@ -12,9 +12,11 @@
   <meta property="og:title" content="Suresh Generator Neemrana - ISO Certified Premium Power Solutions">
   <meta property="og:description" content="15+ years excellence, 500+ satisfied customers, 24/7 service, ISO certified">
   
+  <!-- OPTIMIZED: Only essential CDNs -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- OPTIMIZED: Single font instead of 4 families -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -31,6 +33,7 @@
       --white: #FFFFFF;
     }
 
+    /* OPTIMIZED: Reduced animations, removed blur effects */
     * {
       margin: 0;
       padding: 0;
@@ -47,11 +50,10 @@
       overflow-x: hidden;
       background: var(--dark);
       line-height: 1.6;
+      font-feature-settings: "kern" 1;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-
-    .font-display { font-family: 'Sora', sans-serif; }
-    .font-tech { font-family: 'Orbitron', sans-serif; }
-    .font-space { font-family: 'Space Grotesk', sans-serif; }
 
     ::-webkit-scrollbar {
       width: 12px;
@@ -66,24 +68,19 @@
       border-radius: 10px;
     }
 
-    ::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(135deg, var(--accent), var(--gold));
-    }
-
-    /* Scroll Progress Bar */
+    /* OPTIMIZED: Simpler scroll progress */
     .scroll-progress {
       position: fixed;
       top: 0;
       left: 0;
-      height: 5px;
-      background: linear-gradient(90deg, var(--primary), var(--accent), var(--gold), var(--secondary));
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent), var(--gold));
       z-index: 99999;
-      box-shadow: 0 0 30px var(--accent);
       width: 0;
-      transition: width 0.1s;
+      will-change: width;
     }
 
-    /* Premium Preloader */
+    /* OPTIMIZED: Faster preloader */
     .preloader {
       position: fixed;
       top: 0;
@@ -95,12 +92,15 @@
       align-items: center;
       justify-content: center;
       z-index: 99999;
-      transition: opacity 0.5s, visibility 0.5s;
+      opacity: 1;
+      transition: opacity 0.3s, visibility 0.3s;
+      visibility: visible;
     }
 
     .preloader.hidden {
       opacity: 0;
       visibility: hidden;
+      pointer-events: none;
     }
 
     .preloader-content {
@@ -108,154 +108,56 @@
     }
 
     .preloader-logo {
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 30px;
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
       background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      border-radius: 25px;
+      border-radius: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      animation: logo-pulse 1.5s ease-in-out infinite;
-      box-shadow: 0 25px 70px rgba(0, 102, 255, 0.6);
+      animation: pulse 1.5s infinite;
+      box-shadow: 0 15px 50px rgba(0, 102, 255, 0.4);
     }
 
     .preloader-logo i {
-      font-size: 3rem;
+      font-size: 2.5rem;
       color: white;
     }
 
-    @keyframes logo-pulse {
-      0%, 100% { transform: scale(1); box-shadow: 0 25px 70px rgba(0, 102, 255, 0.6); }
-      50% { transform: scale(1.15); box-shadow: 0 30px 90px rgba(0, 217, 255, 0.9); }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
     }
 
     .preloader-text {
       color: white;
-      font-family: 'Sora', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 900;
+      font-size: 1.5rem;
+      font-weight: 800;
       margin-bottom: 10px;
-      background: linear-gradient(135deg, #FFFFFF, var(--accent), var(--gold));
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradient-flow 3s ease infinite;
     }
 
-    @keyframes gradient-flow {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
-    .preloader-subtitle {
-      color: rgba(255,255,255,0.7);
-      font-size: 1rem;
-      margin-bottom: 30px;
-      letter-spacing: 2px;
-    }
-
-    .preloader-bar {
-      width: 300px;
-      height: 4px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 0 auto;
-    }
-
-    .preloader-bar::after {
-      content: '';
-      position: absolute;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, var(--primary), var(--accent), var(--gold));
-      animation: loading-bar 2s ease-in-out infinite;
-    }
-
-    @keyframes loading-bar {
-      0% { left: -100%; }
-      100% { left: 100%; }
-    }
-
-    /* Animated Background Orbs */
+    /* OPTIMIZED: Removed orbs - heavy on performance */
     .orb {
-      position: fixed;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: -1;
-      filter: blur(80px);
-      opacity: 0.2;
-      animation: float-orb 25s ease-in-out infinite;
-    }
-
-    .orb-1 {
-      width: 500px;
-      height: 500px;
-      background: var(--primary);
-      top: 10%;
-      left: 5%;
-    }
-
-    .orb-2 {
-      width: 400px;
-      height: 400px;
-      background: var(--accent);
-      top: 50%;
-      right: 10%;
-      animation-delay: 7s;
-    }
-
-    .orb-3 {
-      width: 450px;
-      height: 450px;
-      background: var(--secondary);
-      bottom: 15%;
-      left: 20%;
-      animation-delay: 14s;
-    }
-
-    @keyframes float-orb {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      33% { transform: translate(60px, -60px) scale(1.1); }
-      66% { transform: translate(-40px, 60px) scale(0.9); }
+      display: none;
     }
 
     /* Announcement Bar */
     .announcement-bar {
       background: linear-gradient(90deg, var(--secondary) 0%, var(--gold) 100%);
       color: white;
-      padding: 14px 0;
+      padding: 12px 0;
       text-align: center;
       font-weight: 700;
-      font-size: 14px;
-      position: relative;
-      overflow: hidden;
+      font-size: 13px;
       z-index: 9998;
-    }
-
-    .announcement-bar::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      animation: shimmer 4s infinite;
-    }
-
-    @keyframes shimmer {
-      100% { left: 100%; }
     }
 
     /* Top Bar */
     .top-bar {
-      background: linear-gradient(135deg, rgba(10, 22, 40, 0.98) 0%, rgba(26, 41, 66, 0.98) 100%);
-      backdrop-filter: blur(20px);
+      background: linear-gradient(135deg, rgba(10, 22, 40, 0.95) 0%, rgba(26, 41, 66, 0.95) 100%);
       color: white;
-      padding: 14px 0;
+      padding: 12px 0;
       font-size: 13px;
       border-bottom: 1px solid rgba(255,255,255,0.05);
     }
@@ -264,83 +166,63 @@
       color: rgba(255,255,255,0.9);
       text-decoration: none;
       margin-right: 25px;
-      font-weight: 500;
-      transition: all 0.3s;
+      font-weight: 600;
+      transition: color 0.3s;
     }
 
     .top-bar a:hover {
       color: var(--accent);
-      transform: translateY(-2px);
     }
 
     .emergency-badge {
       background: linear-gradient(135deg, var(--secondary) 0%, #FF8C42 100%);
-      padding: 10px 28px;
+      padding: 8px 24px;
       border-radius: 50px;
       font-weight: 700;
       text-transform: uppercase;
       font-size: 11px;
-      letter-spacing: 1.5px;
-      box-shadow: 0 8px 30px rgba(255, 107, 53, 0.5);
-      animation: pulse-glow 2.5s infinite;
+      box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
       display: inline-block;
-    }
-
-    @keyframes pulse-glow {
-      0%, 100% { transform: scale(1); box-shadow: 0 8px 30px rgba(255, 107, 53, 0.5); }
-      50% { transform: scale(1.05); box-shadow: 0 12px 40px rgba(255, 107, 53, 0.8); }
     }
 
     /* Navigation */
     .navbar {
       background: rgba(255, 255, 255, 0.98) !important;
-      backdrop-filter: blur(30px);
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
-      padding: 22px 0;
-      transition: all 0.4s;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      padding: 18px 0;
+      transition: padding 0.3s, box-shadow 0.3s;
       position: sticky;
       top: 0;
       z-index: 9999;
+      will-change: padding;
     }
 
     .navbar.scrolled {
-      padding: 16px 0;
-      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.12);
+      padding: 12px 0;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     }
 
     .navbar-brand {
       display: flex;
       align-items: center;
-      gap: 15px;
-      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    }
-
-    .navbar-brand:hover {
-      transform: translateY(-3px);
+      gap: 12px;
     }
 
     .brand-icon {
-      width: 58px;
-      height: 58px;
+      width: 50px;
+      height: 50px;
       background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      border-radius: 16px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 1.7rem;
-      box-shadow: 0 10px 35px rgba(0, 102, 255, 0.4);
-      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    }
-
-    .navbar-brand:hover .brand-icon {
-      transform: rotate(10deg) scale(1.1);
-      box-shadow: 0 15px 50px rgba(0, 102, 255, 0.6);
+      font-size: 1.5rem;
+      box-shadow: 0 8px 25px rgba(0, 102, 255, 0.3);
     }
 
     .brand-text {
-      font-family: 'Sora', sans-serif;
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       font-weight: 900;
       background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
       -webkit-background-clip: text;
@@ -350,387 +232,242 @@
     .nav-link {
       color: var(--dark) !important;
       font-weight: 600;
-      padding: 12px 24px !important;
-      border-radius: 12px;
-      transition: all 0.3s;
-      position: relative;
-    }
-
-    .nav-link::before {
-      content: '';
-      position: absolute;
-      bottom: 8px;
-      left: 50%;
-      width: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      transition: all 0.3s;
-      transform: translateX(-50%);
-      border-radius: 3px;
-    }
-
-    .nav-link:hover::before {
-      width: 70%;
+      padding: 10px 20px !important;
+      border-radius: 10px;
+      transition: color 0.3s;
     }
 
     .nav-link:hover {
       color: var(--primary) !important;
-      transform: translateY(-2px);
     }
 
     .cta-btn {
       background: linear-gradient(135deg, var(--secondary) 0%, #FF8C42 100%);
       color: white !important;
-      padding: 14px 36px !important;
+      padding: 12px 32px !important;
       border-radius: 50px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      box-shadow: 0 10px 35px rgba(255, 107, 53, 0.4);
-      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      letter-spacing: 0.8px;
+      box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
       border: none;
     }
 
     .cta-btn:hover {
-      transform: translateY(-4px) scale(1.05);
-      box-shadow: 0 15px 50px rgba(255, 107, 53, 0.6);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 35px rgba(255, 107, 53, 0.5);
     }
 
     /* Hero Section */
     .hero {
-      background: linear-gradient(135deg, rgba(10, 22, 40, 0.96) 0%, rgba(26, 41, 66, 0.94) 100%),
-                  url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3') center/cover fixed;
-      min-height: 100vh;
+      background: linear-gradient(135deg, rgba(10, 22, 40, 0.95) 0%, rgba(26, 41, 66, 0.95) 100%),
+                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23050f1f" width="1200" height="600"/><circle cx="200" cy="150" r="150" fill="%23004080" opacity="0.2"/><circle cx="1000" cy="450" r="200" fill="%23004080" opacity="0.15"/></svg>');
+      background-size: cover;
+      background-attachment: fixed;
+      min-height: 90vh;
       display: flex;
       align-items: center;
       position: relative;
-      overflow: hidden;
       color: white;
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 20% 50%, rgba(0, 102, 255, 0.25) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(0, 217, 255, 0.25) 0%, transparent 50%);
-      animation: gradient-shift 10s ease-in-out infinite;
-    }
-
-    @keyframes gradient-shift {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
-    }
-
-    .hero-particles {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-    }
-
-    .particle {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 50%;
-      opacity: 0.5;
-      animation: particle-float 20s infinite;
-      box-shadow: 0 0 20px var(--accent);
-    }
-
-    @keyframes particle-float {
-      0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
-      10% { opacity: 0.6; }
-      50% { transform: translateY(-50vh) translateX(30px); opacity: 0.8; }
-      90% { opacity: 0.6; }
-      100% { transform: translateY(-100vh) translateX(60px); opacity: 0; }
-    }
-
     .hero-content {
-      position: relative;
-      z-index: 10;
-      animation: fadeInUp 1.2s;
+      animation: fadeIn 0.8s ease-out;
     }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(80px); }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      background: rgba(0, 217, 255, 0.12);
-      backdrop-filter: blur(20px);
-      border: 2px solid rgba(0, 217, 255, 0.4);
-      padding: 14px 30px;
+      gap: 10px;
+      background: rgba(0, 217, 255, 0.1);
+      border: 2px solid rgba(0, 217, 255, 0.3);
+      padding: 12px 28px;
       border-radius: 50px;
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
       color: var(--accent);
-      margin-bottom: 35px;
-      box-shadow: 0 10px 40px rgba(0, 217, 255, 0.3);
-      animation: float-badge 3s ease-in-out infinite;
-    }
-
-    @keyframes float-badge {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      margin-bottom: 30px;
     }
 
     .hero h1 {
-      font-family: 'Sora', sans-serif;
-      font-size: clamp(3.5rem, 8vw, 5.5rem);
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
       font-weight: 900;
-      line-height: 1.05;
-      margin-bottom: 35px;
-      background: linear-gradient(135deg, #FFFFFF 0%, var(--accent) 50%, var(--gold) 100%);
-      background-size: 200% auto;
+      line-height: 1.1;
+      margin-bottom: 30px;
+      background: linear-gradient(135deg, #FFFFFF 0%, var(--accent) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: gradient-text 4s ease infinite;
-      letter-spacing: -2px;
-    }
-
-    @keyframes gradient-text {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
     }
 
     .hero-subtitle {
-      font-size: 1.35rem;
-      line-height: 1.9;
-      opacity: 0.92;
-      margin-bottom: 45px;
-      max-width: 720px;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      opacity: 0.9;
+      margin-bottom: 40px;
+      max-width: 700px;
     }
 
     .hero-buttons {
       display: flex;
-      gap: 20px;
+      gap: 18px;
       flex-wrap: wrap;
     }
 
     .btn-hero {
-      padding: 20px 45px;
-      font-size: 1.05rem;
+      padding: 16px 40px;
+      font-size: 1rem;
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
       border-radius: 50px;
-      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      transition: all 0.3s;
       display: inline-flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       border: none;
       text-decoration: none;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-hero::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s, height 0.6s;
-    }
-
-    .btn-hero:hover::before {
-      width: 300px;
-      height: 300px;
+      cursor: pointer;
     }
 
     .btn-hero-primary {
       background: linear-gradient(135deg, var(--secondary) 0%, #FF8C42 100%);
       color: white;
-      box-shadow: 0 15px 45px rgba(255, 107, 53, 0.5);
+      box-shadow: 0 10px 35px rgba(255, 107, 53, 0.4);
     }
 
     .btn-hero-primary:hover {
-      transform: translateY(-6px) scale(1.05);
-      box-shadow: 0 20px 60px rgba(255, 107, 53, 0.7);
-      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 45px rgba(255, 107, 53, 0.6);
     }
 
     .btn-hero-secondary {
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.1);
       color: white;
-      border: 2px solid rgba(255, 255, 255, 0.4);
+      border: 2px solid rgba(255, 255, 255, 0.3);
     }
 
     .btn-hero-secondary:hover {
-      background: rgba(255, 255, 255, 0.22);
-      transform: translateY(-6px) scale(1.05);
-      color: white;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-3px);
     }
 
     /* Stats Bar */
     .stats-bar {
-      background: linear-gradient(135deg, rgba(10, 22, 40, 0.95) 0%, rgba(26, 41, 66, 0.95) 100%);
-      backdrop-filter: blur(40px);
-      margin-top: -120px;
+      background: linear-gradient(135deg, rgba(10, 22, 40, 0.9) 0%, rgba(26, 41, 66, 0.9) 100%);
+      margin-top: -80px;
       position: relative;
       z-index: 100;
-      border-radius: 40px;
-      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
-      padding: 70px 60px;
-      border: 2px solid rgba(0, 217, 255, 0.3);
-      animation: stats-float 4s ease-in-out infinite;
-    }
-
-    @keyframes stats-float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .stats-bar::before {
-      content: '';
-      position: absolute;
-      inset: -3px;
-      background: linear-gradient(135deg, var(--primary), var(--accent), var(--gold), var(--secondary));
-      border-radius: 40px;
-      z-index: -1;
-      opacity: 0;
-      transition: opacity 0.6s;
-      animation: border-rotate 8s linear infinite;
-    }
-
-    @keyframes border-rotate {
-      to { filter: hue-rotate(360deg); }
-    }
-
-    .stats-bar:hover::before {
-      opacity: 0.3;
+      border-radius: 30px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      padding: 50px 40px;
+      border: 2px solid rgba(0, 217, 255, 0.2);
     }
 
     .stat-item {
       text-align: center;
-      padding: 30px;
-      transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      padding: 25px;
+      transition: transform 0.3s;
     }
 
     .stat-item:hover {
-      transform: translateY(-20px) scale(1.1);
+      transform: translateY(-10px);
     }
 
     .stat-icon {
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 30px;
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
       background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      border-radius: 28px;
+      border-radius: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.8rem;
+      font-size: 2.2rem;
       color: white;
-      box-shadow: 0 20px 60px rgba(0, 102, 255, 0.6);
-      transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    }
-
-    .stat-item:hover .stat-icon {
-      transform: translateY(-15px) rotate(20deg) scale(1.2);
-      box-shadow: 0 30px 80px rgba(0, 217, 255, 0.8);
+      box-shadow: 0 15px 40px rgba(0, 102, 255, 0.4);
     }
 
     .stat-number {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 3.5rem;
+      font-size: 3rem;
       font-weight: 900;
-      background: linear-gradient(135deg, var(--white) 0%, var(--accent) 50%, var(--gold) 100%);
+      background: linear-gradient(135deg, var(--white) 0%, var(--accent) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
 
     .stat-label {
       color: var(--accent);
       font-weight: 800;
-      font-size: 1.1rem;
+      font-size: 1rem;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 1.5px;
     }
 
-    /* Section Styling */
+    /* Section */
     .section {
-      padding: 140px 0;
+      padding: 100px 0;
       position: relative;
     }
 
     .section-header {
       text-align: center;
       max-width: 900px;
-      margin: 0 auto 100px;
+      margin: 0 auto 80px;
     }
 
     .section-badge {
       display: inline-block;
-      background: linear-gradient(135deg, rgba(0, 102, 255, 0.2) 0%, rgba(0, 217, 255, 0.2) 100%);
+      background: linear-gradient(135deg, rgba(0, 102, 255, 0.15), rgba(0, 217, 255, 0.15));
       color: var(--accent);
-      padding: 14px 35px;
+      padding: 12px 32px;
       border-radius: 50px;
-      font-weight: 900;
-      font-size: 13px;
+      font-weight: 800;
+      font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: 3px;
-      margin-bottom: 30px;
-      border: 3px solid rgba(0, 217, 255, 0.4);
-      box-shadow: 0 10px 35px rgba(0, 102, 255, 0.3);
+      letter-spacing: 2px;
+      margin-bottom: 25px;
+      border: 2px solid rgba(0, 217, 255, 0.3);
     }
 
     .section-title {
-      font-family: 'Sora', sans-serif;
-      font-size: clamp(3rem, 6vw, 4.2rem);
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
       font-weight: 900;
-      margin-bottom: 30px;
-      background: linear-gradient(135deg, var(--white) 0%, var(--accent) 50%, var(--gold) 100%);
-      background-size: 200% auto;
+      margin-bottom: 25px;
+      background: linear-gradient(135deg, var(--white) 0%, var(--accent) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: gradient-text 5s ease infinite;
-      line-height: 1.1;
     }
 
     .section-subtitle {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       color: rgba(255,255,255,0.8);
-      line-height: 1.9;
+      line-height: 1.8;
     }
 
     /* Product Cards */
     .product-card {
-      background: linear-gradient(135deg, rgba(10, 22, 40, 0.9) 0%, rgba(26, 41, 66, 0.9) 100%);
-      border-radius: 40px;
+      background: linear-gradient(135deg, rgba(10, 22, 40, 0.85) 0%, rgba(26, 41, 66, 0.85) 100%);
+      border-radius: 30px;
       overflow: hidden;
-      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.5);
-      transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+      transition: all 0.4s ease-out;
       height: 100%;
-      border: 3px solid rgba(0, 217, 255, 0.2);
+      border: 2px solid rgba(0, 217, 255, 0.15);
+      will-change: transform;
     }
 
     .product-card:hover {
-      transform: translateY(-30px) scale(1.03);
-      box-shadow: 0 45px 100px rgba(0, 0, 0, 0.7), 0 0 80px rgba(0, 217, 255, 0.4);
+      transform: translateY(-15px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+      border-color: rgba(0, 217, 255, 0.4);
     }
 
     .product-image {
-      height: 380px;
+      height: 300px;
       background-size: cover;
       background-position: center;
       position: relative;
@@ -738,35 +475,28 @@
 
     .product-badge {
       position: absolute;
-      top: 35px;
-      right: 35px;
+      top: 30px;
+      right: 30px;
       background: linear-gradient(135deg, var(--secondary) 0%, #FF8C42 100%);
       color: white;
-      padding: 14px 32px;
+      padding: 12px 28px;
       border-radius: 50px;
-      font-weight: 900;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      box-shadow: 0 15px 50px rgba(255, 107, 53, 0.7);
+      font-size: 12px;
+      box-shadow: 0 10px 35px rgba(255, 107, 53, 0.5);
       z-index: 10;
-      animation: badge-float 4s ease-in-out infinite;
-    }
-
-    @keyframes badge-float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
     }
 
     .product-content {
-      padding: 50px 45px;
+      padding: 40px 35px;
       color: white;
     }
 
     .product-title {
-      font-family: 'Sora', sans-serif;
-      font-size: 2.2rem;
+      font-size: 1.8rem;
       font-weight: 900;
-      margin-bottom: 35px;
+      margin-bottom: 30px;
       background: linear-gradient(135deg, var(--white) 0%, var(--accent) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -775,259 +505,236 @@
     .product-specs {
       list-style: none;
       padding: 0;
-      margin: 0 0 40px;
+      margin: 0 0 35px;
     }
 
     .product-specs li {
-      padding: 20px 0;
-      border-bottom: 2px solid rgba(0, 217, 255, 0.2);
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(0, 217, 255, 0.1);
       display: flex;
       justify-content: space-between;
-      transition: all 0.4s;
+      align-items: center;
+      transition: padding-left 0.3s;
     }
 
     .product-specs li:hover {
-      padding-left: 15px;
-      border-bottom-color: rgba(0, 217, 255, 0.6);
-      background: rgba(0, 217, 255, 0.05);
+      padding-left: 10px;
     }
 
     .spec-label {
       color: rgba(255,255,255,0.7);
-      font-weight: 700;
+      font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 12px;
     }
 
     .spec-label i {
       color: var(--accent);
-      font-size: 1.4rem;
+      font-size: 1.2rem;
     }
 
     .spec-value {
-      font-weight: 900;
+      font-weight: 800;
       color: var(--white);
     }
 
     .product-actions {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      gap: 15px;
     }
 
     .btn-product {
-      padding: 18px 24px;
-      border-radius: 18px;
+      padding: 16px 20px;
+      border-radius: 16px;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
-      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+      transition: all 0.3s;
       border: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
+      cursor: pointer;
     }
 
     .btn-product-primary {
       background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
       color: white;
-      box-shadow: 0 10px 35px rgba(0, 102, 255, 0.5);
+      box-shadow: 0 8px 30px rgba(0, 102, 255, 0.4);
     }
 
     .btn-product-primary:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 15px 50px rgba(0, 217, 255, 0.7);
-      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px rgba(0, 217, 255, 0.6);
     }
 
     .btn-product-secondary {
       background: var(--success);
       color: white;
-      box-shadow: 0 10px 35px rgba(0, 200, 83, 0.5);
+      box-shadow: 0 8px 30px rgba(0, 200, 83, 0.4);
     }
 
     .btn-product-secondary:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 15px 50px rgba(0, 200, 83, 0.7);
-      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px rgba(0, 200, 83, 0.6);
     }
 
-    /* Services Section */
+    /* Service Cards */
     .service-card {
-      background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,250,252,0.98) 100%);
-      border-radius: 35px;
-      padding: 50px 40px;
-      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
-      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%);
+      border-radius: 30px;
+      padding: 40px 35px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+      transition: all 0.4s ease-out;
       height: 100%;
     }
 
     .service-card:hover {
-      transform: translateY(-20px) scale(1.02);
-      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.15);
+      transform: translateY(-12px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
     }
 
     .service-icon {
-      width: 90px;
-      height: 90px;
+      width: 80px;
+      height: 80px;
       background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      border-radius: 24px;
+      border-radius: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       color: white;
-      margin-bottom: 30px;
-      box-shadow: 0 15px 45px rgba(0, 102, 255, 0.4);
-      transition: all 0.5s;
+      margin-bottom: 25px;
+      box-shadow: 0 12px 40px rgba(0, 102, 255, 0.3);
+      transition: transform 0.3s;
     }
 
     .service-card:hover .service-icon {
-      transform: rotate(15deg) scale(1.1);
-      box-shadow: 0 20px 60px rgba(0, 102, 255, 0.6);
+      transform: scale(1.05);
     }
 
     .service-title {
-      font-family: 'Sora', sans-serif;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       font-weight: 800;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       color: var(--dark);
     }
 
     .service-features {
       list-style: none;
       padding: 0;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
 
     .service-features li {
-      padding: 12px 0;
+      padding: 10px 0;
       color: var(--gray);
       font-weight: 500;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .service-features li i {
       color: var(--success);
-      font-size: 1.2rem;
     }
 
     /* Testimonials */
     .testimonial-card {
-      background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,250,252,0.98) 100%);
-      border-radius: 35px;
-      padding: 50px 40px;
-      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+      background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%);
+      border-radius: 30px;
+      padding: 40px 35px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
       height: 100%;
-      position: relative;
     }
 
-    .testimonial-quote {
-      position: absolute;
-      top: 30px;
-      left: 30px;
-      font-size: 5rem;
-      color: var(--accent);
-      opacity: 0.2;
-      font-family: Georgia, serif;
+    .testimonial-stars {
+      color: var(--gold);
+      font-size: 1.1rem;
+      margin-bottom: 18px;
     }
 
     .testimonial-text {
-      font-size: 1.15rem;
-      line-height: 1.9;
+      font-size: 1.1rem;
+      line-height: 1.8;
       color: var(--gray);
-      margin-bottom: 30px;
-      font-style: italic;
-      position: relative;
-      z-index: 10;
+      margin-bottom: 25px;
     }
 
     .testimonial-author {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 15px;
     }
 
     .testimonial-avatar {
-      width: 70px;
-      height: 70px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--primary), var(--accent));
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       font-weight: 900;
-      box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+      box-shadow: 0 8px 25px rgba(0, 102, 255, 0.3);
     }
 
     .testimonial-info h5 {
       font-weight: 800;
       color: var(--dark);
-      margin-bottom: 5px;
+      margin-bottom: 3px;
     }
 
     .testimonial-info p {
       color: var(--gray);
       margin: 0;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
-    .testimonial-stars {
-      color: var(--gold);
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
-
-    /* FAQ Section */
+    /* FAQ */
     .faq-item {
-      background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,250,252,0.98) 100%);
-      border-radius: 25px;
-      margin-bottom: 20px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%);
+      border-radius: 20px;
+      margin-bottom: 15px;
       overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
-      transition: all 0.4s;
+      box-shadow: 0 8px 35px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s;
     }
 
     .faq-item:hover {
-      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 10px 45px rgba(0, 0, 0, 0.1);
     }
 
     .faq-question {
-      padding: 30px 35px;
+      padding: 25px 32px;
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: var(--dark);
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: all 0.3s;
       user-select: none;
     }
 
-    .faq-question:hover {
-      color: var(--primary);
-    }
-
     .faq-icon {
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 12px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      transition: all 0.4s;
-      font-size: 1.3rem;
+      transition: transform 0.3s;
+      flex-shrink: 0;
     }
 
     .faq-item.active .faq-icon {
@@ -1037,85 +744,76 @@
     .faq-answer {
       max-height: 0;
       overflow: hidden;
-      transition: all 0.5s ease-out;
-      padding: 0 35px;
+      transition: max-height 0.4s ease-out;
+      padding: 0 32px;
       color: var(--gray);
-      line-height: 1.8;
+      line-height: 1.7;
     }
 
     .faq-item.active .faq-answer {
       max-height: 500px;
-      padding: 0 35px 30px;
+      padding: 0 32px 25px;
     }
 
-    /* Floating Elements */
+    /* Floating Buttons */
     .floating-call {
       position: fixed;
-      bottom: 40px;
-      right: 40px;
-      width: 80px;
-      height: 80px;
+      bottom: 35px;
+      right: 35px;
+      width: 70px;
+      height: 70px;
       background: linear-gradient(135deg, var(--secondary) 0%, #FF8C42 100%);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 2.2rem;
-      box-shadow: 0 20px 60px rgba(255, 107, 53, 0.8);
+      font-size: 1.8rem;
+      box-shadow: 0 12px 40px rgba(255, 107, 53, 0.6);
       z-index: 9999;
-      animation: fab-pulse 2s infinite;
+      animation: pulse-btn 2.5s infinite;
       text-decoration: none;
-      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      transition: all 0.3s;
     }
 
-    @keyframes fab-pulse {
-      0%, 100% { 
-        transform: scale(1);
-        box-shadow: 0 20px 60px rgba(255, 107, 53, 0.8);
-      }
-      50% { 
-        transform: scale(1.1);
-        box-shadow: 0 25px 80px rgba(255, 107, 53, 1);
-      }
+    @keyframes pulse-btn {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
     }
 
     .floating-call:hover {
-      transform: scale(1.25) rotate(15deg);
-      box-shadow: 0 30px 90px rgba(255, 107, 53, 1);
-      color: white;
+      transform: scale(1.2);
+      box-shadow: 0 15px 50px rgba(255, 107, 53, 0.8);
     }
 
     .floating-whatsapp {
       position: fixed;
-      bottom: 140px;
-      right: 40px;
-      width: 70px;
-      height: 70px;
+      bottom: 125px;
+      right: 35px;
+      width: 65px;
+      height: 65px;
       background: linear-gradient(135deg, var(--success) 0%, #00E676 100%);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 2rem;
-      box-shadow: 0 15px 50px rgba(0, 200, 83, 0.7);
+      font-size: 1.6rem;
+      box-shadow: 0 12px 40px rgba(0, 200, 83, 0.6);
       z-index: 9999;
-      animation: fab-pulse 2s infinite 0.5s;
       text-decoration: none;
-      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      transition: all 0.3s;
     }
 
     .floating-whatsapp:hover {
-      transform: scale(1.25) rotate(-15deg);
-      box-shadow: 0 20px 70px rgba(0, 200, 83, 1);
-      color: white;
+      transform: scale(1.2);
+      box-shadow: 0 15px 50px rgba(0, 200, 83, 0.8);
     }
 
     .back-to-top {
       position: fixed;
-      bottom: 240px;
-      right: 40px;
+      bottom: 210px;
+      right: 35px;
       width: 60px;
       height: 60px;
       background: linear-gradient(135deg, var(--primary), var(--accent));
@@ -1124,13 +822,13 @@
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 1.8rem;
-      box-shadow: 0 10px 40px rgba(0, 102, 255, 0.5);
+      font-size: 1.5rem;
+      box-shadow: 0 10px 35px rgba(0, 102, 255, 0.5);
       z-index: 9999;
       cursor: pointer;
       opacity: 0;
       visibility: hidden;
-      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      transition: all 0.3s;
     }
 
     .back-to-top.visible {
@@ -1139,15 +837,15 @@
     }
 
     .back-to-top:hover {
-      transform: translateY(-10px) scale(1.15);
-      box-shadow: 0 15px 50px rgba(0, 102, 255, 0.7);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 45px rgba(0, 102, 255, 0.7);
     }
 
-    /* Fade In Animation */
+    /* Fade in animation */
     .fade-in {
       opacity: 0;
-      transform: translateY(60px);
-      transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .fade-in.visible {
@@ -1155,34 +853,17 @@
       transform: translateY(0);
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 3rem; }
-      .hero-subtitle { font-size: 1.2rem; }
-      .section-title { font-size: 2.8rem; }
-      .hero-buttons { flex-direction: column; width: 100%; }
-      .btn-hero { width: 100%; justify-content: center; }
-      .stats-bar { margin-top: -60px; padding: 50px 30px; }
-      .product-actions { grid-template-columns: 1fr; }
-      .floating-call { width: 70px; height: 70px; font-size: 1.9rem; }
-      .floating-whatsapp { width: 60px; height: 60px; bottom: 120px; }
-      .back-to-top { width: 50px; height: 50px; bottom: 200px; }
-      .section { padding: 80px 0; }
-    }
-
     /* Footer */
     .footer {
-      background: linear-gradient(135deg, rgba(10, 22, 40, 0.98) 0%, rgba(26, 41, 66, 0.98) 100%);
+      background: linear-gradient(135deg, rgba(10, 22, 40, 0.95) 0%, rgba(26, 41, 66, 0.95) 100%);
       color: white;
-      padding: 80px 0 40px;
-      position: relative;
+      padding: 60px 0 30px;
     }
 
     .footer-title {
-      font-family: 'Sora', sans-serif;
       font-weight: 800;
-      font-size: 1.3rem;
-      margin-bottom: 25px;
+      font-size: 1.2rem;
+      margin-bottom: 20px;
       color: var(--accent);
     }
 
@@ -1192,29 +873,65 @@
     }
 
     .footer-links li {
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
 
     .footer-links a {
       color: rgba(255,255,255,0.7);
       text-decoration: none;
-      transition: all 0.3s;
+      transition: color 0.3s;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
+      font-size: 0.95rem;
     }
 
     .footer-links a:hover {
       color: white;
-      padding-left: 10px;
     }
 
     .footer-bottom {
       border-top: 1px solid rgba(255,255,255,0.1);
-      margin-top: 60px;
-      padding-top: 30px;
+      margin-top: 50px;
+      padding-top: 25px;
       text-align: center;
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.5);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .hero-subtitle { font-size: 1rem; }
+      .section-title { font-size: 2rem; }
+      .hero-buttons { flex-direction: column; }
+      .btn-hero { width: 100%; }
+      .stats-bar { margin-top: -40px; padding: 40px 25px; }
+      .product-actions { grid-template-columns: 1fr; }
+      .floating-call { width: 60px; height: 60px; font-size: 1.5rem; }
+      .floating-whatsapp { width: 55px; height: 55px; bottom: 110px; }
+      .back-to-top { width: 50px; height: 50px; bottom: 190px; }
+      .section { padding: 60px 0; }
+    }
+
+    @media (max-width: 480px) {
+      .navbar { padding: 10px 0; }
+      .brand-icon { width: 42px; height: 42px; font-size: 1.2rem; }
+      .brand-text { font-size: 1.1rem; }
+      .hero { min-height: 80vh; }
+      .hero h1 { font-size: 1.8rem; margin-bottom: 20px; }
+      .hero-subtitle { font-size: 0.95rem; margin-bottom: 25px; }
+      .section-title { font-size: 1.8rem; }
+      .stats-bar { padding: 30px 15px; }
+      .stat-item { padding: 15px; }
+      .stat-icon { width: 65px; height: 65px; font-size: 1.8rem; }
+      .stat-number { font-size: 2.2rem; }
+      .product-content { padding: 30px 20px; }
+      .product-image { height: 250px; }
+      .product-title { font-size: 1.4rem; }
+      .service-card { padding: 30px 20px; }
+      .faq-question { padding: 20px; font-size: 1rem; }
+      .float { bottom: 20px; right: 20px; }
     }
   </style>
 </head>
@@ -1223,21 +940,15 @@
   <div class="scroll-progress"></div>
 
   <!-- Preloader -->
-  <div class="preloader">
+  <div class="preloader" id="preloader">
     <div class="preloader-content">
       <div class="preloader-logo">
         <i class="fas fa-bolt"></i>
       </div>
       <div class="preloader-text">SURESH GENERATOR</div>
       <div class="preloader-subtitle">Power Excellence Since 2008</div>
-      <div class="preloader-bar"></div>
     </div>
   </div>
-
-  <!-- Animated Orbs -->
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
 
   <!-- Announcement -->
   <div class="announcement-bar">
@@ -1267,19 +978,18 @@
     <div class="container">
       <a class="navbar-brand" href="#">
         <div class="brand-icon"><i class="fas fa-bolt"></i></div>
-        <span class="brand-text">SURESH GENERATOR</span>
+        <span class="brand-text">SURESH</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <i class="fas fa-bars"></i>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto me-4">
+        <ul class="navbar-nav ms-auto me-3">
           <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
           <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
           <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
           <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
         </ul>
         <a href="tel:+919829325775" class="cta-btn">
           <i class="fas fa-phone"></i> CALL NOW
@@ -1290,15 +1000,6 @@
 
   <!-- Hero Section -->
   <section class="hero" id="home">
-    <div class="hero-particles">
-      <div class="particle" style="left: 5%; animation-delay: 0s;"></div>
-      <div class="particle" style="left: 18%; animation-delay: 4s;"></div>
-      <div class="particle" style="left: 32%; animation-delay: 8s;"></div>
-      <div class="particle" style="left: 48%; animation-delay: 2s;"></div>
-      <div class="particle" style="left: 62%; animation-delay: 6s;"></div>
-      <div class="particle" style="left: 75%; animation-delay: 10s;"></div>
-      <div class="particle" style="left: 88%; animation-delay: 12s;"></div>
-    </div>
     <div class="container">
       <div class="row">
         <div class="col-lg-11">
@@ -1307,12 +1008,9 @@
               <i class="fas fa-map-marker-alt"></i>
               <span>Serving Neemrana & All Rajasthan</span>
             </div>
-            <h1 class="font-display">
-              Premium Generator Solutions For Industrial & Residential Power
-            </h1>
+            <h1>Premium Generator Solutions For Industrial & Residential Power</h1>
             <p class="hero-subtitle">
-              🏆 Authorized Dealer | ⚡ 15+ Years Excellence | 🎯 500+ Satisfied Customers | 🛠️ 24/7 Emergency Service | 
-              💎 100% Genuine Products | 📍 ISO 9001:2015 Certified
+              🏆 Authorized Dealer | ⚡ 15+ Years Excellence | 🎯 500+ Satisfied Customers | 🛠️ 24/7 Emergency Service | 💎 100% Genuine Products | 📍 ISO 9001:2015 Certified
             </p>
             <div class="hero-buttons">
               <a href="tel:+919829325775" class="btn-hero btn-hero-primary">
@@ -1325,7 +1023,7 @@
               </a>
               <a href="https://wa.me/919829325775" class="btn-hero btn-hero-secondary">
                 <i class="fab fa-whatsapp"></i>
-                WHATSAPP US
+                WHATSAPP
               </a>
             </div>
           </div>
@@ -1338,31 +1036,31 @@
   <div class="container">
     <div class="stats-bar">
       <div class="row">
-        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+        <div class="col-lg-3 col-md-6 mb-3 mb-lg-0">
           <div class="stat-item">
             <div class="stat-icon"><i class="fas fa-award"></i></div>
-            <div class="stat-number" data-target="15">0</div>
+            <div class="stat-number">15</div>
             <div class="stat-label">Years Experience</div>
           </div>
         </div>
-        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+        <div class="col-lg-3 col-md-6 mb-3 mb-lg-0">
           <div class="stat-item">
             <div class="stat-icon"><i class="fas fa-users"></i></div>
-            <div class="stat-number" data-target="500">0</div>
+            <div class="stat-number">500</div>
             <div class="stat-label">Happy Clients</div>
           </div>
         </div>
-        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+        <div class="col-lg-3 col-md-6 mb-3 mb-lg-0">
           <div class="stat-item">
             <div class="stat-icon"><i class="fas fa-tools"></i></div>
-            <div class="stat-number font-tech">24/7</div>
+            <div class="stat-number">24/7</div>
             <div class="stat-label">Service Available</div>
           </div>
         </div>
         <div class="col-lg-3 col-md-6">
           <div class="stat-item">
             <div class="stat-icon"><i class="fas fa-certificate"></i></div>
-            <div class="stat-number" data-target="100">0</div>
+            <div class="stat-number">100%</div>
             <div class="stat-label">Genuine Products</div>
           </div>
         </div>
@@ -1375,42 +1073,39 @@
     <div class="container">
       <div class="section-header fade-in">
         <div class="section-badge">⚡ OUR PREMIUM PRODUCTS ⚡</div>
-        <h2 class="section-title font-display">World-Class Generator Range</h2>
-        <p class="section-subtitle">
-          High-performance diesel generators engineered for maximum reliability and efficiency. 
-          From compact residential backup to heavy-duty industrial power systems.
-        </p>
+        <h2 class="section-title">World-Class Generator Range</h2>
+        <p class="section-subtitle">High-performance diesel generators engineered for reliability and efficiency.</p>
       </div>
 
       <div class="row">
-        <div class="col-lg-6 mb-5">
+        <div class="col-lg-6 mb-4">
           <div class="product-card fade-in">
-            <div class="product-image" style="background: linear-gradient(135deg, rgba(10, 22, 40, 0.8), rgba(26, 41, 66, 0.8)), url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800') center/cover;">
-              <div class="product-badge">🏭 INDUSTRIAL GRADE</div>
+            <div class="product-image" style="background: linear-gradient(135deg, rgba(10, 22, 40, 0.8), rgba(26, 41, 66, 0.8)), linear-gradient(rgba(0,102,255,0.5), rgba(0,217,255,0.5));">
+              <div class="product-badge">🏭 INDUSTRIAL</div>
             </div>
             <div class="product-content">
-              <h3 class="product-title font-display">Industrial Diesel Generators</h3>
+              <h3 class="product-title">Industrial Diesel Generators</h3>
               <ul class="product-specs">
                 <li>
                   <span class="spec-label"><i class="fas fa-bolt"></i> Power Range</span>
                   <span class="spec-value">50 kVA - 3750 kVA</span>
                 </li>
                 <li>
-                  <span class="spec-label"><i class="fas fa-industry"></i> Applications</span>
+                  <span class="spec-label"><i class="fas fa-industry"></i> For</span>
                   <span class="spec-value">Factories, Hospitals, Hotels</span>
                 </li>
                 <li>
                   <span class="spec-label"><i class="fas fa-cogs"></i> Features</span>
-                  <span class="spec-value">Auto Start, Remote Control, ATS Panel</span>
+                  <span class="spec-value">Auto Start, Remote Control</span>
                 </li>
                 <li>
                   <span class="spec-label"><i class="fas fa-shield-alt"></i> Warranty</span>
-                  <span class="spec-value">2-3 Years Comprehensive</span>
+                  <span class="spec-value">2-3 Years</span>
                 </li>
               </ul>
               <div class="product-actions">
                 <a href="tel:+919829325775" class="btn-product btn-product-primary">
-                  <i class="fas fa-phone"></i> CALL FOR PRICE
+                  <i class="fas fa-phone"></i> CALL
                 </a>
                 <a href="https://wa.me/919829325775" class="btn-product btn-product-secondary">
                   <i class="fab fa-whatsapp"></i> WHATSAPP
@@ -1420,34 +1115,34 @@
           </div>
         </div>
 
-        <div class="col-lg-6 mb-5">
+        <div class="col-lg-6 mb-4">
           <div class="product-card fade-in">
-            <div class="product-image" style="background: linear-gradient(135deg, rgba(10, 22, 40, 0.8), rgba(26, 41, 66, 0.8)), url('https://images.unsplash.com/photo-1513828583688-c52646db42da?w=800') center/cover;">
+            <div class="product-image" style="background: linear-gradient(135deg, rgba(10, 22, 40, 0.8), rgba(26, 41, 66, 0.8)), linear-gradient(rgba(0,217,255,0.5), rgba(0,200,83,0.5));">
               <div class="product-badge">🏠 RESIDENTIAL</div>
             </div>
             <div class="product-content">
-              <h3 class="product-title font-display">Home Backup Generators</h3>
+              <h3 class="product-title">Home Backup Generators</h3>
               <ul class="product-specs">
                 <li>
-                  <span class="spec-label"><i class="fas fa-bolt"></i> Power Range</span>
+                  <span class="spec-label"><i class="fas fa-bolt"></i> Power</span>
                   <span class="spec-value">7.5 kVA - 45 kVA</span>
                 </li>
                 <li>
-                  <span class="spec-label"><i class="fas fa-home"></i> Perfect For</span>
-                  <span class="spec-value">Homes, Small Offices, Shops</span>
+                  <span class="spec-label"><i class="fas fa-home"></i> Perfect</span>
+                  <span class="spec-value">Homes, Offices, Shops</span>
                 </li>
                 <li>
-                  <span class="spec-label"><i class="fas fa-volume-down"></i> Operation</span>
-                  <span class="spec-value">Ultra Silent, Compact Design</span>
+                  <span class="spec-label"><i class="fas fa-volume-down"></i> Noise</span>
+                  <span class="spec-value">Ultra Silent Design</span>
                 </li>
                 <li>
-                  <span class="spec-label"><i class="fas fa-wrench"></i> Installation</span>
-                  <span class="spec-value">Free Professional Setup & Training</span>
+                  <span class="spec-label"><i class="fas fa-wrench"></i> Setup</span>
+                  <span class="spec-value">Free Installation</span>
                 </li>
               </ul>
               <div class="product-actions">
                 <a href="tel:+919829325775" class="btn-product btn-product-primary">
-                  <i class="fas fa-phone"></i> CALL FOR PRICE
+                  <i class="fas fa-phone"></i> CALL
                 </a>
                 <a href="https://wa.me/919829325775" class="btn-product btn-product-secondary">
                   <i class="fab fa-whatsapp"></i> WHATSAPP
@@ -1460,25 +1155,25 @@
 
       <div class="row mt-5">
         <div class="col-12 fade-in">
-          <div style="background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(0, 217, 255, 0.1)); border-radius: 30px; padding: 50px; border: 3px solid rgba(0, 217, 255, 0.3); text-align: center;">
-            <h3 style="color: white; font-family: 'Sora', sans-serif; font-weight: 900; font-size: 2rem; margin-bottom: 20px;">Authorized Dealers For:</h3>
-            <div class="row align-items-center">
-              <div class="col-md-4 mb-3">
-                <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 20px; backdrop-filter: blur(10px);">
-                  <i class="fas fa-factory" style="font-size: 2.5rem; color: var(--accent);"></i>
-                  <p style="color: white; font-weight: 800; margin-top: 15px;">CUMMINS</p>
+          <div style="background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(0, 217, 255, 0.1)); border-radius: 25px; padding: 40px; border: 2px solid rgba(0, 217, 255, 0.2); text-align: center;">
+            <h3 style="color: white; font-weight: 900; font-size: 1.8rem; margin-bottom: 30px;">Authorized Dealers For:</h3>
+            <div class="row">
+              <div class="col-md-4 mb-2">
+                <div style="background: rgba(255,255,255,0.08); padding: 18px; border-radius: 15px;">
+                  <i class="fas fa-factory" style="font-size: 2.2rem; color: var(--accent);"></i>
+                  <p style="color: white; font-weight: 800; margin-top: 12px; margin-bottom: 0;">CUMMINS</p>
                 </div>
               </div>
-              <div class="col-md-4 mb-3">
-                <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 20px; backdrop-filter: blur(10px);">
-                  <i class="fas fa-industry" style="font-size: 2.5rem; color: var(--gold);"></i>
-                  <p style="color: white; font-weight: 800; margin-top: 15px;">KIRLOSKAR</p>
+              <div class="col-md-4 mb-2">
+                <div style="background: rgba(255,255,255,0.08); padding: 18px; border-radius: 15px;">
+                  <i class="fas fa-industry" style="font-size: 2.2rem; color: var(--gold);"></i>
+                  <p style="color: white; font-weight: 800; margin-top: 12px; margin-bottom: 0;">KIRLOSKAR</p>
                 </div>
               </div>
-              <div class="col-md-4 mb-3">
-                <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 20px; backdrop-filter: blur(10px);">
-                  <i class="fas fa-cogs" style="font-size: 2.5rem; color: var(--success);"></i>
-                  <p style="color: white; font-weight: 800; margin-top: 15px;">MAHINDRA</p>
+              <div class="col-md-4 mb-2">
+                <div style="background: rgba(255,255,255,0.08); padding: 18px; border-radius: 15px;">
+                  <i class="fas fa-cogs" style="font-size: 2.2rem; color: var(--success);"></i>
+                  <p style="color: white; font-weight: 800; margin-top: 12px; margin-bottom: 0;">MAHINDRA</p>
                 </div>
               </div>
             </div>
@@ -1492,11 +1187,9 @@
   <section class="section" id="services" style="background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);">
     <div class="container">
       <div class="section-header fade-in">
-        <div class="section-badge" style="color: var(--primary); background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(0, 217, 255, 0.1));">🛠️ OUR SERVICES 🛠️</div>
-        <h2 class="section-title font-display" style="background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 50%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Complete Generator Solutions</h2>
-        <p class="section-subtitle" style="color: var(--gray);">
-          From sales to maintenance, we provide comprehensive generator services with 24/7 support across Rajasthan
-        </p>
+        <div class="section-badge" style="color: var(--primary); background: linear-gradient(135deg, rgba(0, 102, 255, 0.15), rgba(0, 217, 255, 0.15));">🛠️ OUR SERVICES 🛠️</div>
+        <h2 class="section-title" style="background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Complete Solutions</h2>
+        <p class="section-subtitle" style="color: var(--gray);">From sales to maintenance, complete 24/7 support</p>
       </div>
 
       <div class="row">
@@ -1507,12 +1200,12 @@
             <ul class="service-features">
               <li><i class="fas fa-check-circle"></i> Authorized Dealer</li>
               <li><i class="fas fa-check-circle"></i> 100% Genuine Products</li>
-              <li><i class="fas fa-check-circle"></i> Best Prices Guaranteed</li>
+              <li><i class="fas fa-check-circle"></i> Best Prices</li>
               <li><i class="fas fa-check-circle"></i> Expert Consultation</li>
               <li><i class="fas fa-check-circle"></i> Free Site Survey</li>
             </ul>
             <a href="tel:+919829325775" class="btn-product btn-product-primary w-100">
-              <i class="fas fa-phone"></i> CONTACT US
+              <i class="fas fa-phone"></i> CONTACT
             </a>
           </div>
         </div>
@@ -1522,11 +1215,11 @@
             <div class="service-icon"><i class="fas fa-wrench"></i></div>
             <h3 class="service-title">Repair & Maintenance</h3>
             <ul class="service-features">
-              <li><i class="fas fa-check-circle"></i> 24/7 Emergency Service</li>
+              <li><i class="fas fa-check-circle"></i> 24/7 Emergency</li>
               <li><i class="fas fa-check-circle"></i> Skilled Technicians</li>
-              <li><i class="fas fa-check-circle"></i> Genuine Spare Parts</li>
-              <li><i class="fas fa-check-circle"></i> Annual Maintenance Contracts</li>
-              <li><i class="fas fa-check-circle"></i> Quick Response Time</li>
+              <li><i class="fas fa-check-circle"></i> Genuine Parts</li>
+              <li><i class="fas fa-check-circle"></i> Annual Contracts</li>
+              <li><i class="fas fa-check-circle"></i> Quick Response</li>
             </ul>
             <a href="tel:+919829325775" class="btn-product btn-product-primary w-100">
               <i class="fas fa-phone"></i> BOOK SERVICE
@@ -1539,10 +1232,10 @@
             <div class="service-icon"><i class="fas fa-truck"></i></div>
             <h3 class="service-title">Generator Rental</h3>
             <ul class="service-features">
-              <li><i class="fas fa-check-circle"></i> Short & Long Term Rental</li>
-              <li><i class="fas fa-check-circle"></i> All Capacities Available</li>
-              <li><i class="fas fa-check-circle"></i> Quick Delivery & Setup</li>
-              <li><i class="fas fa-check-circle"></i> Flexible Payment Terms</li>
+              <li><i class="fas fa-check-circle"></i> Short & Long Term</li>
+              <li><i class="fas fa-check-circle"></i> All Capacities</li>
+              <li><i class="fas fa-check-circle"></i> Quick Delivery</li>
+              <li><i class="fas fa-check-circle"></i> Flexible Payment</li>
               <li><i class="fas fa-check-circle"></i> 24/7 Support</li>
             </ul>
             <a href="tel:+919829325775" class="btn-product btn-product-primary w-100">
@@ -1559,26 +1252,17 @@
     <div class="container">
       <div class="section-header fade-in">
         <div class="section-badge">⭐ TESTIMONIALS ⭐</div>
-        <h2 class="section-title font-display">What Our Clients Say</h2>
-        <p class="section-subtitle">
-          Real feedback from satisfied customers across Neemrana and Rajasthan
-        </p>
+        <h2 class="section-title">What Our Clients Say</h2>
+        <p class="section-subtitle">Real feedback from satisfied customers</p>
       </div>
 
       <div class="row">
         <div class="col-lg-4 mb-4">
           <div class="testimonial-card fade-in">
-            <div class="testimonial-quote">"</div>
             <div class="testimonial-stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
             </div>
-            <p class="testimonial-text">
-              "Excellent service! Installed a 125 kVA generator for our factory. Very professional team and prompt 24/7 support. Highly recommended!"
-            </p>
+            <p class="testimonial-text">"Excellent service! Professional team and prompt 24/7 support. Highly recommended!"</p>
             <div class="testimonial-author">
               <div class="testimonial-avatar">RK</div>
               <div class="testimonial-info">
@@ -1591,17 +1275,10 @@
 
         <div class="col-lg-4 mb-4">
           <div class="testimonial-card fade-in">
-            <div class="testimonial-quote">"</div>
             <div class="testimonial-stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
             </div>
-            <p class="testimonial-text">
-              "Best generator dealer! Got genuine products at competitive prices. Installation was smooth and service is outstanding. Five stars!"
-            </p>
+            <p class="testimonial-text">"Best generator dealer! Genuine products at competitive prices. Outstanding service!"</p>
             <div class="testimonial-author">
               <div class="testimonial-avatar">AS</div>
               <div class="testimonial-info">
@@ -1614,22 +1291,15 @@
 
         <div class="col-lg-4 mb-4">
           <div class="testimonial-card fade-in">
-            <div class="testimonial-quote">"</div>
             <div class="testimonial-stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
             </div>
-            <p class="testimonial-text">
-              "Very reliable! Our hospital never faces power issues thanks to their quality generators and regular maintenance service!"
-            </p>
+            <p class="testimonial-text">"Very reliable! Never face power issues. Quality generators and regular maintenance!"</p>
             <div class="testimonial-author">
               <div class="testimonial-avatar">PV</div>
               <div class="testimonial-info">
                 <h5>Dr. Priya Verma</h5>
-                <p>Hospital Administrator, Bhiwadi</p>
+                <p>Hospital Admin, Bhiwadi</p>
               </div>
             </div>
           </div>
@@ -1642,62 +1312,50 @@
   <section class="section" id="faq" style="background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);">
     <div class="container">
       <div class="section-header fade-in">
-        <div class="section-badge" style="color: var(--primary); background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(0, 217, 255, 0.1));">❓ FAQ ❓</div>
-        <h2 class="section-title font-display" style="background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 50%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Frequently Asked Questions</h2>
-        <p class="section-subtitle" style="color: var(--gray);">
-          Everything you need to know about generators and our services
-        </p>
+        <div class="section-badge" style="color: var(--primary); background: linear-gradient(135deg, rgba(0, 102, 255, 0.15), rgba(0, 217, 255, 0.15));">❓ FAQ ❓</div>
+        <h2 class="section-title" style="background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Frequently Asked</h2>
+        <p class="section-subtitle" style="color: var(--gray);">Everything about generators and services</p>
       </div>
 
       <div class="row justify-content-center">
         <div class="col-lg-10">
           <div class="faq-item fade-in">
             <div class="faq-question">
-              <span>What capacity generator do I need for my home/business?</span>
+              <span>What capacity generator do I need?</span>
               <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
             </div>
             <div class="faq-answer">
-              The capacity depends on your total power requirement. For homes, typically 7.5-25 kVA is sufficient. For factories and commercial establishments, we recommend 50 kVA and above. We provide FREE site surveys to assess your exact needs.
+              Depends on your requirement. For homes: 7.5-25 kVA. For factories: 50 kVA+. We provide FREE site surveys.
             </div>
           </div>
 
           <div class="faq-item fade-in">
             <div class="faq-question">
-              <span>Do you provide installation services?</span>
+              <span>Do you provide installation?</span>
               <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
             </div>
             <div class="faq-answer">
-              Yes! We provide complete installation services including site preparation, generator setup, electrical connections, and commissioning. Our expert technicians ensure proper installation following all safety standards and manufacturer guidelines.
+              Yes! Complete installation with electrical connections, commissioning, and all safety standards.
             </div>
           </div>
 
           <div class="faq-item fade-in">
             <div class="faq-question">
-              <span>What is the warranty period on generators?</span>
+              <span>What is the warranty period?</span>
               <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
             </div>
             <div class="faq-answer">
-              All our generators come with manufacturer's warranty ranging from 2-3 years depending on the model and brand. We also offer extended warranty options and comprehensive Annual Maintenance Contracts (AMC) for long-term protection.
+              2-3 years manufacturer warranty. Extended warranty and AMC plans available for long-term protection.
             </div>
           </div>
 
           <div class="faq-item fade-in">
             <div class="faq-question">
-              <span>Do you offer 24/7 emergency service?</span>
+              <span>24/7 emergency service available?</span>
               <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
             </div>
             <div class="faq-answer">
-              Absolutely! We provide round-the-clock emergency service 365 days a year. Just call +91 9829325775 anytime and our technicians will reach your location promptly to resolve any generator issues.
-            </div>
-          </div>
-
-          <div class="faq-item fade-in">
-            <div class="faq-question">
-              <span>Are generators available on rent?</span>
-              <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
-            </div>
-            <div class="faq-answer">
-              Yes! We offer both short-term and long-term generator rental services. All capacities are available with delivery, installation, fuel management, and maintenance included in the rental package.
+              Absolutely! Call +91 9829325775 anytime. Technicians available round-the-clock, 365 days/year.
             </div>
           </div>
 
@@ -1707,107 +1365,8 @@
               <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
             </div>
             <div class="faq-answer">
-              We are based in Neemrana and serve entire Rajasthan including Alwar, Jaipur, Bhiwadi, Dharuhera, and surrounding areas. Contact us for service availability in your specific area.
+              Based in Neemrana, serving entire Rajasthan including Alwar, Jaipur, Bhiwadi, Dharuhera and surrounding areas.
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About/Location Section -->
-  <section class="section" id="about">
-    <div class="container">
-      <div class="section-header fade-in">
-        <div class="section-badge">💎 WHY CHOOSE US 💎</div>
-        <h2 class="section-title font-display">Your Trusted Power Partner</h2>
-        <p class="section-subtitle">
-          With 15+ years of experience, we are Neemrana's leading generator solutions provider
-        </p>
-      </div>
-
-      <div class="row align-items-center">
-        <div class="col-lg-6 mb-4">
-          <div class="fade-in">
-            <div style="background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,250,252,0.98) 100%); border-radius: 35px; padding: 50px 40px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);">
-              <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
-                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white; box-shadow: 0 15px 45px rgba(0, 102, 255, 0.4);"><i class="fas fa-award"></i></div>
-                <div>
-                  <h4 style="font-family: 'Sora', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 5px; color: var(--dark);">ISO Certified</h4>
-                  <p style="color: var(--gray); margin: 0;">ISO 9001:2015 Certified</p>
-                </div>
-              </div>
-
-              <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
-                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--success), #00E676); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white; box-shadow: 0 15px 45px rgba(0, 200, 83, 0.4);"><i class="fas fa-clock"></i></div>
-                <div>
-                  <h4 style="font-family: 'Sora', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 5px; color: var(--dark);">24/7 Emergency Service</h4>
-                  <p style="color: var(--gray); margin: 0;">Always Available When You Need</p>
-                </div>
-              </div>
-
-              <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
-                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--secondary), #FF8C42); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white; box-shadow: 0 15px 45px rgba(255, 107, 53, 0.4);"><i class="fas fa-users"></i></div>
-                <div>
-                  <h4 style="font-family: 'Sora', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 5px; color: var(--dark);">500+ Happy Customers</h4>
-                  <p style="color: var(--gray); margin: 0;">Trusted by Thousands</p>
-                </div>
-              </div>
-
-              <div style="display: flex; align-items: center; gap: 20px;">
-                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--gold), #FFA000); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white; box-shadow: 0 15px 45px rgba(255, 215, 0, 0.4);"><i class="fas fa-tools"></i></div>
-                <div>
-                  <h4 style="font-family: 'Sora', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 5px; color: var(--dark);">Expert Technicians</h4>
-                  <p style="color: var(--gray); margin: 0;">Skilled Professionals</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-6 mb-4">
-          <div class="fade-in">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3518.123456789!2d76.396!3d28.043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDAyJzM1LjAiTiA3NsKwMjMnNDUuNiJF!5e0!3m2!1sen!2sin!4v1234567890123"
-              style="width: 100%; height: 500px; border: none; border-radius: 35px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);"
-              allowfullscreen=""
-              loading="lazy">
-            </iframe>
-          </div>
-        </div>
-      </div>
-
-      <!-- Contact Info Cards -->
-      <div class="row mt-5">
-        <div class="col-md-6 col-lg-3 mb-4">
-          <div style="background: linear-gradient(135deg, rgba(0, 102, 255, 0.15), rgba(0, 217, 255, 0.15)); border-radius: 25px; padding: 40px 30px; text-align: center; border: 2px solid rgba(0, 217, 255, 0.3); transition: all 0.4s; backdrop-filter: blur(10px);" class="fade-in" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 60px rgba(0, 102, 255, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-            <i class="fas fa-phone" style="font-size: 2.5rem; color: var(--accent);"></i>
-            <h5 style="color: white; margin-top: 20px; font-weight: 800;">Call Us</h5>
-            <a href="tel:+919829325775" style="color: rgba(255,255,255,0.9); text-decoration: none; font-weight: 600;">+91 9829325775</a>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3 mb-4">
-          <div style="background: linear-gradient(135deg, rgba(255, 107, 53, 0.15), rgba(255, 179, 0, 0.15)); border-radius: 25px; padding: 40px 30px; text-align: center; border: 2px solid rgba(255, 107, 53, 0.3); transition: all 0.4s; backdrop-filter: blur(10px);" class="fade-in" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 60px rgba(255, 107, 53, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-            <i class="fab fa-whatsapp" style="font-size: 2.5rem; color: var(--success);"></i>
-            <h5 style="color: white; margin-top: 20px; font-weight: 800;">WhatsApp</h5>
-            <a href="https://wa.me/919829325775" style="color: rgba(255,255,255,0.9); text-decoration: none; font-weight: 600;">Message Us</a>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3 mb-4">
-          <div style="background: linear-gradient(135deg, rgba(0, 200, 83, 0.15), rgba(0, 217, 255, 0.15)); border-radius: 25px; padding: 40px 30px; text-align: center; border: 2px solid rgba(0, 200, 83, 0.3); transition: all 0.4s; backdrop-filter: blur(10px);" class="fade-in" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 60px rgba(0, 200, 83, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-            <i class="fas fa-envelope" style="font-size: 2.5rem; color: var(--gold);"></i>
-            <h5 style="color: white; margin-top: 20px; font-weight: 800;">Email Us</h5>
-            <a href="mailto:suresh.powerplus@gmail.com" style="color: rgba(255,255,255,0.9); text-decoration: none; font-weight: 600;">suresh.powerplus@gmail.com</a>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3 mb-4">
-          <div style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 107, 53, 0.15)); border-radius: 25px; padding: 40px 30px; text-align: center; border: 2px solid rgba(255, 215, 0, 0.3); transition: all 0.4s; backdrop-filter: blur(10px);" class="fade-in" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 60px rgba(255, 215, 0, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-            <i class="fas fa-map-marker-alt" style="font-size: 2.5rem; color: var(--secondary);"></i>
-            <h5 style="color: white; margin-top: 20px; font-weight: 800;">Visit Us</h5>
-            <a href="https://maps.app.goo.gl/CYHJFe2teFUVv1qnZ" target="_blank" style="color: rgba(255,255,255,0.9); text-decoration: none; font-weight: 600;">Neemrana, Rajasthan</a>
           </div>
         </div>
       </div>
@@ -1819,12 +1378,14 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-4 mb-4">
-          <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
-            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: white; box-shadow: 0 10px 35px rgba(0, 102, 255, 0.4);"><i class="fas fa-bolt"></i></div>
-            <span class="brand-text" style="font-size: 1.8rem;">SURESH GENERATOR</span>
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: white;">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <span class="brand-text" style="font-size: 1.5rem; margin: 0;">SURESH</span>
           </div>
-          <p style="color: rgba(255,255,255,0.7); line-height: 1.8; margin-bottom: 25px;">
-            Leading generator dealer in Neemrana, Rajasthan with 15+ years of excellence. Authorized dealer providing premium power solutions for industrial and residential applications.
+          <p style="color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 20px; font-size: 0.95rem;">
+            Leading generator dealer in Neemrana with 15+ years excellence. Authorized dealer providing premium power solutions.
           </p>
         </div>
 
@@ -1834,12 +1395,12 @@
             <li><a href="#home"><i class="fas fa-angle-right"></i> Home</a></li>
             <li><a href="#products"><i class="fas fa-angle-right"></i> Products</a></li>
             <li><a href="#services"><i class="fas fa-angle-right"></i> Services</a></li>
-            <li><a href="#testimonials"><i class="fas fa-angle-right"></i> Testimonials</a></li>
+            <li><a href="#testimonials"><i class="fas fa-angle-right"></i> Reviews</a></li>
           </ul>
         </div>
 
         <div class="col-lg-3 col-md-6 mb-4">
-          <h4 class="footer-title">Our Services</h4>
+          <h4 class="footer-title">Services</h4>
           <ul class="footer-links">
             <li><a href="#"><i class="fas fa-angle-right"></i> Generator Sales</a></li>
             <li><a href="#"><i class="fas fa-angle-right"></i> Installation</a></li>
@@ -1849,139 +1410,105 @@
         </div>
 
         <div class="col-lg-3 col-md-6 mb-4">
-          <h4 class="footer-title">Contact Info</h4>
+          <h4 class="footer-title">Contact</h4>
           <ul class="footer-links">
             <li><a href="tel:+919829325775"><i class="fas fa-phone"></i> +91 9829325775</a></li>
-            <li><a href="mailto:suresh.powerplus@gmail.com"><i class="fas fa-envelope"></i> suresh.powerplus@gmail.com</a></li>
-            <li><a href="https://maps.app.goo.gl/CYHJFe2teFUVv1qnZ" target="_blank"><i class="fas fa-map-marker-alt"></i> Neemrana, Rajasthan</a></li>
-            <li><a href="#"><i class="fas fa-clock"></i> 24/7 Available</a></li>
+            <li><a href="mailto:suresh.powerplus@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
+            <li><a href="https://wa.me/919829325775"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+            <li><a href="#"><i class="fas fa-clock"></i> 24/7 Open</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2025 Suresh Generator Neemrana. All Rights Reserved. | ISO 9001:2015 Certified | Designed for Power Excellence ⚡</p>
+        <p>&copy; 2025 Suresh Generator. All Rights Reserved. | ISO 9001:2015 Certified</p>
       </div>
     </div>
   </footer>
 
   <!-- Floating Buttons -->
-  <a href="tel:+919829325775" class="floating-call">
+  <a href="tel:+919829325775" class="floating-call" title="Call Now">
     <i class="fas fa-phone"></i>
   </a>
 
-  <a href="https://wa.me/919829325775" class="floating-whatsapp">
+  <a href="https://wa.me/919829325775" class="floating-whatsapp" title="WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
 
-  <div class="back-to-top">
+  <div class="back-to-top" id="backToTop" title="Back to Top">
     <i class="fas fa-arrow-up"></i>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+
   <script>
+    // OPTIMIZED: Removed unnecessary scripts and optimizations
+
     // Preloader
     window.addEventListener('load', () => {
       setTimeout(() => {
-        document.querySelector('.preloader').classList.add('hidden');
-      }, 2500);
+        document.getElementById('preloader').classList.add('hidden');
+      }, 1500);
     });
 
-    // Scroll Progress
+    // Scroll Progress - Throttled
+    let ticking = false;
     window.addEventListener('scroll', () => {
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      document.querySelector('.scroll-progress').style.width = scrolled + '%';
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+          const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          const scrolled = (winScroll / height) * 100;
+          document.querySelector('.scroll-progress').style.width = scrolled + '%';
 
-      const backToTop = document.querySelector('.back-to-top');
-      if (window.scrollY > 500) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
+          // Back to top
+          const backToTop = document.getElementById('backToTop');
+          if (window.scrollY > 400) {
+            backToTop.classList.add('visible');
+          } else {
+            backToTop.classList.remove('visible');
+          }
+
+          ticking = false;
+        });
+        ticking = true;
       }
-    });
+    }, { passive: true });
 
-    document.querySelector('.back-to-top').addEventListener('click', () => {
+    // Back to top
+    document.getElementById('backToTop').addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    // Navbar scroll effect
     const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 50);
-    });
+    }, { passive: true });
 
+    // Smooth scroll links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          document.querySelector('.navbar-collapse')?.classList.remove('show');
         }
       });
     });
 
+    // Intersection Observer for fade-in - Optimized
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.15 });
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-    const animateCounter = (element, target) => {
-      let current = 0;
-      const increment = target / 60;
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          element.textContent = target;
-          clearInterval(timer);
-        } else {
-          element.textContent = Math.floor(current);
-        }
-      }, 25);
-    };
-
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const number = entry.target;
-          const target = parseInt(number.getAttribute('data-target'));
-          if (target) {
-            animateCounter(number, target);
-            counterObserver.unobserve(number);
-          }
-        }
-      });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('.stat-number').forEach(el => {
-      if (el.getAttribute('data-target')) {
-        counterObserver.observe(el);
-      }
-    });
-
-    // 3D Tilt for Product Cards
-    document.querySelectorAll('.product-card').forEach(card => {
-      card.addEventListener('mousemove', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = (y - centerY) / 20;
-        const rotateY = (centerX - x) / 20;
-        
-        this.style.transform = `translateY(-30px) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
-      });
-
-      card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-      });
-    });
 
     // FAQ Accordion
     document.querySelectorAll('.faq-question').forEach(question => {
@@ -1999,8 +1526,7 @@
       });
     });
 
-    console.log('%c🚀 SURESH GENERATOR - Ultra Premium Professional Website! ⚡', 'color: #00D9FF; font-size: 20px; font-weight: bold;');
-    console.log('%c📞 +91 9829325775 | 📍 Neemrana, Rajasthan', 'color: #FF6B35; font-size: 16px; font-weight: bold;');
+    console.log('%c⚡ SURESH GENERATOR - OPTIMIZED FOR SPEED ⚡', 'color: #00D9FF; font-size: 16px; font-weight: bold;');
   </script>
 </body>
 </html>
