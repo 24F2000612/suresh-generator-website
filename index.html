@@ -10,6 +10,12 @@
   <meta name="author" content="Suresh Generator Neemrana">
   <meta name="robots" content="index, follow">
   
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Suresh Generator - Premium Power Solutions All India">
+  <meta property="og:description" content="ISO 9001:2015 certified generator dealer with 15+ years excellence">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://via.placeholder.com/1200x630">
+  
   <!-- Optimized Resource Loading -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
@@ -18,6 +24,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
 
   <style>
     /* ============================================
@@ -31,6 +38,7 @@
       --secondary: #0EA5E9;
       --success: #10B981;
       --warning: #F59E0B;
+      --danger: #EF4444;
       --gold: #FCD34D;
       --dark: #0F172A;
       --dark-light: #1E293B;
@@ -43,6 +51,8 @@
       --shadow-md: 0 10px 25px rgba(0,0,0,0.1);
       --shadow-lg: 0 20px 50px rgba(0,0,0,0.15);
       --shadow-xl: 0 30px 70px rgba(0,0,0,0.2);
+      --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-spring: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     /* ============================================
@@ -94,6 +104,21 @@
     }
 
     /* ============================================
+       SCROLL PROGRESS BAR
+    ============================================ */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent), var(--success));
+      z-index: 99999;
+      transition: width 0.1s linear;
+      box-shadow: 0 2px 10px rgba(30, 64, 175, 0.4);
+    }
+
+    /* ============================================
        PRELOADER - SMOOTH ENTRANCE
     ============================================ */
     .preloader {
@@ -114,11 +139,16 @@
       pointer-events: none;
     }
 
+    .preloader-content {
+      text-align: center;
+    }
+
     .preloader-logo {
-      width: 100px;
-      height: 100px;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 30px;
       background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 24px;
+      border-radius: 30px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -127,13 +157,35 @@
     }
 
     .preloader-logo i {
-      font-size: 3rem;
+      font-size: 3.5rem;
       color: white;
+    }
+
+    .preloader-text {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .preloader-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid var(--primary-light);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spinner 1s linear infinite;
+      margin: 0 auto;
     }
 
     @keyframes smooth-pulse {
       0%, 100% { transform: scale(1); box-shadow: 0 20px 60px rgba(30, 64, 175, 0.3); }
       50% { transform: scale(1.08); box-shadow: 0 25px 80px rgba(30, 64, 175, 0.5); }
+    }
+
+    @keyframes spinner {
+      to { transform: rotate(360deg); }
     }
 
     /* ============================================
@@ -148,11 +200,28 @@
       font-weight: 700;
       font-size: 14px;
       animation: gradient-shift 5s linear infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .announcement::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      animation: shine 3s infinite;
     }
 
     @keyframes gradient-shift {
       0% { background-position: 0% 50%; }
       100% { background-position: 200% 50%; }
+    }
+
+    @keyframes shine {
+      to { left: 100%; }
     }
 
     /* ============================================
@@ -170,11 +239,12 @@
       text-decoration: none;
       margin-right: 25px;
       font-weight: 600;
-      transition: color 0.3s;
+      transition: var(--transition-smooth);
     }
 
     .top-contact a:hover {
       color: var(--primary);
+      transform: translateY(-2px);
     }
 
     .emergency-badge {
@@ -188,6 +258,12 @@
       letter-spacing: 1px;
       box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
       display: inline-block;
+      animation: pulse-badge 2s infinite;
+    }
+
+    @keyframes pulse-badge {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
 
     /* ============================================
@@ -198,7 +274,7 @@
       backdrop-filter: blur(10px);
       box-shadow: var(--shadow);
       padding: 22px 0;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: var(--transition-smooth);
       position: sticky;
       top: 0;
       z-index: 9999;
@@ -221,7 +297,7 @@
       color: white;
       font-size: 1.5rem;
       box-shadow: 0 8px 20px rgba(30, 64, 175, 0.3);
-      transition: transform 0.3s;
+      transition: var(--transition-spring);
     }
 
     .navbar-brand:hover .brand-icon {
@@ -241,7 +317,7 @@
       font-weight: 600;
       padding: 10px 20px !important;
       border-radius: 10px;
-      transition: all 0.3s;
+      transition: var(--transition-smooth);
       position: relative;
     }
 
@@ -275,7 +351,7 @@
       font-size: 12px;
       letter-spacing: 1px;
       box-shadow: 0 8px 20px rgba(30, 64, 175, 0.3);
-      transition: all 0.3s;
+      transition: var(--transition-smooth);
       border: none;
     }
 
@@ -314,10 +390,10 @@
     }
 
     .hero-content {
-      animation: fadeIn 1s ease-out;
+      animation: fadeInUp 1s ease-out;
     }
 
-    @keyframes fadeIn {
+    @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
@@ -363,7 +439,7 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       border-radius: 50px;
-      transition: all 0.3s;
+      transition: var(--transition-smooth);
       display: inline-flex;
       align-items: center;
       gap: 10px;
@@ -408,11 +484,12 @@
     .stat-item {
       text-align: center;
       padding: 20px;
-      transition: transform 0.3s;
+      transition: var(--transition-smooth);
+      cursor: pointer;
     }
 
     .stat-item:hover {
-      transform: translateY(-10px);
+      transform: translateY(-10px) scale(1.05);
     }
 
     .stat-icon {
@@ -427,6 +504,11 @@
       font-size: 2.2rem;
       color: white;
       box-shadow: 0 10px 30px rgba(30, 64, 175, 0.3);
+      transition: var(--transition-spring);
+    }
+
+    .stat-item:hover .stat-icon {
+      transform: rotate(360deg);
     }
 
     .stat-number {
@@ -500,13 +582,30 @@
       border-radius: 24px;
       padding: 40px 35px;
       box-shadow: var(--shadow);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: var(--transition-smooth);
       border: 1px solid var(--light);
       height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-custom::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(30, 64, 175, 0.05), transparent);
+      transition: left 0.5s;
+    }
+
+    .card-custom:hover::before {
+      left: 100%;
     }
 
     .card-custom:hover {
-      transform: translateY(-10px);
+      transform: translateY(-10px) scale(1.02);
       box-shadow: var(--shadow-lg);
       border-color: var(--primary);
     }
@@ -523,6 +622,11 @@
       color: white;
       margin-bottom: 25px;
       box-shadow: 0 8px 20px rgba(30, 64, 175, 0.3);
+      transition: var(--transition-spring);
+    }
+
+    .card-custom:hover .card-icon {
+      transform: scale(1.1) rotate(5deg);
     }
 
     .card-title {
@@ -551,6 +655,12 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      transition: var(--transition-smooth);
+    }
+
+    .card-list li:hover {
+      padding-left: 10px;
+      color: var(--dark);
     }
 
     .card-list li i {
@@ -566,7 +676,7 @@
       border-radius: 28px;
       overflow: hidden;
       box-shadow: var(--shadow-md);
-      transition: all 0.4s;
+      transition: var(--transition-smooth);
       border: 1px solid var(--light);
       height: 100%;
     }
@@ -584,12 +694,39 @@
       align-items: center;
       justify-content: center;
       position: relative;
+      overflow: hidden;
+    }
+
+    .product-image::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(30, 64, 175, 0.1);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .product-card:hover .product-image::before {
+      width: 500px;
+      height: 500px;
     }
 
     .product-image i {
       font-size: 6rem;
       color: var(--primary);
       opacity: 0.3;
+      transition: var(--transition-spring);
+      position: relative;
+      z-index: 1;
+    }
+
+    .product-card:hover .product-image i {
+      opacity: 0.6;
+      transform: scale(1.2) rotate(10deg);
     }
 
     .product-badge {
@@ -605,6 +742,7 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       box-shadow: 0 4px 15px rgba(30, 64, 175, 0.4);
+      z-index: 2;
     }
 
     .product-content {
@@ -630,7 +768,7 @@
       border-bottom: 1px solid var(--light);
       display: flex;
       justify-content: space-between;
-      transition: padding-left 0.3s;
+      transition: var(--transition-smooth);
     }
 
     .product-specs li:hover {
@@ -662,7 +800,7 @@
       text-transform: uppercase;
       font-size: 0.85rem;
       letter-spacing: 1px;
-      transition: all 0.3s;
+      transition: var(--transition-smooth);
       border: none;
       display: flex;
       align-items: center;
@@ -688,6 +826,114 @@
       color: white;
     }
 
+    .btn-success:hover {
+      background: #059669;
+    }
+
+    /* ============================================
+       BRANDS SECTION
+    ============================================ */
+    .brands-slider {
+      overflow: hidden;
+      position: relative;
+      padding: 40px 0;
+    }
+
+    .brands-track {
+      display: flex;
+      gap: 50px;
+      animation: scroll-brands 30s linear infinite;
+    }
+
+    .brand-item {
+      flex-shrink: 0;
+      width: 150px;
+      height: 80px;
+      background: white;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow);
+      transition: var(--transition-smooth);
+      border: 1px solid var(--light);
+      font-weight: 800;
+      color: var(--gray);
+      font-size: 1.2rem;
+    }
+
+    .brand-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    @keyframes scroll-brands {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ============================================
+       PROCESS TIMELINE
+    ============================================ */
+    .process-timeline {
+      position: relative;
+      padding: 40px 0;
+    }
+
+    .process-item {
+      position: relative;
+      padding-left: 100px;
+      margin-bottom: 60px;
+    }
+
+    .process-number {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: white;
+      box-shadow: 0 8px 20px rgba(30, 64, 175, 0.3);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .process-content {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--light);
+      transition: var(--transition-smooth);
+    }
+
+    .process-content:hover {
+      transform: translateX(10px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary);
+    }
+
+    .process-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .process-desc {
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
     /* ============================================
        COVERAGE MAP SECTION
     ============================================ */
@@ -703,12 +949,13 @@
       border-radius: 20px;
       text-align: center;
       box-shadow: var(--shadow);
-      transition: all 0.3s;
+      transition: var(--transition-smooth);
       border: 1px solid var(--light);
+      cursor: pointer;
     }
 
     .coverage-item:hover {
-      transform: translateY(-8px);
+      transform: translateY(-8px) scale(1.05);
       box-shadow: var(--shadow-md);
       border-color: var(--primary);
     }
@@ -717,6 +964,12 @@
       font-size: 2.5rem;
       color: var(--primary);
       margin-bottom: 15px;
+      transition: var(--transition-spring);
+    }
+
+    .coverage-item:hover i {
+      transform: scale(1.2);
+      color: var(--accent);
     }
 
     .coverage-name {
@@ -741,12 +994,26 @@
       box-shadow: var(--shadow);
       height: 100%;
       border: 1px solid var(--light);
-      transition: all 0.3s;
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: -20px;
+      right: 20px;
+      font-size: 150px;
+      color: var(--primary-light);
+      font-family: 'Playfair Display', serif;
+      opacity: 0.3;
     }
 
     .testimonial-card:hover {
       box-shadow: var(--shadow-md);
       border-color: var(--primary);
+      transform: translateY(-5px);
     }
 
     .testimonial-stars {
@@ -761,12 +1028,16 @@
       color: var(--gray);
       margin-bottom: 25px;
       font-style: italic;
+      position: relative;
+      z-index: 1;
     }
 
     .testimonial-author {
       display: flex;
       align-items: center;
       gap: 15px;
+      position: relative;
+      z-index: 1;
     }
 
     .testimonial-avatar {
@@ -781,6 +1052,7 @@
       font-size: 1.5rem;
       font-weight: 900;
       box-shadow: 0 6px 20px rgba(30, 64, 175, 0.3);
+      flex-shrink: 0;
     }
 
     .testimonial-info h5 {
@@ -796,6 +1068,132 @@
     }
 
     /* ============================================
+       VIDEO SECTION
+    ============================================ */
+    .video-section {
+      position: relative;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      height: 500px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-play-btn {
+      width: 100px;
+      height: 100px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 2.5rem;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      transition: var(--transition-spring);
+    }
+
+    .video-play-btn:hover {
+      transform: scale(1.2);
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    /* ============================================
+       PRICING CARDS
+    ============================================ */
+    .pricing-card {
+      background: white;
+      border-radius: 28px;
+      padding: 40px 35px;
+      box-shadow: var(--shadow);
+      border: 2px solid var(--light);
+      transition: var(--transition-smooth);
+      text-align: center;
+      height: 100%;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--primary);
+    }
+
+    .pricing-card.featured {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      border-color: var(--primary);
+      transform: scale(1.05);
+    }
+
+    .pricing-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--dark);
+      padding: 6px 20px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .pricing-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      margin-bottom: 15px;
+    }
+
+    .pricing-price {
+      font-size: 3rem;
+      font-weight: 900;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 10px;
+    }
+
+    .pricing-period {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-bottom: 30px;
+    }
+
+    .pricing-card.featured .pricing-period {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .pricing-features {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 30px;
+    }
+
+    .pricing-features li {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--light);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pricing-card.featured .pricing-features li {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .pricing-features li i {
+      color: var(--success);
+      font-size: 1.1rem;
+    }
+
+    .pricing-card.featured .pricing-features li i {
+      color: white;
+    }
+
+    /* ============================================
        FAQ ACCORDION
     ============================================ */
     .faq-item {
@@ -805,7 +1203,7 @@
       overflow: hidden;
       box-shadow: var(--shadow);
       border: 1px solid var(--light);
-      transition: all 0.3s;
+      transition: var(--transition-smooth);
     }
 
     .faq-item:hover {
@@ -821,11 +1219,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: color 0.3s;
+      transition: var(--transition-smooth);
     }
 
     .faq-question:hover {
       color: var(--primary);
+      background: var(--primary-light);
     }
 
     .faq-icon {
@@ -837,7 +1236,7 @@
       align-items: center;
       justify-content: center;
       color: white;
-      transition: transform 0.3s;
+      transition: var(--transition-smooth);
       flex-shrink: 0;
     }
 
@@ -860,6 +1259,89 @@
     }
 
     /* ============================================
+       NEWSLETTER SECTION
+    ============================================ */
+    .newsletter-box {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 30px;
+      padding: 60px 50px;
+      text-align: center;
+      box-shadow: var(--shadow-xl);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .newsletter-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      to { transform: rotate(360deg); }
+    }
+
+    .newsletter-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 15px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .newsletter-subtitle {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
+    }
+
+    .newsletter-form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      padding: 16px 24px;
+      border-radius: 50px;
+      border: none;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .newsletter-btn {
+      padding: 16px 40px;
+      border-radius: 50px;
+      background: white;
+      color: var(--primary);
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .newsletter-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    /* ============================================
        CONTACT MAP
     ============================================ */
     .map-container {
@@ -877,7 +1359,7 @@
       margin-bottom: 20px;
       box-shadow: var(--shadow);
       border: 1px solid var(--light);
-      transition: all 0.3s;
+      transition: var(--transition-smooth);
     }
 
     .contact-card:hover {
@@ -914,11 +1396,12 @@
       text-decoration: none;
       display: block;
       margin-bottom: 8px;
-      transition: color 0.3s;
+      transition: var(--transition-smooth);
     }
 
     .contact-detail:hover {
       color: var(--primary);
+      padding-left: 5px;
     }
 
     .contact-desc {
@@ -933,6 +1416,18 @@
       background: linear-gradient(135deg, var(--dark), var(--dark-light));
       color: white;
       padding: 80px 0 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
     }
 
     .footer-title {
@@ -955,7 +1450,7 @@
     .footer-links a {
       color: rgba(255,255,255,0.7);
       text-decoration: none;
-      transition: all 0.3s;
+      transition: var(--transition-smooth);
       display: inline-flex;
       align-items: center;
       gap: 10px;
@@ -964,6 +1459,30 @@
     .footer-links a:hover {
       color: white;
       padding-left: 8px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-link {
+      width: 45px;
+      height: 45px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+    }
+
+    .social-link:hover {
+      background: var(--primary);
+      transform: translateY(-5px) rotate(5deg);
     }
 
     .footer-bottom {
@@ -993,7 +1512,7 @@
       box-shadow: 0 10px 30px rgba(30, 64, 175, 0.4);
       z-index: 9999;
       text-decoration: none;
-      transition: all 0.3s;
+      transition: var(--transition-smooth);
       animation: pulse-float 2s infinite;
     }
 
@@ -1023,7 +1542,7 @@
       box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
       z-index: 9999;
       text-decoration: none;
-      transition: all 0.3s;
+      transition: var(--transition-smooth);
     }
 
     .floating-whatsapp:hover {
@@ -1048,7 +1567,7 @@
       cursor: pointer;
       opacity: 0;
       visibility: hidden;
-      transition: all 0.3s;
+      transition: var(--transition-smooth);
     }
 
     .back-to-top.visible {
@@ -1075,11 +1594,55 @@
     }
 
     /* ============================================
+       MODAL STYLES
+    ============================================ */
+    .modal-content {
+      border-radius: 24px;
+      border: none;
+      box-shadow: var(--shadow-xl);
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      border-radius: 24px 24px 0 0;
+      border: none;
+      padding: 25px 30px;
+    }
+
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+    }
+
+    .btn-close {
+      filter: brightness(0) invert(1);
+    }
+
+    .modal-body {
+      padding: 30px;
+    }
+
+    .form-control {
+      border-radius: 12px;
+      padding: 12px 18px;
+      border: 2px solid var(--light);
+      transition: var(--transition-smooth);
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+    }
+
+    /* ============================================
        RESPONSIVE DESIGN - ULTRA SMOOTH
     ============================================ */
     @media (max-width: 992px) {
       .hero h1 { font-size: 2.5rem; }
       .section-title { font-size: 2.2rem; }
+      .process-item { padding-left: 80px; }
+      .process-number { width: 60px; height: 60px; font-size: 1.5rem; }
     }
 
     @media (max-width: 768px) {
@@ -1115,6 +1678,24 @@
         bottom: 165px;
         right: 25px;
       }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .newsletter-box {
+        padding: 40px 30px;
+      }
+
+      .process-item {
+        padding-left: 0;
+        padding-top: 90px;
+      }
+
+      .process-number {
+        left: 50%;
+        transform: translateX(-50%);
+      }
     }
 
     @media (max-width: 576px) {
@@ -1122,14 +1703,22 @@
       .section-title { font-size: 1.7rem; }
       .product-content { padding: 28px 22px; }
       .card-custom { padding: 30px 25px; }
+      .newsletter-title { font-size: 2rem; }
     }
   </style>
 </head>
 <body>
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
   <!-- Preloader -->
   <div class="preloader" id="preloader">
-    <div class="preloader-logo">
-      <i class="fas fa-bolt"></i>
+    <div class="preloader-content">
+      <div class="preloader-logo">
+        <i class="fas fa-bolt"></i>
+      </div>
+      <div class="preloader-text">SURESH GENERATOR</div>
+      <div class="preloader-spinner"></div>
     </div>
   </div>
 
@@ -1171,6 +1760,8 @@
           <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
           <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#brands">Brands</a></li>
+          <li class="nav-item"><a class="nav-link" href="#process">Process</a></li>
           <li class="nav-item"><a class="nav-link" href="#coverage">Coverage</a></li>
           <li class="nav-item"><a class="nav-link" href="#testimonials">Reviews</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
@@ -1188,15 +1779,15 @@
       <div class="row">
         <div class="col-lg-10">
           <div class="hero-content">
-            <div class="hero-badge">
+            <div class="hero-badge" data-aos="fade-up">
               <i class="fas fa-certificate"></i>
               <span>ISO 9001:2015 Certified</span>
             </div>
-            <h1>Premium Generator Solutions<br>Across All India</h1>
-            <p class="hero-subtitle">
+            <h1 data-aos="fade-up" data-aos-delay="100">Premium Generator Solutions<br>Across All India</h1>
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
               Leading generator provider with 15+ years of excellence serving North & South India. 500+ satisfied customers with 100% genuine products, 24/7 nationwide support, and expert installation.
             </p>
-            <div class="d-flex gap-3 flex-wrap">
+            <div class="d-flex gap-3 flex-wrap" data-aos="fade-up" data-aos-delay="300">
               <a href="tel:+919829325775" class="btn-hero btn-hero-primary">
                 <i class="fas fa-phone-volume"></i> CALL: +91 9829325775
               </a>
@@ -1215,34 +1806,34 @@
 
   <!-- Stats -->
   <div class="container">
-    <div class="stats-bar">
+    <div class="stats-bar" data-aos="fade-up">
       <div class="row">
         <div class="col-lg-3 col-6 mb-4 mb-lg-0">
           <div class="stat-item">
             <div class="stat-icon"><i class="fas fa-award"></i></div>
             <div class="stat-number" data-target="15">0</div>
-            <div class="stat-label">Years</div>
+            <div class="stat-label">Years Experience</div>
           </div>
         </div>
         <div class="col-lg-3 col-6 mb-4 mb-lg-0">
           <div class="stat-item">
             <div class="stat-icon"><i class="fas fa-users"></i></div>
             <div class="stat-number" data-target="500">0</div>
-            <div class="stat-label">Clients</div>
+            <div class="stat-label">Happy Clients</div>
           </div>
         </div>
         <div class="col-lg-3 col-6">
           <div class="stat-item">
             <div class="stat-icon"><i class="fas fa-tools"></i></div>
             <div class="stat-number">24/7</div>
-            <div class="stat-label">Service</div>
+            <div class="stat-label">Service Available</div>
           </div>
         </div>
         <div class="col-lg-3 col-6">
           <div class="stat-item">
             <div class="stat-icon"><i class="fas fa-certificate"></i></div>
             <div class="stat-number" data-target="100">0</div>
-            <div class="stat-label">Genuine</div>
+            <div class="stat-label">% Genuine Products</div>
           </div>
         </div>
       </div>
@@ -1253,14 +1844,14 @@
   <section class="section" id="products">
     <div class="container">
       <div class="section-header fade-in">
-        <div class="section-badge">⚡ OUR PRODUCTS ⚡</div>
-        <h2 class="section-title">Premium Generator Range</h2>
-        <p class="section-subtitle">High-performance diesel generators for industrial & residential power needs</p>
+        <div class="section-badge" data-aos="fade-up">⚡ OUR PRODUCTS ⚡</div>
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Premium Generator Range</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">High-performance diesel generators for industrial & residential power needs</p>
       </div>
 
       <div class="row">
         <div class="col-lg-6 mb-4">
-          <div class="product-card fade-in">
+          <div class="product-card" data-aos="fade-right" data-aos-delay="100">
             <div class="product-image">
               <i class="fas fa-industry"></i>
             </div>
@@ -1302,7 +1893,7 @@
         </div>
 
         <div class="col-lg-6 mb-4">
-          <div class="product-card fade-in">
+          <div class="product-card" data-aos="fade-left" data-aos-delay="100">
             <div class="product-image">
               <i class="fas fa-home"></i>
             </div>
@@ -1350,51 +1941,148 @@
   <section class="section section-alt" id="services">
     <div class="container">
       <div class="section-header fade-in">
-        <div class="section-badge">🛠️ SERVICES 🛠️</div>
-        <h2 class="section-title">Complete Solutions</h2>
-        <p class="section-subtitle">From sales to maintenance - we cover everything</p>
+        <div class="section-badge" data-aos="fade-up">🛠️ SERVICES 🛠️</div>
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Complete Solutions</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">From sales to maintenance - we cover everything</p>
       </div>
 
       <div class="row">
         <div class="col-lg-4 mb-4">
-          <div class="card-custom fade-in">
+          <div class="card-custom" data-aos="fade-up" data-aos-delay="100">
             <div class="card-icon"><i class="fas fa-shopping-cart"></i></div>
             <h3 class="card-title">Sales</h3>
             <p class="card-text">Premium generators for all needs with expert consultation</p>
             <ul class="card-list">
               <li><i class="fas fa-check-circle"></i> 100% Genuine Products</li>
-              <li><i class="fas fa-check-circle"></i> Best Prices</li>
+              <li><i class="fas fa-check-circle"></i> Competitive Pricing</li>
               <li><i class="fas fa-check-circle"></i> Free Site Survey</li>
-              <li><i class="fas fa-check-circle"></i> Expert Advice</li>
+              <li><i class="fas fa-check-circle"></i> Expert Consultation</li>
+              <li><i class="fas fa-check-circle"></i> Flexible Payment Options</li>
             </ul>
           </div>
         </div>
 
         <div class="col-lg-4 mb-4">
-          <div class="card-custom fade-in">
+          <div class="card-custom" data-aos="fade-up" data-aos-delay="200">
             <div class="card-icon"><i class="fas fa-wrench"></i></div>
-            <h3 class="card-title">Maintenance</h3>
+            <h3 class="card-title">Maintenance & Repair</h3>
             <p class="card-text">24/7 support with skilled technicians nationwide</p>
             <ul class="card-list">
-              <li><i class="fas fa-check-circle"></i> 24/7 Emergency</li>
-              <li><i class="fas fa-check-circle"></i> AMC Contracts</li>
-              <li><i class="fas fa-check-circle"></i> Genuine Parts</li>
-              <li><i class="fas fa-check-circle"></i> Quick Response</li>
+              <li><i class="fas fa-check-circle"></i> 24/7 Emergency Support</li>
+              <li><i class="fas fa-check-circle"></i> AMC Contracts Available</li>
+              <li><i class="fas fa-check-circle"></i> Genuine Spare Parts</li>
+              <li><i class="fas fa-check-circle"></i> Quick Response Time</li>
+              <li><i class="fas fa-check-circle"></i> Preventive Maintenance</li>
             </ul>
           </div>
         </div>
 
         <div class="col-lg-4 mb-4">
-          <div class="card-custom fade-in">
+          <div class="card-custom" data-aos="fade-up" data-aos-delay="300">
             <div class="card-icon"><i class="fas fa-truck"></i></div>
-            <h3 class="card-title">Rental</h3>
+            <h3 class="card-title">Rental Services</h3>
             <p class="card-text">Flexible rental options for any duration</p>
             <ul class="card-list">
-              <li><i class="fas fa-check-circle"></i> All Capacities</li>
+              <li><i class="fas fa-check-circle"></i> All Capacities Available</li>
               <li><i class="fas fa-check-circle"></i> Quick Delivery</li>
-              <li><i class="fas fa-check-circle"></i> Flexible Terms</li>
-              <li><i class="fas fa-check-circle"></i> Full Support</li>
+              <li><i class="fas fa-check-circle"></i> Flexible Rental Terms</li>
+              <li><i class="fas fa-check-circle"></i> On-site Support</li>
+              <li><i class="fas fa-check-circle"></i> Fuel Management</li>
             </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brands Section -->
+  <section class="section" id="brands">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge" data-aos="fade-up">🏆 AUTHORIZED DEALERS 🏆</div>
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Premium Brands</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Authorized dealers for world's leading generator manufacturers</p>
+      </div>
+
+      <div class="brands-slider" data-aos="fade-up" data-aos-delay="300">
+        <div class="brands-track">
+          <div class="brand-item">CUMMINS</div>
+          <div class="brand-item">KIRLOSKAR</div>
+          <div class="brand-item">MAHINDRA</div>
+          <div class="brand-item">CATERPILLAR</div>
+          <div class="brand-item">VOLVO</div>
+          <div class="brand-item">PERKINS</div>
+          <div class="brand-item">ASHOK LEYLAND</div>
+          <div class="brand-item">GREAVES</div>
+          <!-- Duplicate for seamless scroll -->
+          <div class="brand-item">CUMMINS</div>
+          <div class="brand-item">KIRLOSKAR</div>
+          <div class="brand-item">MAHINDRA</div>
+          <div class="brand-item">CATERPILLAR</div>
+          <div class="brand-item">VOLVO</div>
+          <div class="brand-item">PERKINS</div>
+          <div class="brand-item">ASHOK LEYLAND</div>
+          <div class="brand-item">GREAVES</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Timeline -->
+  <section class="section section-alt" id="process">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge" data-aos="fade-up">⚙️ OUR PROCESS ⚙️</div>
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">How We Work</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Simple 6-step process from inquiry to installation</p>
+      </div>
+
+      <div class="process-timeline">
+        <div class="process-item" data-aos="fade-right" data-aos-delay="100">
+          <div class="process-number">1</div>
+          <div class="process-content">
+            <h3 class="process-title">Initial Inquiry</h3>
+            <p class="process-desc">Contact us via phone, WhatsApp, or email. Our team responds within 1 hour to understand your power requirements.</p>
+          </div>
+        </div>
+
+        <div class="process-item" data-aos="fade-right" data-aos-delay="200">
+          <div class="process-number">2</div>
+          <div class="process-content">
+            <h3 class="process-title">Free Site Survey</h3>
+            <p class="process-desc">Our technical expert visits your location to assess power needs, space availability, and electrical infrastructure.</p>
+          </div>
+        </div>
+
+        <div class="process-item" data-aos="fade-right" data-aos-delay="300">
+          <div class="process-number">3</div>
+          <div class="process-content">
+            <h3 class="process-title">Customized Quotation</h3>
+            <p class="process-desc">Receive detailed quote with generator specifications, installation costs, warranty terms, and AMC options.</p>
+          </div>
+        </div>
+
+        <div class="process-item" data-aos="fade-right" data-aos-delay="400">
+          <div class="process-number">4</div>
+          <div class="process-content">
+            <h3 class="process-title">Order Confirmation</h3>
+            <p class="process-desc">Finalize your order with flexible payment options. We handle all documentation and delivery scheduling.</p>
+          </div>
+        </div>
+
+        <div class="process-item" data-aos="fade-right" data-aos-delay="500">
+          <div class="process-number">5</div>
+          <div class="process-content">
+            <h3 class="process-title">Professional Installation</h3>
+            <p class="process-desc">Certified technicians install, commission, and test your generator ensuring optimal performance and safety.</p>
+          </div>
+        </div>
+
+        <div class="process-item" data-aos="fade-right" data-aos-delay="600">
+          <div class="process-number">6</div>
+          <div class="process-content">
+            <h3 class="process-title">Ongoing Support</h3>
+            <p class="process-desc">24/7 maintenance, AMC contracts, genuine spare parts, and emergency support for uninterrupted power supply.</p>
           </div>
         </div>
       </div>
@@ -1404,94 +2092,94 @@
   <!-- Coverage - PAN INDIA -->
   <section class="section" id="coverage">
     <div class="container">
-      <div class="section-header fade-in">
-        <div class="section-badge">📍 PAN INDIA COVERAGE 📍</div>
-        <h2 class="section-title">Serving All India</h2>
-        <p class="section-subtitle">Comprehensive coverage across North, South, East & West India</p>
+      <div class="section-header">
+        <div class="section-badge" data-aos="fade-up">📍 PAN INDIA COVERAGE 📍</div>
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Serving All India</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Comprehensive coverage across North, South, East & West India with dedicated support centers</p>
       </div>
 
-      <div class="coverage-grid fade-in">
+      <div class="coverage-grid">
         <!-- North India -->
-        <div class="coverage-item">
+        <div class="coverage-item" data-aos="zoom-in" data-aos-delay="100">
           <i class="fas fa-map-marker-alt"></i>
           <div class="coverage-name">Delhi NCR</div>
           <p class="coverage-desc">Full Service Center</p>
         </div>
-        <div class="coverage-item">
+        <div class="coverage-item" data-aos="zoom-in" data-aos-delay="150">
           <i class="fas fa-map-marker-alt"></i>
           <div class="coverage-name">Rajasthan</div>
           <p class="coverage-desc">Headquarters - Neemrana</p>
         </div>
-        <div class="coverage-item">
+        <div class="coverage-item" data-aos="zoom-in" data-aos-delay="200">
           <i class="fas fa-map-marker-alt"></i>
           <div class="coverage-name">Haryana</div>
           <p class="coverage-desc">Complete Support</p>
         </div>
-        <div class="coverage-item">
+        <div class="coverage-item" data-aos="zoom-in" data-aos-delay="250">
           <i class="fas fa-map-marker-alt"></i>
           <div class="coverage-name">Punjab</div>
           <p class="coverage-desc">Sales & Service</p>
         </div>
-        <div class="coverage-item">
+        <div class="coverage-item" data-aos="zoom-in" data-aos-delay="300">
           <i class="fas fa-map-marker-alt"></i>
           <div class="coverage-name">Uttar Pradesh</div>
           <p class="coverage-desc">Regional Hub</p>
         </div>
-        <div class="coverage-item">
+        <div class="coverage-item" data-aos="zoom-in" data-aos-delay="350">
           <i class="fas fa-map-marker-alt"></i>
           <div class="coverage-name">Uttarakhand</div>
           <p class="coverage-desc">Service Available</p>
         </div>
 
         <!-- South India -->
-        <div class="coverage-item">
+        <div class="coverage-item" data-aos="zoom-in" data-aos-delay="400">
           <i class="fas fa-map-marker-alt"></i>
           <div class="coverage-name">Karnataka</div>
           <p class="coverage-desc">Bangalore Hub</p>
         </div>
-        <div class="coverage-item">
+        <div class="coverage-item" data-aos="zoom-in" data-aos-delay="450">
           <i class="fas fa-map-marker-alt"></i>
           <div class="coverage-name">Tamil Nadu</div>
           <p class="coverage-desc">Chennai Center</p>
         </div>
-        <div class="coverage-item">
+        <div class="coverage-item" data-aos="zoom-in" data-aos-delay="500">
           <i class="fas fa-map-marker-alt"></i>
           <div class="coverage-name">Telangana</div>
           <p class="coverage-desc">Hyderabad Office</p>
         </div>
-        <div class="coverage-item">
+        <div class="coverage-item" data-aos="zoom-in" data-aos-delay="550">
           <i class="fas fa-map-marker-alt"></i>
           <div class="coverage-name">Kerala</div>
           <p class="coverage-desc">Service Network</p>
         </div>
-        <div class="coverage-item">
+        <div class="coverage-item" data-aos="zoom-in" data-aos-delay="600">
           <i class="fas fa-map-marker-alt"></i>
           <div class="coverage-name">Andhra Pradesh</div>
           <p class="coverage-desc">Complete Support</p>
         </div>
 
         <!-- West & East India -->
-        <div class="coverage-item">
+        <div class="coverage-item" data-aos="zoom-in" data-aos-delay="650">
           <i class="fas fa-map-marker-alt"></i>
           <div class="coverage-name">Maharashtra</div>
           <p class="coverage-desc">Mumbai & Pune</p>
         </div>
-        <div class="coverage-item">
+        <div class="coverage-item" data-aos="zoom-in" data-aos-delay="700">
           <i class="fas fa-map-marker-alt"></i>
           <div class="coverage-name">Gujarat</div>
           <p class="coverage-desc">Ahmedabad Hub</p>
         </div>
-        <div class="coverage-item">
+        <div class="coverage-item" data-aos="zoom-in" data-aos-delay="750">
           <i class="fas fa-map-marker-alt"></i>
           <div class="coverage-name">West Bengal</div>
           <p class="coverage-desc">Kolkata Office</p>
         </div>
-        <div class="coverage-item">
+        <div class="coverage-item" data-aos="zoom-in" data-aos-delay="800">
           <i class="fas fa-map-marker-alt"></i>
           <div class="coverage-name">Madhya Pradesh</div>
           <p class="coverage-desc">Service Available</p>
         </div>
-        <div class="coverage-item">
+        <div class="coverage-item" data-aos="zoom-in" data-aos-delay="850">
           <i class="fas fa-map-marker-alt"></i>
           <div class="coverage-name">All India</div>
           <p class="coverage-desc">24/7 Support Network</p>
@@ -1500,22 +2188,64 @@
     </div>
   </section>
 
-  <!-- Testimonials -->
-  <section class="section section-alt" id="testimonials">
+  <!-- Why Choose Us -->
+  <section class="section section-alt">
     <div class="container">
-      <div class="section-header fade-in">
-        <div class="section-badge">⭐ REVIEWS ⭐</div>
-        <h2 class="section-title">Happy Clients</h2>
-        <p class="section-subtitle">Real feedback from satisfied customers</p>
+      <div class="section-header">
+        <div class="section-badge" data-aos="fade-up">✨ WHY CHOOSE US ✨</div>
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Excellence & Trust</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">What makes us the preferred choice for generators across India</p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card-custom text-center" data-aos="flip-left" data-aos-delay="100">
+            <div class="card-icon mx-auto"><i class="fas fa-certificate"></i></div>
+            <h4 class="card-title">ISO Certified</h4>
+            <p class="card-text">ISO 9001:2015 certified ensuring quality standards</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card-custom text-center" data-aos="flip-left" data-aos-delay="200">
+            <div class="card-icon mx-auto"><i class="fas fa-shield-alt"></i></div>
+            <h4 class="card-title">100% Genuine</h4>
+            <p class="card-text">All products are 100% original with manufacturer warranty</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card-custom text-center" data-aos="flip-left" data-aos-delay="300">
+            <div class="card-icon mx-auto"><i class="fas fa-clock"></i></div>
+            <h4 class="card-title">Quick Response</h4>
+            <p class="card-text">24/7 emergency support with fastest response time</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card-custom text-center" data-aos="flip-left" data-aos-delay="400">
+            <div class="card-icon mx-auto"><i class="fas fa-tags"></i></div>
+            <h4 class="card-title">Best Pricing</h4>
+            <p class="card-text">Competitive rates with flexible payment options</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge" data-aos="fade-up">⭐ REVIEWS ⭐</div>
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Happy Clients</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Real feedback from satisfied customers across India</p>
       </div>
 
       <div class="row">
         <div class="col-lg-4 mb-4">
-          <div class="testimonial-card fade-in">
+          <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
             <div class="testimonial-stars">
               <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
             </div>
-            <p class="testimonial-text">"Excellent service! Professional installation and prompt support. Highly recommended!"</p>
+            <p class="testimonial-text">"Excellent service! Professional installation and prompt support. Best generator dealer in Neemrana. Highly recommended!"</p>
             <div class="testimonial-author">
               <div class="testimonial-avatar">RK</div>
               <div class="testimonial-info">
@@ -1527,11 +2257,11 @@
         </div>
 
         <div class="col-lg-4 mb-4">
-          <div class="testimonial-card fade-in">
+          <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
             <div class="testimonial-stars">
               <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
             </div>
-            <p class="testimonial-text">"Best prices and genuine products. Outstanding after-sales service!"</p>
+            <p class="testimonial-text">"Best prices and 100% genuine products. Outstanding after-sales service and maintenance support. Very satisfied!"</p>
             <div class="testimonial-author">
               <div class="testimonial-avatar">AS</div>
               <div class="testimonial-info">
@@ -1543,11 +2273,11 @@
         </div>
 
         <div class="col-lg-4 mb-4">
-          <div class="testimonial-card fade-in">
+          <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
             <div class="testimonial-stars">
               <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
             </div>
-            <p class="testimonial-text">"Very reliable! Never face power issues. Quality generators and regular maintenance!"</p>
+            <p class="testimonial-text">"Very reliable! Never face power issues. Quality generators with regular preventive maintenance. Worth every penny!"</p>
             <div class="testimonial-author">
               <div class="testimonial-avatar">PV</div>
               <div class="testimonial-info">
@@ -1562,63 +2292,93 @@
   </section>
 
   <!-- FAQ -->
-  <section class="section">
+  <section class="section section-alt">
     <div class="container">
-      <div class="section-header fade-in">
-        <div class="section-badge">❓ FAQ ❓</div>
-        <h2 class="section-title">Common Questions</h2>
-        <p class="section-subtitle">Everything about our services</p>
+      <div class="section-header">
+        <div class="section-badge" data-aos="fade-up">❓ FAQ ❓</div>
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Common Questions</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Everything you need to know about our services</p>
       </div>
 
       <div class="row justify-content-center">
         <div class="col-lg-9">
-          <div class="faq-item fade-in">
+          <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
             <div class="faq-question">
-              <span>What capacity generator do I need?</span>
+              <span>What capacity generator do I need for my requirement?</span>
               <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
             </div>
             <div class="faq-answer">
-              For homes: 7.5-25 kVA. For businesses: 50 kVA+. We provide FREE site surveys.
+              For homes: 7.5-25 kVA depending on load. For businesses: 50 kVA and above. We provide FREE site surveys to determine exact requirements based on your electrical load, future expansion plans, and backup duration needs.
             </div>
           </div>
 
-          <div class="faq-item fade-in">
+          <div class="faq-item" data-aos="fade-up" data-aos-delay="150">
             <div class="faq-question">
-              <span>Do you provide installation?</span>
+              <span>Do you provide installation and commissioning services?</span>
               <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
             </div>
             <div class="faq-answer">
-              Yes! Complete installation with electrical connections, commissioning, and training.
+              Yes! We provide complete turnkey solutions including generator installation, electrical connections, ATS panel setup, fuel system, commissioning, load testing, operator training, and documentation - all done by certified technicians.
             </div>
           </div>
 
-          <div class="faq-item fade-in">
+          <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
             <div class="faq-question">
-              <span>What warranty is provided?</span>
+              <span>What warranty is provided with the generators?</span>
               <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
             </div>
             <div class="faq-answer">
-              2-3 years manufacturer warranty. Extended warranty and AMC available.
+              We offer 2-3 years manufacturer warranty depending on the brand and model. Extended warranty options are available. All warranties are comprehensive covering parts, labor, and service. AMC contracts available post-warranty period.
             </div>
           </div>
 
-          <div class="faq-item fade-in">
+          <div class="faq-item" data-aos="fade-up" data-aos-delay="250">
             <div class="faq-question">
-              <span>24/7 service available?</span>
+              <span>Is 24/7 emergency service really available?</span>
               <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
             </div>
             <div class="faq-answer">
-              Yes! Call +91 9829325775 anytime. Available 365 days/year nationwide.
+              Absolutely! Call +91 9829325775 anytime day or night. We maintain dedicated emergency response teams available 365 days/year nationwide. Average response time: Within 4 hours for emergency breakdowns.
             </div>
           </div>
 
-          <div class="faq-item fade-in">
+          <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
             <div class="faq-question">
-              <span>Do you serve all India?</span>
+              <span>Do you serve locations outside Neemrana?</span>
               <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
             </div>
             <div class="faq-answer">
-              Yes! We serve all major cities across North, South, East & West India with complete support.
+              Yes! We serve all major cities across North, South, East & West India. Our network includes Delhi NCR, Mumbai, Bangalore, Chennai, Hyderabad, Pune, Ahmedabad, Kolkata, and 50+ other cities with complete sales and service support.
+            </div>
+          </div>
+
+          <div class="faq-item" data-aos="fade-up" data-aos-delay="350">
+            <div class="faq-question">
+              <span>What payment options are available?</span>
+              <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+            </div>
+            <div class="faq-answer">
+              We offer flexible payment options including: Direct bank transfer, cheque payments, installment plans (with approved credit), financing through partner banks, and trade-in options for old generators. GST invoices provided for all transactions.
+            </div>
+          </div>
+
+          <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+            <div class="faq-question">
+              <span>Are spare parts readily available?</span>
+              <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+            </div>
+            <div class="faq-answer">
+              Yes! We maintain comprehensive inventory of genuine spare parts for all major brands. Parts availability within 24-48 hours for common items. We use only OEM (Original Equipment Manufacturer) parts to ensure optimal performance and warranty validity.
+            </div>
+          </div>
+
+          <div class="faq-item" data-aos="fade-up" data-aos-delay="450">
+            <div class="faq-question">
+              <span>What is included in AMC contracts?</span>
+              <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+            </div>
+            <div class="faq-answer">
+              AMC includes: Scheduled preventive maintenance (monthly/quarterly), free oil changes, filter replacements, coolant top-ups, battery checks, load testing, emergency breakdown support, priority service, detailed maintenance reports, and genuine spare parts at discounted rates.
             </div>
           </div>
         </div>
@@ -1626,18 +2386,34 @@
     </div>
   </section>
 
+  <!-- Newsletter -->
+  <section class="section">
+    <div class="container">
+      <div class="newsletter-box" data-aos="zoom-in">
+        <h2 class="newsletter-title">Stay Updated!</h2>
+        <p class="newsletter-subtitle">Get the latest offers, tips, and updates on power solutions</p>
+        <form class="newsletter-form" onsubmit="return false;">
+          <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+          <button type="submit" class="newsletter-btn">
+            <i class="fas fa-paper-plane"></i> Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact -->
   <section class="section section-alt" id="contact">
     <div class="container">
-      <div class="section-header fade-in">
-        <div class="section-badge">📞 CONTACT US 📞</div>
-        <h2 class="section-title">Get In Touch</h2>
-        <p class="section-subtitle">We're here to help 24/7</p>
+      <div class="section-header">
+        <div class="section-badge" data-aos="fade-up">📞 CONTACT US 📞</div>
+        <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Get In Touch</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">We're here to help 24/7 - Reach out anytime!</p>
       </div>
 
       <div class="row">
-        <div class="col-lg-6 mb-4 fade-in">
-          <div class="map-container">
+        <div class="col-lg-6 mb-4">
+          <div class="map-container" data-aos="fade-right">
             <iframe 
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3518.123!2d76.396!3d28.043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDAyJzM1LjAiTiA3NsKwMjMnNDUuNiJF!5e0!3m2!1sen!2sin!4v1234567890" 
               width="100%" 
@@ -1650,33 +2426,33 @@
         </div>
 
         <div class="col-lg-6 mb-4">
-          <div class="fade-in">
+          <div data-aos="fade-left">
             <div class="contact-card">
               <div class="contact-icon"><i class="fas fa-phone"></i></div>
               <h4 class="contact-title">Call Us</h4>
               <a href="tel:+919829325775" class="contact-detail">+91 9829325775</a>
-              <p class="contact-desc">24/7 Available</p>
+              <p class="contact-desc">24/7 Available - Instant Response</p>
             </div>
 
             <div class="contact-card">
               <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
               <h4 class="contact-title">WhatsApp</h4>
-              <a href="https://wa.me/919829325775" class="contact-detail">Message Us</a>
-              <p class="contact-desc">Quick Response</p>
+              <a href="https://wa.me/919829325775" class="contact-detail">Message Us on WhatsApp</a>
+              <p class="contact-desc">Quick Response & Support</p>
             </div>
 
             <div class="contact-card">
               <div class="contact-icon"><i class="fas fa-envelope"></i></div>
               <h4 class="contact-title">Email</h4>
               <a href="mailto:info@sureshgenerator.com" class="contact-detail">info@sureshgenerator.com</a>
-              <p class="contact-desc">Send Requirements</p>
+              <p class="contact-desc">Send Your Requirements</p>
             </div>
 
             <div class="contact-card">
               <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
               <h4 class="contact-title">Location</h4>
-              <p class="contact-detail" style="cursor: default;">Neemrana, Rajasthan</p>
-              <p class="contact-desc">Serving All India</p>
+              <p class="contact-detail" style="cursor: default;">Neemrana, Rajasthan, India</p>
+              <p class="contact-desc">Serving All India - Pan India Coverage</p>
             </div>
           </div>
         </div>
@@ -1693,48 +2469,57 @@
             <div class="brand-icon"><i class="fas fa-bolt"></i></div>
             <span class="brand-text" style="color: white;">SURESH GENERATOR</span>
           </div>
-          <p style="color: rgba(255,255,255,0.7); line-height: 1.7;">
-            Leading generator provider with 15+ years of excellence. ISO 9001:2015 certified serving all India.
+          <p style="color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 20px;">
+            Leading generator provider with 15+ years of excellence. ISO 9001:2015 certified serving all India with premium power solutions.
           </p>
+          <div class="footer-social">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+            <a href="https://wa.me/919829325775" class="social-link"><i class="fab fa-whatsapp"></i></a>
+          </div>
         </div>
 
         <div class="col-lg-2 col-md-6 mb-4">
-          <h4 class="footer-title">Links</h4>
+          <h4 class="footer-title">Quick Links</h4>
           <ul class="footer-links">
             <li><a href="#home"><i class="fas fa-angle-right"></i> Home</a></li>
             <li><a href="#products"><i class="fas fa-angle-right"></i> Products</a></li>
             <li><a href="#services"><i class="fas fa-angle-right"></i> Services</a></li>
+            <li><a href="#brands"><i class="fas fa-angle-right"></i> Brands</a></li>
             <li><a href="#contact"><i class="fas fa-angle-right"></i> Contact</a></li>
           </ul>
         </div>
 
         <div class="col-lg-3 col-md-6 mb-4">
-          <h4 class="footer-title">Services</h4>
+          <h4 class="footer-title">Our Services</h4>
           <ul class="footer-links">
             <li><a href="#"><i class="fas fa-angle-right"></i> Generator Sales</a></li>
             <li><a href="#"><i class="fas fa-angle-right"></i> Installation</a></li>
-            <li><a href="#"><i class="fas fa-angle-right"></i> Maintenance</a></li>
-            <li><a href="#"><i class="fas fa-angle-right"></i> Rental</a></li>
+            <li><a href="#"><i class="fas fa-angle-right"></i> Maintenance & Repair</a></li>
+            <li><a href="#"><i class="fas fa-angle-right"></i> Rental Services</a></li>
+            <li><a href="#"><i class="fas fa-angle-right"></i> AMC Contracts</a></li>
           </ul>
         </div>
 
         <div class="col-lg-3 col-md-6 mb-4">
-          <h4 class="footer-title">Contact</h4>
+          <h4 class="footer-title">Contact Info</h4>
           <ul class="footer-links">
             <li><a href="tel:+919829325775"><i class="fas fa-phone"></i> +91 9829325775</a></li>
             <li><a href="https://wa.me/919829325775"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
-            <li><a href="mailto:info@sureshgenerator.com"><i class="fas fa-envelope"></i> Email</a></li>
+            <li><a href="mailto:info@sureshgenerator.com"><i class="fas fa-envelope"></i> Email Us</a></li>
             <li><a href="#"><i class="fas fa-map-marker-alt"></i> Neemrana, Rajasthan</a></li>
+            <li><a href="#"><i class="fas fa-clock"></i> 24/7 Available</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2025 Suresh Generator. All Rights Reserved. | ISO 9001:2015 Certified</p>
+        <p>&copy; 2025 Suresh Generator. All Rights Reserved. | ISO 9001:2015 Certified | Designed with ❤️ for Excellence</p>
       </div>
     </div>
   </footer>
-
   <!-- Floating Buttons -->
   <a href="tel:+919829325775" class="floating-call" title="Call Now">
     <i class="fas fa-phone"></i>
@@ -1748,68 +2533,155 @@
     <i class="fas fa-arrow-up"></i>
   </div>
 
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   
   <script>
-    // Preloader
+    // ============================================
+    // ULTRA-SMOOTH JAVASCRIPT - PERFORMANCE OPTIMIZED
+    // ============================================
+
+    // Initialize AOS (Animate On Scroll)
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false,
+      offset: 100,
+      delay: 0,
+      anchorPlacement: 'top-bottom'
+    });
+
+    // ============================================
+    // PRELOADER WITH SMOOTH FADE OUT
+    // ============================================
     window.addEventListener('load', () => {
       setTimeout(() => {
-        document.getElementById('preloader').classList.add('hidden');
+        const preloader = document.getElementById('preloader');
+        preloader.classList.add('hidden');
+        document.body.style.overflow = 'visible';
       }, 1500);
     });
 
-    // Smooth Scroll Progress
-    let ticking = false;
+    // ============================================
+    // SCROLL PROGRESS BAR - OPTIMIZED
+    // ============================================
+    let scrollProgressTicking = false;
+    
+    function updateScrollProgress() {
+      const scrollProgress = document.getElementById('scrollProgress');
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = (window.scrollY / scrollHeight) * 100;
+      scrollProgress.style.width = scrolled + '%';
+      scrollProgressTicking = false;
+    }
+
     window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          const backToTop = document.getElementById('backToTop');
-          backToTop.classList.toggle('visible', window.scrollY > 400);
-          ticking = false;
-        });
-        ticking = true;
+      if (!scrollProgressTicking) {
+        requestAnimationFrame(updateScrollProgress);
+        scrollProgressTicking = true;
       }
     }, { passive: true });
 
-    // Back to Top
-    document.getElementById('backToTop').addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    // ============================================
+    // BACK TO TOP BUTTON - SMOOTH VISIBILITY
+    // ============================================
+    let backToTopTicking = false;
+    
+    function updateBackToTop() {
+      const backToTop = document.getElementById('backToTop');
+      backToTop.classList.toggle('visible', window.scrollY > 400);
+      backToTopTicking = false;
+    }
 
-    // Navbar Scroll
-    const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 50);
+      if (!backToTopTicking) {
+        requestAnimationFrame(updateBackToTop);
+        backToTopTicking = true;
+      }
     }, { passive: true });
 
-    // Smooth Scroll Links
+    document.getElementById('backToTop').addEventListener('click', () => {
+      window.scrollTo({ 
+        top: 0, 
+        behavior: 'smooth' 
+      });
+    });
+
+    // ============================================
+    // NAVBAR SCROLL EFFECT - OPTIMIZED
+    // ============================================
+    const navbar = document.querySelector('.navbar');
+    let navbarTicking = false;
+
+    function updateNavbar() {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+      navbarTicking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!navbarTicking) {
+        requestAnimationFrame(updateNavbar);
+        navbarTicking = true;
+      }
+    }, { passive: true });
+
+    // ============================================
+    // SMOOTH SCROLL FOR ANCHOR LINKS
+    // ============================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+        
+        if (target && targetId !== '#') {
           e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth' });
-          document.querySelector('.navbar-collapse')?.classList.remove('show');
+          
+          // Close mobile menu if open
+          const navbarCollapse = document.querySelector('.navbar-collapse');
+          if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+            navbarCollapse.classList.remove('show');
+          }
+          
+          // Smooth scroll to target
+          const targetPosition = target.getBoundingClientRect().top + window.scrollY - 100;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
         }
       });
     });
 
-    // Intersection Observer
-    const observer = new IntersectionObserver((entries) => {
+    // ============================================
+    // INTERSECTION OBSERVER FOR FADE-IN ANIMATIONS
+    // ============================================
+    const fadeInObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+          fadeInObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { 
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
 
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-in').forEach(el => {
+      fadeInObserver.observe(el);
+    });
 
-    // Counter Animation
+    // ============================================
+    // COUNTER ANIMATION - SMOOTH NUMBER COUNTING
+    // ============================================
     const animateCounter = (element, target) => {
       let current = 0;
-      const increment = target / 50;
+      const increment = target / 60;
+      const duration = 2000;
+      const stepTime = duration / 60;
+      
       const timer = setInterval(() => {
         current += increment;
         if (current >= target) {
@@ -1818,7 +2690,7 @@
         } else {
           element.textContent = Math.floor(current);
         }
-      }, 20);
+      }, stepTime);
     };
 
     const counterObserver = new IntersectionObserver((entries) => {
@@ -1832,27 +2704,441 @@
           }
         }
       });
-    }, { threshold: 0.5 });
+    }, { 
+      threshold: 0.5 
+    });
 
-    document.querySelectorAll('.stat-number[data-target]').forEach(el => counterObserver.observe(el));
+    document.querySelectorAll('.stat-number[data-target]').forEach(el => {
+      counterObserver.observe(el);
+    });
 
-    // FAQ Accordion
+    // ============================================
+    // FAQ ACCORDION - SMOOTH EXPAND/COLLAPSE
+    // ============================================
     document.querySelectorAll('.faq-question').forEach(question => {
       question.addEventListener('click', function() {
         const faqItem = this.parentElement;
         const isActive = faqItem.classList.contains('active');
         
+        // Close all FAQs
         document.querySelectorAll('.faq-item').forEach(item => {
           item.classList.remove('active');
         });
         
+        // Open clicked FAQ if it wasn't active
         if (!isActive) {
           faqItem.classList.add('active');
         }
       });
     });
 
-    console.log('%c⚡ SURESH GENERATOR - ULTRA SMOOTH ⚡', 'color: #1E40AF; font-size: 18px; font-weight: bold;');
+    // ============================================
+    // NEWSLETTER FORM SUBMISSION
+    // ============================================
+    document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const emailInput = this.querySelector('.newsletter-input');
+      const email = emailInput.value;
+      
+      if (email) {
+        // Success message
+        const btn = this.querySelector('.newsletter-btn');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Subscribed!';
+        btn.style.background = '#10B981';
+        
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.style.background = '';
+          this.reset();
+        }, 3000);
+        
+        // You can add AJAX call here to submit to backend
+        console.log('Newsletter subscription:', email);
+      }
+    });
+
+    // ============================================
+    // SMOOTH HOVER EFFECTS FOR CARDS
+    // ============================================
+    const addSmoothHover = (selector) => {
+      document.querySelectorAll(selector).forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+        });
+      });
+    };
+
+    addSmoothHover('.card-custom');
+    addSmoothHover('.product-card');
+    addSmoothHover('.testimonial-card');
+    addSmoothHover('.coverage-item');
+    addSmoothHover('.stat-item');
+
+    // ============================================
+    // PARALLAX EFFECT FOR HERO SECTION
+    // ============================================
+    let parallaxTicking = false;
+    
+    function updateParallax() {
+      const scrolled = window.scrollY;
+      const hero = document.querySelector('.hero');
+      
+      if (hero && scrolled < window.innerHeight) {
+        hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+      }
+      
+      parallaxTicking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!parallaxTicking && window.innerWidth > 768) {
+        requestAnimationFrame(updateParallax);
+        parallaxTicking = true;
+      }
+    }, { passive: true });
+
+    // ============================================
+    // IMAGE LAZY LOADING
+    // ============================================
+    if ('loading' in HTMLImageElement.prototype) {
+      const images = document.querySelectorAll('img[loading="lazy"]');
+      images.forEach(img => {
+        img.src = img.dataset.src || img.src;
+      });
+    } else {
+      // Fallback for browsers that don't support lazy loading
+      const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src || img.src;
+            img.classList.add('loaded');
+            imageObserver.unobserve(img);
+          }
+        });
+      });
+
+      document.querySelectorAll('img').forEach(img => {
+        imageObserver.observe(img);
+      });
+    }
+
+    // ============================================
+    // PERFORMANCE MONITORING
+    // ============================================
+    if ('performance' in window) {
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const perfData = window.performance.timing;
+          const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+          const domReadyTime = perfData.domContentLoadedEventEnd - perfData.navigationStart;
+          
+          console.log('%c⚡ PERFORMANCE METRICS ⚡', 'color: #10B981; font-size: 16px; font-weight: bold;');
+          console.log(`Total Page Load Time: ${pageLoadTime}ms`);
+          console.log(`DOM Ready Time: ${domReadyTime}ms`);
+          console.log('%cWebsite optimized for ultra-smooth experience!', 'color: #3B82F6; font-size: 14px;');
+        }, 0);
+      });
+    }
+
+    // ============================================
+    // CONSOLE BRANDING
+    // ============================================
+    console.log('%c⚡ SURESH GENERATOR - ULTRA SMOOTH ⚡', 'color: #1E40AF; font-size: 20px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);');
+    console.log('%cWebsite crafted with modern smooth animations', 'color: #10B981; font-size: 14px;');
+
+    // ============================================
+    // PREVENT ZOOMING ON MOBILE INPUTS
+    // ============================================
+    document.addEventListener('touchstart', function() {}, { passive: true });
+
+    // ============================================
+    // SMOOTH SCROLL POLYFILL FOR OLDER BROWSERS
+    // ============================================
+    (function() {
+      if (!('scrollBehavior' in document.documentElement.style)) {
+        const smoothScrollPolyfill = () => {
+          const links = document.querySelectorAll('a[href^="#"]');
+          
+          links.forEach(link => {
+            link.addEventListener('click', function(e) {
+              const targetId = this.getAttribute('href');
+              const target = document.querySelector(targetId);
+              
+              if (target && targetId !== '#') {
+                e.preventDefault();
+                
+                const targetPosition = target.getBoundingClientRect().top + window.scrollY - 100;
+                const startPosition = window.scrollY;
+                const distance = targetPosition - startPosition;
+                const duration = 800;
+                let start = null;
+                
+                function animation(currentTime) {
+                  if (start === null) start = currentTime;
+                  const timeElapsed = currentTime - start;
+                  const run = ease(timeElapsed, startPosition, distance, duration);
+                  window.scrollTo(0, run);
+                  if (timeElapsed < duration) requestAnimationFrame(animation);
+                }
+                
+                function ease(t, b, c, d) {
+                  t /= d / 2;
+                  if (t < 1) return c / 2 * t * t + b;
+                  t--;
+                  return -c / 2 * (t * (t - 2) - 1) + b;
+                }
+                
+                requestAnimationFrame(animation);
+              }
+            });
+          });
+        };
+        
+        smoothScrollPolyfill();
+      }
+    })();
+
+    // ============================================
+    // DYNAMIC YEAR UPDATE IN FOOTER
+    // ============================================
+    const updateFooterYear = () => {
+      const yearElement = document.querySelector('.footer-bottom p');
+      if (yearElement) {
+        const currentYear = new Date().getFullYear();
+        yearElement.innerHTML = yearElement.innerHTML.replace(/\d{4}/, currentYear);
+      }
+    };
+    updateFooterYear();
+
+    // ============================================
+    // MOUSE TRAIL EFFECT (OPTIONAL - COMMENT OUT IF NOT NEEDED)
+    // ============================================
+    /*
+    const createMouseTrail = () => {
+      const trail = [];
+      const trailLength = 20;
+      
+      document.addEventListener('mousemove', (e) => {
+        trail.push({ x: e.clientX, y: e.clientY });
+        if (trail.length > trailLength) trail.shift();
+      });
+      
+      setInterval(() => {
+        trail.forEach((pos, index) => {
+          const dot = document.createElement('div');
+          dot.style.cssText = `
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            background: linear-gradient(135deg, #1E40AF, #3B82F6);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            left: ${pos.x}px;
+            top: ${pos.y}px;
+            opacity: ${(index + 1) / trailLength};
+            transition: all 0.3s ease;
+          `;
+          document.body.appendChild(dot);
+          setTimeout(() => dot.remove(), 300);
+        });
+      }, 50);
+    };
+    // Uncomment to enable: createMouseTrail();
+    */
+
+    // ============================================
+    // VIEWPORT HEIGHT FIX FOR MOBILE BROWSERS
+    // ============================================
+    const setVH = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+    
+    setVH();
+    window.addEventListener('resize', setVH);
+    window.addEventListener('orientationchange', setVH);
+
+    // ============================================
+    // PREVENT CONTEXT MENU ON PRODUCTION (OPTIONAL)
+    // ============================================
+    /*
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      return false;
+    });
+    */
+
+    // ============================================
+    // DETECT SLOW CONNECTIONS & ADJUST ANIMATIONS
+    // ============================================
+    if ('connection' in navigator) {
+      const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      
+      if (connection) {
+        const slowConnection = connection.effectiveType === 'slow-2g' || 
+                              connection.effectiveType === '2g' || 
+                              connection.saveData;
+        
+        if (slowConnection) {
+          document.body.classList.add('reduced-motion');
+          console.log('%cSlow connection detected - animations optimized', 'color: #F59E0B;');
+        }
+      }
+    }
+
+    // ============================================
+    // ACCESSIBILITY - KEYBOARD NAVIGATION
+    // ============================================
+    document.addEventListener('keydown', (e) => {
+      // ESC key closes mobile menu
+      if (e.key === 'Escape') {
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+        if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+          navbarCollapse.classList.remove('show');
+        }
+      }
+      
+      // Tab key navigation highlighting
+      if (e.key === 'Tab') {
+        document.body.classList.add('keyboard-navigation');
+      }
+    });
+
+    document.addEventListener('click', () => {
+      document.body.classList.remove('keyboard-navigation');
+    });
+
+    // ============================================
+    // SERVICE WORKER REGISTRATION (OPTIONAL - FOR PWA)
+    // ============================================
+    /*
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('Service Worker registered:', registration);
+          })
+          .catch(error => {
+            console.log('Service Worker registration failed:', error);
+          });
+      });
+    }
+    */
+
+    // ============================================
+    // PRINT PAGE OPTIMIZATION
+    // ============================================
+    window.addEventListener('beforeprint', () => {
+      document.body.classList.add('printing');
+    });
+
+    window.addEventListener('afterprint', () => {
+      document.body.classList.remove('printing');
+    });
+
+    // ============================================
+    // DEBOUNCE UTILITY FOR PERFORMANCE
+    // ============================================
+    const debounce = (func, wait) => {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    };
+
+    // Apply debounce to window resize events
+    const handleResize = debounce(() => {
+      console.log('Window resized - recalculating layout');
+      setVH();
+    }, 250);
+
+    window.addEventListener('resize', handleResize);
+
+    // ============================================
+    // ANALYTICS TRACKING (PLACEHOLDER)
+    // ============================================
+    const trackEvent = (category, action, label) => {
+      console.log('Event Tracked:', { category, action, label });
+      // Add your analytics code here (Google Analytics, etc.)
+    };
+
+    // Track button clicks
+    document.querySelectorAll('.cta-btn, .btn-hero, .floating-call, .floating-whatsapp').forEach(btn => {
+      btn.addEventListener('click', () => {
+        trackEvent('Button', 'Click', btn.textContent.trim() || btn.title);
+      });
+    });
+
+    // ============================================
+    // ANIMATION ON SCROLL FOR STATS
+    // ============================================
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'bounce 0.6s ease';
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.stat-item').forEach(stat => {
+      statsObserver.observe(stat);
+    });
+
+    // ============================================
+    // INITIALIZATION COMPLETE
+    // ============================================
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('%c✓ All systems loaded - Ultra-smooth experience ready!', 'color: #10B981; font-size: 14px; font-weight: bold;');
+    });
+
   </script>
+
+  <!-- Additional Performance & SEO Scripts -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Suresh Generator Neemrana",
+    "image": "https://via.placeholder.com/1200x630",
+    "description": "ISO 9001:2015 certified premium generator dealer. 15+ years excellence, 500+ installations across India. Industrial & residential generators 7.5-3750 kVA.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Neemrana Industrial Area",
+      "addressLocality": "Neemrana",
+      "addressRegion": "Rajasthan",
+      "postalCode": "301705",
+      "addressCountry": "IN"
+    },
+    "telephone": "+91-9829325775",
+    "url": "https://sureshgenerator.com",
+    "priceRange": "₹₹₹",
+    "openingHours": "Mo-Su 00:00-23:59",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "28.043",
+      "longitude": "76.396"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "500"
+    },
+    "sameAs": [
+      "https://facebook.com/sureshgenerator",
+      "https://instagram.com/sureshgenerator",
+      "https://linkedin.com/company/sureshgenerator"
+    ]
+  }
+  </script>
+
 </body>
 </html>
