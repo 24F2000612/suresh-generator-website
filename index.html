@@ -1,751 +1,289 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="light" />
-  <title>Suresh Generator Neemrana | +91 9829325775</title>
-
-  <meta name="description" content="Suresh Generator Neemrana – Generator sales, rental, installation, AMC and 24/7 service across India. Call +91 9829325775." />
-  <meta name="theme-color" content="#0B2A6F" />
-
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suresh Generator Neemrana - Premium Power Solutions</title>
+  <meta name="description" content="Sales, rental, installation, AMC and 24/7 emergency support for residential, commercial and industrial generators across India.">
   <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"LocalBusiness",
-    "name":"Suresh Generator Neemrana",
-    "telephone":"+91-9829325775",
-    "email":"suresh.powerplus@gmail.com",
-    "address":{"@type":"PostalAddress","addressLocality":"Neemrana","addressRegion":"Rajasthan","addressCountry":"IN"},
-    "geo":{"@type":"GeoCoordinates","latitude":27.988983313014533,"longitude":76.4125944749332}
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Suresh Generator",
+    "telephone": "+919829325775",
+    "email": "suresh.powerplus@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Neemrana",
+      "addressRegion": "Rajasthan",
+      "addressCountry": "IN"
+    },
+    "description": "Sales, rental, installation, AMC and 24/7 emergency support for residential, commercial and industrial generators across India."
   }
   </script>
-
   <style>
-    :root{
-      --navy:#0B2A6F;
-      --navy2:#123C97;
-      --gold:#C8A24A;
-      --ok:#16A34A;
-
-      --bg:#fff;
-      --text:#0A0F1C;
-      --muted:#5A6476;
-      --line:#EEF1F7;
-
-      --shadow: 0 22px 60px rgba(10,15,28,.10);
-      --shadow2: 0 12px 32px rgba(10,15,28,.08);
-
-      --r14: 14px;
-      --r18: 18px;
-      --r24: 24px;
-      --r32: 32px;
-
-      --max: 1180px;
-      --ease: cubic-bezier(.2,.8,.2,1);
-    }
-
-    *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(1200px 520px at 20% -10%, rgba(11,42,111,.06), transparent 60%),
-        radial-gradient(900px 520px at 80% -10%, rgba(200,162,74,.10), transparent 60%),
-        #fff;
-      line-height:1.6;
-      overflow-x:hidden;
-    }
-
-    a{ color:inherit; text-decoration:none; }
-    .container{ width:min(var(--max), 92vw); margin:0 auto; }
-
-    h1,h2{ font-family: ui-serif, Georgia, "Times New Roman", serif; }
-    h1,h2,h3{ margin:0; line-height:1.12; }
-    p{ margin:0; }
-    .muted{ color:var(--muted); }
-
-    .section{ padding:46px 0; }
-    .sectionHead{
-      display:flex; justify-content:space-between; align-items:end;
-      gap:14px; flex-wrap:wrap; margin-bottom:16px;
-    }
-    .sectionHead h2{ font-size: clamp(22px, 2.2vw, 36px); }
-    .sectionHead p{ max-width: 760px; }
-
-    .card{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius: var(--r24);
-      box-shadow: var(--shadow2);
-    }
-    .pad{ padding:18px; }
-
-    .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-    .grid-3{ display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; }
-
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:12px 16px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:#fff;
-      color:var(--text);
-      font-weight:900;
-      box-shadow: 0 10px 22px rgba(10,15,28,.07);
-      transition: transform .15s var(--ease), box-shadow .2s var(--ease);
-      cursor:pointer;
-      white-space:nowrap;
-    }
-    .btn:hover{ transform: translateY(-1px); }
-    .btn.primary{
-      background: linear-gradient(135deg, var(--navy), var(--navy2));
-      border-color: transparent;
-      color:#fff;
-      box-shadow: 0 16px 34px rgba(11,42,111,.18);
-    }
-    .btn.ok{
-      background: linear-gradient(135deg, #22C55E, #16A34A);
-      border-color: transparent;
-      color:#fff;
-    }
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:7px 12px;
-      border:1px solid rgba(200,162,74,.22);
-      border-radius:999px;
-      background: rgba(255,255,255,.92);
-      color:var(--muted);
-      font-weight:900;
-      font-size:12px;
-      letter-spacing:.2px;
-    }
-
-    /* ===== Header ===== */
-    header{
-      position:sticky; top:0; z-index:200;
-      background: rgba(255,255,255,.86);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--line);
-    }
-    .topbar{
-      padding:10px 0;
-      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
-      color:var(--muted);
-      font-size:13px;
-    }
-    .topbar a{
-      padding:6px 10px;
-      border:1px solid rgba(200,162,74,.22);
-      border-radius:999px;
-      background: rgba(255,255,255,.92);
-      font-weight:900;
-    }
-
-    .navRow{
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 12px 0 14px;
-      gap:12px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      min-width: 220px;
-    }
-    .logo{
-      width:44px; height:44px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--navy), var(--navy2));
-      color:#fff;
-      display:grid; place-items:center;
-      font-weight:1000;
-      box-shadow: 0 18px 34px rgba(11,42,111,.22);
-      user-select:none;
-    }
-    .brand strong{ display:block; font-size:18px; }
-    .brand small{ display:block; font-size:12px; color:var(--muted); font-weight:900; margin-top:2px; }
-
-    .navLinks{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
-    .navLinks a.link{
-      padding:10px 12px;
-      border-radius: 12px;
-      color:var(--muted);
-      font-weight:900;
-      border:1px solid transparent;
-    }
-    .navLinks a.link:hover{
-      border-color: rgba(200,162,74,.22);
-      background: rgba(255,255,255,.92);
-      color: var(--text);
-    }
-
-    .menuBtn{
-      width:44px; height:44px;
-      border-radius: 14px;
-      border:1px solid var(--line);
-      background:#fff;
-      box-shadow: 0 10px 18px rgba(10,15,28,.10);
-      display:none;
-    }
-    .menuBtn span{
-      display:block;
-      width:20px; height:2px;
-      background: var(--text);
-      margin:5px auto;
-      border-radius: 8px;
-    }
-
-    /* ===== Drawer menu (fix for your screenshot) ===== */
-    .drawerOverlay{
-      position:fixed; inset:0;
-      background: rgba(10,15,28,.45);
-      opacity:0; pointer-events:none;
-      transition: opacity .2s var(--ease);
-      z-index:500;
-    }
-    .drawerOverlay.open{ opacity:1; pointer-events:auto; }
-
-    .drawer{
-      position:fixed;
-      top:0; right:0;
-      height:100vh;
-      width:min(86vw, 360px);
-      background:#fff;
-      border-left:1px solid rgba(200,162,74,.18);
-      box-shadow: var(--shadow);
-      transform: translateX(105%);
-      transition: transform .24s var(--ease);
-      z-index:501;
-      padding:14px;
-      display:grid;
-      grid-template-rows: auto 1fr auto;
-      gap:12px;
-    }
-    .drawer.open{ transform: translateX(0); }
-
-    .drawerTop{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      padding:12px;
-      border:1px solid rgba(200,162,74,.16);
-      border-radius: var(--r18);
-      background: rgba(255,255,255,.92);
-    }
-    .closeBtn{
-      width:42px; height:42px;
-      border-radius: 14px;
-      border:1px solid var(--line);
-      background:#fff;
-      font-weight:1000;
-      cursor:pointer;
-    }
-    .drawerNav{
-      padding:12px;
-      border:1px solid rgba(200,162,74,.16);
-      border-radius: var(--r18);
-      background: rgba(255,255,255,.92);
-      display:grid; gap:8px;
-      align-content:start;
-      overflow:auto;
-    }
-    .drawerNav a{
-      padding:12px 12px;
-      border-radius: 14px;
-      border:1px solid rgba(200,162,74,.14);
-      background:#fff;
-      font-weight:900;
-      color: var(--text);
-    }
-    .drawerBottom{
-      display:grid; gap:10px;
-      padding:12px;
-      border:1px solid rgba(200,162,74,.16);
-      border-radius: var(--r18);
-      background: rgba(255,255,255,.92);
-    }
-
-    /* ===== Hero ===== */
-    .hero{ padding: 22px 0 10px; }
-    .heroBox{
-      border-radius: var(--r32);
-      border:1px solid rgba(200,162,74,.16);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      background:
-        radial-gradient(1100px 420px at 20% 0%, rgba(11,42,111,.07), transparent 62%),
-        radial-gradient(900px 420px at 70% 0%, rgba(200,162,74,.12), transparent 62%),
-        #fff;
-    }
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-    }
-    .heroLeft{ padding:22px; }
-    .heroLeft h1{ margin:12px 0 8px; font-size: clamp(28px, 3.4vw, 50px); }
-    .heroLeft p{ color:var(--muted); max-width: 64ch; }
-    .heroCtas{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
-
-    .heroRight{
-      border-left:1px solid rgba(200,162,74,.16);
-      padding:18px;
-      background: linear-gradient(180deg, rgba(200,162,74,.06), transparent);
-      display:grid; gap:10px; align-content:start;
-    }
-    .info{
-      border:1px solid rgba(200,162,74,.16);
-      border-radius: var(--r18);
-      padding:12px;
-      background: rgba(255,255,255,.92);
-      box-shadow: 0 10px 18px rgba(10,15,28,.05);
-    }
-    .info b{ display:block; font-size:12px; color:var(--muted); margin-bottom:6px; letter-spacing:.2px; }
-    .info a{ color: color-mix(in oklab, var(--navy) 85%, var(--text)); font-weight:1000; }
-
-    .kpis{
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-top:1px solid rgba(200,162,74,.16);
-      background: rgba(255,255,255,.92);
-    }
-    .kpi{
-      padding:14px 14px;
-      border-right:1px solid rgba(200,162,74,.16);
-    }
-    .kpi:last-child{ border-right:none; }
-    .kpi strong{ display:block; font-size: 18px; }
-    .kpi small{ display:block; margin-top:4px; color:var(--muted); font-weight:900; }
-
-    /* ===== Services/Products ===== */
-    .feat{ padding:16px; }
-    .featTop{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px; }
-    .icon{
-      width:42px; height:42px;
-      border-radius: 14px;
-      display:grid; place-items:center;
-      border:1px solid rgba(200,162,74,.20);
-      background: linear-gradient(135deg, rgba(200,162,74,.20), rgba(11,42,111,.06));
-      font-weight:1000;
-    }
-    .feat p{ color:var(--muted); font-size:14px; }
-
-    .product{ overflow:hidden; }
-    .product .img{
-      height:155px;
-      display:grid; place-items:center;
-      font-weight:1000;
-      background:
-        radial-gradient(650px 200px at 40% 0%, rgba(200,162,74,.22), transparent 62%),
-        linear-gradient(135deg, rgba(11,42,111,.05), #fff);
-      border-bottom:1px solid rgba(200,162,74,.16);
-      color: color-mix(in oklab, var(--text) 70%, var(--navy));
-    }
-    .specs{ list-style:none; padding:0; margin:12px 0 0; display:grid; gap:8px; }
-    .specs li{
-      display:flex; justify-content:space-between; gap:10px;
-      padding:10px 12px;
-      border-radius: 12px;
-      border:1px solid rgba(200,162,74,.16);
-      background: rgba(255,255,255,.92);
-      color:var(--muted);
-      font-weight:900;
-      font-size:13px;
-    }
-    .specs b{ color:var(--text); font-weight:1000; }
-    .actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
-
-    /* ===== Contact ===== */
-    .contactGrid{ display:grid; grid-template-columns: 1fr 1.2fr; gap:14px; }
-    .map{
-      border-radius: var(--r24);
-      overflow:hidden;
-      border:1px solid rgba(200,162,74,.16);
-      box-shadow: var(--shadow2);
-      background:#fff;
-      min-height: 380px;
-    }
-    .map iframe{ width:100%; height:100%; border:0; }
-
-    footer{ padding: 18px 0 84px; }
-    .foot{
-      display:flex; justify-content:space-between; align-items:center;
-      gap:12px; flex-wrap:wrap;
-      padding:16px;
-      border-radius: var(--r24);
-      border:1px solid rgba(200,162,74,.16);
-      background: rgba(255,255,255,.92);
-      box-shadow: var(--shadow2);
-      color:var(--muted);
-      font-size:14px;
-    }
-
+    /* Reset & global */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    h1, h2, h3, h4, p { margin-bottom: 15px; }
+    /* Header & Topbar */
+    .topbar { background: #333; color: #fff; font-size: 0.9em; padding: 5px 20px; text-align: center; position: fixed; top: 0; width: 100%; z-index: 1000; }
+    .topbar .contact-info { margin-top: 5px; }
+    .topbar a { color: #fff; margin: 0 10px; font-size: 0.9em; }
+    /* Navigation */
+    nav { background: #f8f8f8; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; position: fixed; top: 38px; width: 100%; z-index: 999; }
+    .logo { font-size: 1.5em; font-weight: bold; color: #e67e22; }
+    .nav-links { display: flex; }
+    .nav-links li { margin: 0 10px; }
+    .nav-links a { color: #333; padding: 8px 12px; border-radius: 4px; }
+    .nav-links a:hover { background: #eaeaea; }
+    .get-quote { background: #e67e22; color: #fff; padding: 8px 12px; border-radius: 4px; }
+    .get-quote:hover { background: #cf711f; }
+    .menu-toggle { display: none; font-size: 1.5em; background: none; border: none; color: #333; cursor: pointer; }
+    /* Hero Section */
+    .hero { text-align: center; padding: 100px 20px 40px; background: #f2f2f2; margin-top: 90px; }
+    .hero h1 { font-size: 2.5em; }
+    .hero p { font-size: 1.1em; color: #555; margin: 15px 0 25px; }
+    .hero-buttons a { display: inline-block; margin: 5px 10px; background: #e67e22; color: #fff; padding: 10px 18px; border-radius: 4px; font-size: 1em; }
+    .hero-buttons a.whatsapp { background: #25D366; }
+    .hero-buttons a:hover { opacity: 0.9; }
+    .hero-stats { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 30px; }
+    .hero-stats div { flex: 1 1 150px; margin: 10px; text-align: center; }
+    .hero-stats h4 { font-size: 1em; color: #e67e22; margin-bottom: 5px; }
+    .hero-stats p { font-size: 0.9em; color: #555; }
+    /* Sections */
+    section { padding: 40px 20px; }
+    section h2 { text-align: center; font-size: 1.8em; margin-bottom: 20px; color: #333; }
+    /* Services */
+    #services p { text-align: center; color: #555; margin-bottom: 30px; }
+    .services-grid { display: flex; flex-wrap: wrap; justify-content: center; }
+    .service { flex: 1 1 180px; margin: 15px; padding: 20px; background: #fff; border: 1px solid #eee; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .service h3 { color: #e67e22; font-size: 1.2em; }
+    .service h4 { font-size: 1em; margin-top: 5px; }
+    .service p { font-size: 0.9em; color: #555; margin-top: 10px; }
+    /* Products */
+    #products p { text-align: center; color: #555; margin-bottom: 30px; }
+    .products-grid { display: flex; flex-wrap: wrap; justify-content: center; }
+    .category { flex: 1 1 200px; margin: 15px; padding: 20px; background: #fff; border: 1px solid #eee; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: left; }
+    .category h3 { color: #e67e22; font-size: 1.2em; }
+    .category h4 { font-size: 1em; margin-top: 5px; }
+    .category p { font-size: 0.9em; color: #555; margin: 10px 0; }
+    .category ul { margin: 10px 0; padding-left: 20px; }
+    .category ul li { margin-bottom: 5px; color: #333; }
+    .category a.btn { display: inline-block; margin-top: 10px; background: #25D366; color: #fff; padding: 8px 12px; border-radius: 4px; font-size: 0.9em; }
+    .category a.btn:hover { opacity: 0.9; }
+    /* Contact */
+    .contact-container { display: flex; flex-wrap: wrap; justify-content: center; }
+    .contact-info { flex: 1 1 300px; margin: 15px; padding: 20px; }
+    .contact-info p { font-size: 0.95em; color: #555; margin-bottom: 15px; }
+    .contact-info h3 { font-size: 1.2em; color: #333; margin-bottom: 10px; }
+    .contact-info a.btn { display: inline-block; margin: 5px 10px 0 0; background: #e67e22; color: #fff; padding: 8px 12px; border-radius: 4px; font-size: 0.9em; }
+    .contact-info a.btn.whatsapp { background: #25D366; }
+    .contact-info a.btn:hover { opacity: 0.9; }
+    .map { flex: 1 1 300px; margin: 15px; }
+    .map iframe { width: 100%; height: 300px; border: 1px solid #ccc; border-radius: 5px; }
+    /* Footer */
+    footer { text-align: center; padding: 15px 20px; background: #333; color: #fff; font-size: 0.9em; }
     /* Floating buttons */
-    .float{
-      position:fixed;
-      right:14px;
-      bottom:14px;
-      display:grid;
-      gap:10px;
-      z-index:600;
-    }
-    .fab{
-      width:54px; height:54px;
-      border-radius:999px;
-      display:grid; place-items:center;
-      border:1px solid rgba(200,162,74,.16);
-      background:#fff;
-      box-shadow: var(--shadow);
-      font-weight:1000;
-      user-select:none;
-      transition: transform .15s var(--ease);
-    }
-    .fab:hover{ transform: translateY(-2px); }
-    .fab.call{
-      background: linear-gradient(135deg, var(--navy), var(--navy2));
-      border-color:transparent;
-      color:#fff;
-    }
-    .fab.wa{
-      background: linear-gradient(135deg, #22C55E, #16A34A);
-      border-color:transparent;
-      color:#fff;
-    }
-    .fab.top{ opacity:0; pointer-events:none; }
-    .fab.top.show{ opacity:1; pointer-events:auto; }
-
+    .float-btn { position: fixed; right: 20px; background: #e67e22; color: #fff; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.5em; text-decoration: none; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 1000; opacity: 0.8; }
+    .float-btn.whatsapp { background: #25D366; }
+    .float-btn.top { background: #333; }
+    .float-btn:hover { opacity: 1; }
+    .float-btn.call { bottom: 100px; }
+    .float-btn.whatsapp { bottom: 160px; }
+    .float-btn.top { bottom: 220px; }
     /* Responsive */
-    @media (max-width: 980px){
-      .heroGrid{ grid-template-columns:1fr; }
-      .heroRight{ border-left:none; border-top:1px solid rgba(200,162,74,.16); }
-      .grid-3{ grid-template-columns:1fr; }
-      .grid-2{ grid-template-columns:1fr; }
-      .contactGrid{ grid-template-columns:1fr; }
-    }
-    @media (max-width: 760px){
-      .navLinks{ display:none; }
-      .menuBtn{ display:block; }
-      .kpis{ grid-template-columns: 1fr 1fr; }
-      .kpi{ border-right:none; border-bottom:1px solid rgba(200,162,74,.16); }
-      .kpi:nth-last-child(-n+2){ border-bottom:none; }
-      .map{ min-height: 320px; }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      html{ scroll-behavior:auto; }
-      .btn,.fab,.drawer,.drawerOverlay{ transition:none !important; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; background: #f8f8f8; position: fixed; top: 90px; right: 0; width: 200px; border-left: 1px solid #ddd; }
+      .nav-links.open { display: flex; }
+      .menu-toggle { display: block; }
+      .hero { padding: 80px 10px 20px; margin-top: 90px; }
+      .hero h1 { font-size: 2em; }
+      .hero-stats { flex-direction: column; }
+      .services-grid { flex-direction: column; align-items: center; }
+      .category { flex: 1 1 100%; }
+      .contact-container { flex-direction: column; }
+      .contact-info, .map { flex: 1 1 100%; }
+      .float-btn.call { bottom: 80px; }
+      .float-btn.whatsapp { bottom: 150px; }
+      .float-btn.top { bottom: 220px; }
     }
   </style>
 </head>
-
 <body>
-<header>
-  <div class="container">
+  <header>
     <div class="topbar">
-      <div>Neemrana, Rajasthan • 24/7 Emergency Service</div>
-      <div style="display:flex; gap:10px; flex-wrap:wrap">
+      Neemrana, Rajasthan &#8226; 24/7 Emergency Service
+      <div class="contact-info">
         <a href="tel:+919829325775">Call: +91 9829325775</a>
         <a href="mailto:suresh.powerplus@gmail.com">Email: suresh.powerplus@gmail.com</a>
       </div>
     </div>
+    <nav>
+      <a href="#home" class="logo" aria-label="Suresh Generator Home">SG</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="get-quote">Get Quote</a>
+      <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+    </nav>
+  </header>
 
-    <div class="navRow" aria-label="Primary navigation">
-      <a class="brand" href="#home">
-        <div class="logo">SG</div>
-        <div>
-          <strong>Suresh Generator</strong>
-          <small>Reliable service • Neemrana • Pan-India</small>
-        </div>
-      </a>
-
-      <nav class="navLinks">
-        <a class="link" href="#services">Services</a>
-        <a class="link" href="#products">Products</a>
-        <a class="link" href="#contact">Contact</a>
-        <a class="btn primary" href="tel:+919829325775">Get Quote</a>
-      </nav>
-
-      <button class="menuBtn" id="openMenu" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-</header>
-
-<!-- Drawer (mobile + also works on desktop) -->
-<div class="drawerOverlay" id="drawerOverlay" aria-hidden="true"></div>
-<aside class="drawer" id="drawer" aria-label="Menu">
-  <div class="drawerTop">
-    <div style="display:flex; align-items:center; gap:10px">
-      <div class="logo" style="width:40px;height:40px;border-radius:14px;box-shadow:none">SG</div>
-      <div>
-        <div style="font-weight:1000; line-height:1.1">Suresh Generator</div>
-        <div class="muted" style="font-size:12px; font-weight:900">Menu</div>
+  <main>
+    <section id="home" class="hero" aria-label="Hero Section">
+      <h1>Premium generator solutions across India</h1>
+      <p>Sales, rental, installation, AMC and 24/7 emergency support for residential, commercial and industrial clients.</p>
+      <div class="hero-buttons">
+        <a href="tel:+919829325775" class="btn">Call Now</a>
+        <a href="https://wa.me/919829325775" class="btn whatsapp">WhatsApp</a>
+        <a href="#contact" class="btn">Visit Location</a>
       </div>
-    </div>
-    <button class="closeBtn" id="closeMenu" aria-label="Close menu">✕</button>
-  </div>
-
-  <div class="drawerNav">
-    <a href="#services">Services</a>
-    <a href="#products">Products</a>
-    <a href="#contact">Contact</a>
-  </div>
-
-  <div class="drawerBottom">
-    <a class="btn primary" href="tel:+919829325775">Call: Get Quote</a>
-    <a class="btn ok" target="_blank" rel="noopener" href="https://wa.me/919829325775">WhatsApp</a>
-  </div>
-</aside>
-
-<!-- HERO -->
-<main id="home" class="hero">
-  <div class="container">
-    <section class="heroBox">
-      <div class="heroGrid">
-        <div class="heroLeft">
-          <span class="pill">Sales • Rental • AMC • Service</span>
-          <h1>Premium generator solutions across India</h1>
-          <p>
-            Sales, rental, installation, AMC and 24/7 emergency support for residential, commercial and industrial clients.
-          </p>
-
-          <div class="heroCtas">
-            <a class="btn primary" href="tel:+919829325775">Call Now</a>
-            <a class="btn ok" target="_blank" rel="noopener" href="https://wa.me/919829325775">WhatsApp</a>
-            <a class="btn" href="#contact">Visit Location</a>
-          </div>
-        </div>
-
-        <aside class="heroRight">
-          <div class="info">
-            <b>Phone</b>
-            <a href="tel:+919829325775">+91 982932 5775</a>
-          </div>
-          <div class="info">
-            <b>Email</b>
-            <a href="mailto:suresh.powerplus@gmail.com">suresh.powerplus@gmail.com</a>
-          </div>
-          <div class="info">
-            <b>Location</b>
-            <span class="muted" style="font-weight:900">Neemrana, Rajasthan</span>
-          </div>
-          <div class="info">
-            <b>Power Range</b>
-            <span class="muted" style="font-weight:900">7.5–3750 kVA</span>
-          </div>
-        </aside>
-      </div>
-
-      <div class="kpis">
-        <div class="kpi"><strong>15+</strong><small>Years</small></div>
-        <div class="kpi"><strong>500+</strong><small>Installations</small></div>
-        <div class="kpi"><strong>24/7</strong><small>Support</small></div>
-        <div class="kpi"><strong>All India</strong><small>Coverage</small></div>
+      <div class="hero-stats">
+        <div><h4>Phone</h4><p>+91 982932 5775</p></div>
+        <div><h4>Email</h4><p>suresh.powerplus@gmail.com</p></div>
+        <div><h4>Location</h4><p>Neemrana, Rajasthan</p></div>
+        <div><h4>Power Range</h4><p>7.5–3750 kVA</p></div>
+        <div><h4>Years</h4><p>15+</p></div>
+        <div><h4>Installations</h4><p>500+</p></div>
+        <div><h4>Support</h4><p>24/7</p></div>
+        <div><h4>Coverage</h4><p>All India</p></div>
       </div>
     </section>
-  </div>
-</main>
 
-<!-- SERVICES -->
-<section class="section" id="services">
-  <div class="container">
-    <div class="sectionHead">
-      <div>
-        <h2>Services</h2>
-        <p class="muted">Fast response, correct sizing, reliable installation and long-term maintenance.</p>
+    <section id="services">
+      <h2>Services</h2>
+      <p>Fast response, correct sizing, reliable installation and long-term maintenance.</p>
+      <div class="services-grid">
+        <div class="service" aria-label="Generator sales">
+          <h3>Sales</h3>
+          <h4>Generator sales</h4>
+          <p>New/refurb options with guidance for the right kVA selection.</p>
+        </div>
+        <div class="service" aria-label="Generator rental">
+          <h3>Rental</h3>
+          <h4>Rental generators</h4>
+          <p>Flexible rental for events, shutdowns, factories and urgent needs.</p>
+        </div>
+        <div class="service" aria-label="AMC maintenance">
+          <h3>AMC</h3>
+          <h4>AMC / Maintenance</h4>
+          <p>Preventive maintenance to reduce breakdown risk and downtime.</p>
+        </div>
+        <div class="service" aria-label="Installation">
+          <h3>Install</h3>
+          <h4>Installation</h4>
+          <p>Installation and commissioning support with safety-first approach.</p>
+        </div>
+        <div class="service" aria-label="Repair and service">
+          <h3>Service</h3>
+          <h4>Repair &amp; service</h4>
+          <p>Diagnostics and repair for most generator brands.</p>
+        </div>
       </div>
-      <a class="btn primary" href="tel:+919829325775">Call for Quote</a>
-    </div>
+    </section>
 
-    <div class="grid-3">
-      <div class="card feat">
-        <div class="featTop"><div class="icon">⚡</div><span class="pill">Sales</span></div>
-        <h3>Generator sales</h3>
-        <p>New/refurb options with guidance for the right kVA selection.</p>
-      </div>
-
-      <div class="card feat">
-        <div class="featTop"><div class="icon">🚚</div><span class="pill">Rental</span></div>
-        <h3>Rental generators</h3>
-        <p>Flexible rental for events, shutdowns, factories and urgent needs.</p>
-      </div>
-
-      <div class="card feat">
-        <div class="featTop"><div class="icon">🧰</div><span class="pill">AMC</span></div>
-        <h3>AMC / Maintenance</h3>
-        <p>Preventive maintenance to reduce breakdown risk and downtime.</p>
-      </div>
-
-      <div class="card feat">
-        <div class="featTop"><div class="icon">🛠️</div><span class="pill">Install</span></div>
-        <h3>Installation</h3>
-        <p>Installation and commissioning support with safety-first approach.</p>
-      </div>
-
-      <div class="card feat">
-        <div class="featTop"><div class="icon">🔧</div><span class="pill">Service</span></div>
-        <h3>Repair & service</h3>
-        <p>Diagnostics and repair for most generator brands.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRODUCTS -->
-<section class="section" id="products">
-  <div class="container">
-    <div class="sectionHead">
-      <div>
-        <h2>Products</h2>
-        <p class="muted">Sample categories (change text as per your real models).</p>
-      </div>
-      <a class="btn ok" target="_blank" rel="noopener" href="https://wa.me/919829325775">WhatsApp Requirement</a>
-    </div>
-
-    <div class="grid-3">
-      <article class="card product">
-        <div class="img">Industrial</div>
-        <div class="pad">
-          <h3>Industrial generators</h3>
-          <p class="muted">For heavy loads & continuous uptime.</p>
-          <ul class="specs">
-            <li><span>Range</span> <b>82.5–3750 kVA</b></li>
-            <li><span>Support</span> <b>AMC + Service</b></li>
-            <li><span>Use</span> <b>Continuous / Standby</b></li>
+    <section id="products">
+      <h2>Products</h2>
+      <p>Sample categories (change text as per your real models).</p>
+      <div class="products-grid">
+        <div class="category" aria-label="Industrial generators">
+          <h3>Industrial</h3>
+          <h4>Industrial generators</h4>
+          <p>For heavy loads &amp; continuous uptime.</p>
+          <ul>
+            <li>Range 82.5–3750 kVA</li>
+            <li>Support AMC + Service</li>
+            <li>Use Continuous / Standby</li>
           </ul>
-          <div class="actions">
-            <a class="btn primary" href="tel:+919829325775">Call</a>
-            <a class="btn ok" target="_blank" rel="noopener" href="https://wa.me/919829325775">WhatsApp</a>
-          </div>
+          <a href="https://wa.me/919829325775" class="btn whatsapp">Call</a>
         </div>
-      </article>
-
-      <article class="card product">
-        <div class="img">Commercial</div>
-        <div class="pad">
-          <h3>Commercial backup</h3>
-          <p class="muted">Offices, warehouses, business parks.</p>
-          <ul class="specs">
-            <li><span>Range</span> <b>10–2500 kVA</b></li>
-            <li><span>Options</span> <b>Rental / Sale</b></li>
-            <li><span>Support</span> <b>Fast response</b></li>
+        <div class="category" aria-label="Commercial backup">
+          <h3>Commercial</h3>
+          <h4>Commercial backup</h4>
+          <p>Offices, warehouses, business parks.</p>
+          <ul>
+            <li>Range 10–2500 kVA</li>
+            <li>Options Rental / Sale</li>
+            <li>Support Fast response</li>
           </ul>
-          <div class="actions">
-            <a class="btn primary" href="tel:+919829325775">Call</a>
-            <a class="btn ok" target="_blank" rel="noopener" href="https://wa.me/919829325775">WhatsApp</a>
-          </div>
+          <a href="https://wa.me/919829325775" class="btn whatsapp">Call</a>
         </div>
-      </article>
-
-      <article class="card product">
-        <div class="img">Residential</div>
-        <div class="pad">
-          <h3>Residential generators</h3>
-          <p class="muted">Homes & societies with silent canopy options.</p>
-          <ul class="specs">
-            <li><span>Range</span> <b>7.5–62.5 kVA</b></li>
-            <li><span>Noise</span> <b>Silent canopy</b></li>
-            <li><span>Use</span> <b>Home / Society</b></li>
+        <div class="category" aria-label="Residential generators">
+          <h3>Residential</h3>
+          <h4>Residential generators</h4>
+          <p>Homes &amp; societies with silent canopy options.</p>
+          <ul>
+            <li>Range 7.5–62.5 kVA</li>
+            <li>Noise Silent canopy</li>
+            <li>Use Home / Society</li>
           </ul>
-          <div class="actions">
-            <a class="btn primary" href="tel:+919829325775">Call</a>
-            <a class="btn ok" target="_blank" rel="noopener" href="https://wa.me/919829325775">WhatsApp</a>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT (form removed, map kept) -->
-<section class="section" id="contact">
-  <div class="container">
-    <div class="sectionHead">
-      <div>
-        <h2>Contact</h2>
-        <p class="muted">Phone: +91 9829325775 • Email: suresh.powerplus@gmail.com</p>
-      </div>
-    </div>
-
-    <div class="contactGrid">
-      <!-- Left card (form removed) -->
-      <div class="card pad">
-        <h3>Send requirement</h3>
-        <p class="muted" style="margin-top:6px">
-          Please contact us directly via Call or WhatsApp for quick response.
-        </p>
-
-        <div class="actions" style="margin-top:12px">
-          <a class="btn primary" href="tel:+919829325775">Call</a>
-          <a class="btn ok" target="_blank" rel="noopener" href="https://wa.me/919829325775">WhatsApp</a>
-          <a class="btn" href="mailto:suresh.powerplus@gmail.com">Email</a>
+          <a href="https://wa.me/919829325775" class="btn whatsapp">Call</a>
         </div>
       </div>
+    </section>
 
-      <!-- Map kept -->
-      <div class="map" aria-label="Google Map location">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3523.1605728807326!2d76.4125944749332!3d27.988983313014533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396d551239bc0efd%3A0x6e4176e43739288b!2sSuresh%20generator%20neemrana!5e0!3m2!1sen!2sin!4v1762792308766!5m2!1sen!2sin"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          allowfullscreen>
-        </iframe>
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="contact-container">
+        <div class="contact-info">
+          <p>Phone: <a href="tel:+919829325775">+91 9829325775</a> • Email: <a href="mailto:suresh.powerplus@gmail.com">suresh.powerplus@gmail.com</a></p>
+          <h3>Send requirement</h3>
+          <p>Please contact us directly via Call or WhatsApp for quick response.</p>
+          <a href="tel:+919829325775" class="btn">Call</a>
+          <a href="https://wa.me/919829325775" class="btn whatsapp">WhatsApp</a>
+          <a href="mailto:suresh.powerplus@gmail.com" class="btn">Email</a>
+        </div>
+        <div class="map">
+          <iframe
+            src="https://www.openstreetmap.org/export/embed.html?bbox=76.350%2C27.940%2C76.470%2C28.030&amp;layer=mapnik&amp;marker=27.98889%2C76.38833"
+            style="border:1px solid #ccc" allowfullscreen="" loading="lazy"></iframe>
+          <br/>
+          <small><a href="https://www.openstreetmap.org/#map=13/27.98889/76.38833" target="_blank">View Larger Map</a></small>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
+  </main>
 
-<footer>
-  <div class="container">
-    <div class="foot">
-      <div>© 2025 Suresh Generator • Neemrana, Rajasthan</div>
-      <div style="display:flex; gap:10px; flex-wrap:wrap">
-        <a class="btn" href="mailto:suresh.powerplus@gmail.com">Email</a>
-        <a class="btn primary" href="tel:+919829325775">Call</a>
-      </div>
-    </div>
-  </div>
-</footer>
+  <footer>
+    &copy; 2025 Suresh Generator • Neemrana, Rajasthan
+  </footer>
 
-<!-- Floating actions -->
-<div class="float" aria-label="Quick actions">
-  <a class="fab wa" target="_blank" rel="noopener" href="https://wa.me/919829325775" aria-label="WhatsApp">WA</a>
-  <a class="fab call" href="tel:+919829325775" aria-label="Call">CALL</a>
-  <a class="fab top" id="toTop" href="#home" aria-label="Back to top">↑</a>
-</div>
+  <!-- Floating Call, WhatsApp, and Back-to-Top Buttons -->
+  <a href="tel:+919829325775" class="float-btn call" aria-label="Call us">📞</a>
+  <a href="https://wa.me/919829325775" class="float-btn whatsapp" aria-label="WhatsApp us">💬</a>
+  <a href="#home" class="float-btn top" aria-label="Back to top">↑</a>
 
-<script>
-  // Drawer menu logic
-  const openMenu = document.getElementById('openMenu');
-  const closeMenu = document.getElementById('closeMenu');
-  const drawer = document.getElementById('drawer');
-  const overlay = document.getElementById('drawerOverlay');
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      if (navLinks.style.display === 'flex') {
+        navLinks.style.display = 'none';
+      } else {
+        navLinks.style.display = 'flex';
+        navLinks.style.flexDirection = 'column';
+      }
+    });
 
-  function setDrawer(open){
-    drawer.classList.toggle('open', open);
-    overlay.classList.toggle('open', open);
-    document.body.style.overflow = open ? 'hidden' : '';
-  }
-
-  openMenu?.addEventListener('click', () => setDrawer(true));
-  closeMenu?.addEventListener('click', () => setDrawer(false));
-  overlay?.addEventListener('click', () => setDrawer(false));
-
-  drawer?.addEventListener('click', (e) => {
-    const a = e.target.closest('a');
-    if(a && a.getAttribute('href')?.startsWith('#')) setDrawer(false);
-  });
-
-  // ESC to close
-  window.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape') setDrawer(false);
-  });
-
-  // Back-to-top visibility
-  const toTop = document.getElementById('toTop');
-  window.addEventListener('scroll', () => {
-    if(window.scrollY > 600) toTop.classList.add('show');
-    else toTop.classList.remove('show');
-  }, { passive:true });
-</script>
+    // Back to top button functionality
+    const topBtn = document.querySelector('.float-btn.top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 200) {
+        topBtn.style.display = 'flex';
+      } else {
+        topBtn.style.display = 'none';
+      }
+    });
+    topBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
 </body>
 </html>
